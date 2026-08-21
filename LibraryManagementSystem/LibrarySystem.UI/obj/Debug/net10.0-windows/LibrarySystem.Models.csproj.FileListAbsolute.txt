@@ -1,0 +1,12 @@
+C:\Users\kenne\OneDrive\Documents\OOP - Finals\LibraryManagementSystem\LibrarySystem.UI\obj\Debug\net10.0-windows\LibrarySystem.Models.csproj.AssemblyReference.cache
+C:\Users\kenne\OneDrive\Documents\OOP - Finals\LibraryManagementSystem\LibrarySystem.UI\obj\Debug\net10.0-windows\LibrarySystem.UI.HomePageForm.resources
+C:\Users\kenne\OneDrive\Documents\OOP - Finals\LibraryManagementSystem\LibrarySystem.UI\obj\Debug\net10.0-windows\LibrarySystem.UI.LoginForm.resources
+C:\Users\kenne\OneDrive\Documents\OOP - Finals\LibraryManagementSystem\LibrarySystem.UI\obj\Debug\net10.0-windows\LibrarySystem.Models.Properties.Resources.resources
+C:\Users\kenne\OneDrive\Documents\OOP - Finals\LibraryManagementSystem\LibrarySystem.UI\obj\Debug\net10.0-windows\LibrarySystem.UI.SignUpForm.resources
+C:\Users\kenne\OneDrive\Documents\OOP - Finals\LibraryManagementSystem\LibrarySystem.UI\obj\Debug\net10.0-windows\LibrarySystem.Models.csproj.GenerateResource.cache
+C:\Users\kenne\OneDrive\Documents\OOP - Finals\LibraryManagementSystem\LibrarySystem.UI\obj\Debug\net10.0-windows\LibrarySystem.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kenne\OneDrive\Documents\OOP - Finals\LibraryManagementSystem\LibrarySystem.UI\obj\Debug\net10.0-windows\LibrarySystem.Models.AssemblyInfoInputs.cache
+C:\Users\kenne\OneDrive\Documents\OOP - Finals\LibraryManagementSystem\LibrarySystem.UI\obj\Debug\net10.0-windows\LibrarySystem.Models.AssemblyInfo.cs
+C:\Users\kenne\OneDrive\Documents\OOP - Finals\LibraryManagementSystem\LibrarySystem.UI\obj\Debug\net10.0-windows\LibrarySystem.Models.csproj.CoreCompileInputs.cache
+C:\Users\kenne\OneDrive\Documents\OOP - Finals\LibraryManagementSystem\LibrarySystem.UI\obj\Debug\net10.0-windows\LibrarySystem.Models.HomePageForm.resources
+C:\Users\kenne\OneDrive\Documents\OOP - Finals\LibraryManagementSystem\LibrarySystem.UI\obj\Debug\net10.0-windows\LibrarySystem.Models.LoginForm.resources

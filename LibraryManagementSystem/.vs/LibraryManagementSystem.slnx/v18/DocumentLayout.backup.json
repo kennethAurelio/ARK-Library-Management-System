@@ -1,0 +1,73 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\kenne\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D1129789-9369-C0A2-4520-71E14DAF1C43}|LibrarySystem.UI\\LibrarySystem.UI.csproj|c:\\users\\kenne\\onedrive\\documents\\ark\\librarymanagementsystem\\librarysystem.ui\\homepageform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1129789-9369-C0A2-4520-71E14DAF1C43}|LibrarySystem.UI\\LibrarySystem.UI.csproj|solutionrelative:librarysystem.ui\\homepageform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1129789-9369-C0A2-4520-71E14DAF1C43}|LibrarySystem.UI\\LibrarySystem.UI.csproj|c:\\users\\kenne\\onedrive\\documents\\ark\\librarymanagementsystem\\librarysystem.ui\\signinform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1129789-9369-C0A2-4520-71E14DAF1C43}|LibrarySystem.UI\\LibrarySystem.UI.csproj|solutionrelative:librarysystem.ui\\signinform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1129789-9369-C0A2-4520-71E14DAF1C43}|LibrarySystem.UI\\LibrarySystem.UI.csproj|C:\\Users\\kenne\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\librarysystem.ui\\signinform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D1129789-9369-C0A2-4520-71E14DAF1C43}|LibrarySystem.UI\\LibrarySystem.UI.csproj|solutionrelative:librarysystem.ui\\signinform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomePageForm.cs",
+              "DocumentMoniker": "C:\\Users\\kenne\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.UI\\HomePageForm.cs",
+              "RelativeDocumentMoniker": "LibrarySystem.UI\\HomePageForm.cs",
+              "ToolTip": "C:\\Users\\kenne\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.UI\\HomePageForm.cs",
+              "RelativeToolTip": "LibrarySystem.UI\\HomePageForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-21T11:28:01.751Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SignInForm.cs",
+              "DocumentMoniker": "C:\\Users\\kenne\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.UI\\SignInForm.cs",
+              "RelativeDocumentMoniker": "LibrarySystem.UI\\SignInForm.cs",
+              "ToolTip": "C:\\Users\\kenne\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.UI\\SignInForm.cs",
+              "RelativeToolTip": "LibrarySystem.UI\\SignInForm.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAgwAwAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-18T12:36:20.533Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SignInForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\kenne\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.UI\\SignInForm.cs",
+              "RelativeDocumentMoniker": "LibrarySystem.UI\\SignInForm.cs",
+              "ToolTip": "C:\\Users\\kenne\\OneDrive\\Documents\\OOP - Finals\\LibraryManagementSystem\\LibrarySystem.UI\\SignInForm.cs [Design]",
+              "RelativeToolTip": "..\\..\\OOP - Finals\\LibraryManagementSystem\\LibrarySystem.UI\\SignInForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-18T14:15:44.953Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

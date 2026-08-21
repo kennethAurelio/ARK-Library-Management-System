@@ -1,0 +1,69 @@
+﻿using LibrarySystem.Services;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+
+namespace LibrarySystem.UI
+{
+    public partial class LoginForm : Form {
+        public LoginForm() {
+            InitializeComponent();
+        }
+
+        private readonly Authentication authentication = new Authentication();
+
+        private void btnLogin_Click(object sender, EventArgs e) {
+
+            // Validate that both fields are filled.
+            if (string.IsNullOrWhiteSpace(txtMemberID.Text) || string.IsNullOrWhiteSpace(txtPassword.Text)) {
+                MessageBox.Show("Please enter both your Student ID and Password.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                if (string.IsNullOrWhiteSpace(txtMemberID.Text)) {
+                    txtMemberID.Focus();
+                } else {
+                    txtPassword.Focus();
+                }
+
+                return;
+            }
+
+            UserRecord user = Authentication.validateLogin(txtMemberID.Text, txtPassword.Text);
+
+        }
+
+        private void validateLogin(string memberID, string password) {
+            // Check if the entered credentials match the hardcoded ones.
+            // !! Note: This will be replaced with a database check in the future.
+            if (memberID == txtMemberID.Text && password == txtPassword.Text) {
+                // Fill in the session - hardcoded for now, will come from DB later.
+                CurrentUser.MemberID = 1;
+                CurrentUser.FullName = "Kenneth Aurelio"; // placeholder until DB is wired up
+                CurrentUser.Role = "Student";
+                CurrentUser.isLoggedIn = true;
+
+                Hide();
+                HomePageForm homePageForm = new HomePageForm();
+                homePageForm.Show();
+
+                // !! Method to load the full access in the system
+            } else {
+                MessageBox.Show("Invalid credentials. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtMemberID.Clear();
+                txtPassword.Clear();
+            }
+        }
+
+        private void btnSignIn_Click(object sender, EventArgs e) {
+            SignUpForm signUpForm = new SignUpForm();
+            signUpForm.Show();
+        }
+
+        private void chkShowPassword_CheckedChanged(object sender, EventArgs e) {
+            txtPassword.PasswordChar = chkShowPassword.Checked ? '\0' : '*';
+        }
+    }
+}
