@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "75GdCSJxi4c=",
+  "dgSpecHash": "bQkI/qhJncM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\kenne\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.UI\\LibrarySystem.Models.csproj",
+  "projectFilePath": "C:\\Users\\kenne\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kenne\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "C:\\Users\\kenne\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",

@@ -1,4 +1,5 @@
 <Solution>
-  <Folder Name="/Solution Items/" />
-  <Project Path="LibrarySystem.UI/LibrarySystem.Models.csproj" />
+  <Folder Name="/Solution Items/">
+    <Project Path="LibrarySystem.Models/LibrarySystem.Models.csproj" />
+  </Folder>
 </Solution>
