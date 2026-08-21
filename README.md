@@ -15,7 +15,7 @@ ARK helps students browse books and librarians manage borrowing/return transacti
 ## Installation
 1. Clone the repo: `git clone https://github.com/YourUsername/ARK.git`
 2. Open in Visual Studio.
-3. Import `ark_schema.sql` into MySQL.
+3. Import `ark_db.sql` into MySQL.
 4. Update `app.config` with your DB credentials.
 
 ## Usage
