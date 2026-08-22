@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|c:\\users\\kenneth\\onedrive\\documents\\ark\\librarymanagementsystem\\librarysystem.models\\homepageform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|c:\\users\\kenneth\\onedrive\\documents\\ark\\librarymanagementsystem\\librarysystem.models\\signinform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|solutionrelative:librarysystem.models\\signinform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\librarysystem.models\\homepageform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|solutionrelative:librarysystem.models\\homepageform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|c:\\users\\kenneth\\onedrive\\documents\\ark\\librarymanagementsystem\\librarysystem.models\\authentication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|solutionrelative:librarysystem.models\\authentication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|c:\\users\\kenneth\\onedrive\\documents\\ark\\librarymanagementsystem\\librarysystem.models\\signinform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|solutionrelative:librarysystem.models\\signinform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|c:\\users\\kenneth\\onedrive\\documents\\ark\\librarymanagementsystem\\librarysystem.models\\homepageform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|solutionrelative:librarysystem.models\\homepageform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,14 +38,63 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "SignInForm.cs",
+              "DocumentMoniker": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\SignInForm.cs",
+              "RelativeDocumentMoniker": "LibrarySystem.Models\\SignInForm.cs",
+              "ToolTip": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\SignInForm.cs",
+              "RelativeToolTip": "LibrarySystem.Models\\SignInForm.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAwwC4AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T02:20:50.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HomePageForm.cs",
+              "DocumentMoniker": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\HomePageForm.cs",
+              "RelativeDocumentMoniker": "LibrarySystem.Models\\HomePageForm.cs",
+              "ToolTip": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\HomePageForm.cs",
+              "RelativeToolTip": "LibrarySystem.Models\\HomePageForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T02:19:39.219Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Authentication.cs",
+              "DocumentMoniker": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\Authentication.cs",
+              "RelativeDocumentMoniker": "LibrarySystem.Models\\Authentication.cs",
+              "ToolTip": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\Authentication.cs",
+              "RelativeToolTip": "LibrarySystem.Models\\Authentication.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T01:44:00.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "HomePageForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\HomePageForm.cs",
               "RelativeDocumentMoniker": "LibrarySystem.Models\\HomePageForm.cs",
               "ToolTip": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\HomePageForm.cs [Design]",
               "RelativeToolTip": "LibrarySystem.Models\\HomePageForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-21T13:56:07.602Z",
+              "WhenOpened": "2026-08-21T13:56:07.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SignInForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\SignInForm.cs",
+              "RelativeDocumentMoniker": "LibrarySystem.Models\\SignInForm.cs",
+              "ToolTip": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\SignInForm.cs [Design]",
+              "RelativeToolTip": "LibrarySystem.Models\\SignInForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T02:20:46.799Z",
               "EditorCaption": " [Design]"
             }
           ]
