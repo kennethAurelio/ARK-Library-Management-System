@@ -121,8 +121,8 @@
   <data name="jkhadkhuial" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\jkhadkhuial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ikigai-7" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ikigai-7.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pngtree-vector-search-icon-png-image_848679" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pngtree-vector-search-icon-png-image_848679.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="profile-icon-login-head-icon-vector" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\profile-icon-login-head-icon-vector.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -133,13 +133,16 @@
   <data name="book2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\book2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="F3E021" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\F3E021.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="book3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\book3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pngtree-vector-search-icon-png-image_848679" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pngtree-vector-search-icon-png-image_848679.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ikigai-7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ikigai-7.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="F3E021" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\F3E021.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

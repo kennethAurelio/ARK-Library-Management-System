@@ -13,9 +13,7 @@ namespace LibrarySystem.Models
         private void updateUIForLoginState() {
             if (CurrentUser.isLoggedIn) {
                 btnOpenLogin.Visible = false;
-                // !! Other functions. e.g. :
-                // btnLogout.Visible = true;
-                // load the full version
+                btnLogout.Visible = true;
             }
         }
 
@@ -24,5 +22,20 @@ namespace LibrarySystem.Models
             Hide();
             signInForm.Show();
         }
+
+        private void btnLogout_Click(object sender, EventArgs e) {
+            DialogResult result = MessageBox.Show(
+                    "Do you really want to log out?",
+                    "Confirm Logout",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+            if (result == DialogResult.Yes) {
+                MessageBox.Show("You have been logged out.");
+                Environment.Exit(0);
+            } 
+        }
+
     }
 }
