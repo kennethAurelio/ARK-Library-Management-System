@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\kenne\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\",
+  "WorkspaceRootPath": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|c:\\users\\kenne\\onedrive\\documents\\ark\\librarymanagementsystem\\librarysystem.models\\homepageform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|c:\\users\\kenneth\\onedrive\\documents\\ark\\librarymanagementsystem\\librarysystem.models\\homepageform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{66622621-4F66-BD2B-F616-02C35573B7DE}|LibrarySystem.Models\\LibrarySystem.Models.csproj|solutionrelative:librarysystem.models\\homepageform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -24,9 +24,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "HomePageForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\kenne\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\HomePageForm.cs",
+              "DocumentMoniker": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\HomePageForm.cs",
               "RelativeDocumentMoniker": "LibrarySystem.Models\\HomePageForm.cs",
-              "ToolTip": "C:\\Users\\kenne\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\HomePageForm.cs [Design]",
+              "ToolTip": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\HomePageForm.cs [Design]",
               "RelativeToolTip": "LibrarySystem.Models\\HomePageForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-21T13:56:07.602Z",

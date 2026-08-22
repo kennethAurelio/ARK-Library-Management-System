@@ -5,12 +5,12 @@ namespace LibrarySystem.Models {
     public class AuthService {
         private readonly string connectionString = "Server=localhost;Database=ark_db;Uid=root;Pwd=SQLAurelio;";
 
-        public UserRecord validateLogin(string studentID, string password) {
+        public UserRecord validateLogin(string memberID, string password) {
             using (MySqlConnection conn = new MySqlConnection(connectionString)) {
                 string query = "SELECT user_id, full_name, role, password FROM accounts WHERE member_id = @member_id";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn)) {
-                    cmd.Parameters.AddWithValue("@member_id", studentID);
+                    cmd.Parameters.AddWithValue("@member_id", memberID);
                     conn.Open();
 
                     using (MySqlDataReader reader = cmd.ExecuteReader()) {
