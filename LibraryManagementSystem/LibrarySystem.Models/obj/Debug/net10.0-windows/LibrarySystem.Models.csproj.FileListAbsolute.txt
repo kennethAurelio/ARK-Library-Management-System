@@ -232,3 +232,4 @@ C:\Users\Kenneth\OneDrive\Documents\ARK\LibraryManagementSystem\LibrarySystem.Mo
 C:\Users\Kenneth\OneDrive\Documents\ARK\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.pdb
 C:\Users\Kenneth\OneDrive\Documents\ARK\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.genruntimeconfig.cache
 C:\Users\Kenneth\OneDrive\Documents\ARK\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\ref\LibrarySystem.Models.dll
+C:\Users\kenne\OneDrive\Documents\ARK\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.SearchResultForm.resources

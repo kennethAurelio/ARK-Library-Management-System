@@ -1,12 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 
-
 namespace LibrarySystem.Models {
     public class AuthService {
-        private readonly string connectionString = "Server=localhost;Database=ark_db;Uid=root;Pwd=SQLAurelio;";
-
-        public UserRecord validateLogin(string memberID, string password) {
-            using (MySqlConnection conn = new MySqlConnection(connectionString)) {
+        public UserRecord ValidateLogin(string memberID, string password) {
+            using (MySqlConnection conn = DatabaseHelper.GetConnection()) {
                 string query = "SELECT user_id, full_name, role, password FROM accounts WHERE member_id = @member_id";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn)) {
@@ -15,7 +12,6 @@ namespace LibrarySystem.Models {
 
                     using (MySqlDataReader reader = cmd.ExecuteReader()) {
                         if (reader.Read()) {
-                            // Convert the stored password hash to a string for comparison
                             string storedHash = reader["password"].ToString();
 
                             if (BCrypt.Net.BCrypt.Verify(password, storedHash)) {

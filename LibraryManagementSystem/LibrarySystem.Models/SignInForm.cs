@@ -29,7 +29,7 @@ namespace LibrarySystem.Models {
                 return;
             }
 
-            UserRecord user = authentication.validateLogin(txtMemberID.Text, txtPassword.Text);
+            UserRecord user = authentication.ValidateLogin(txtMemberID.Text, txtPassword.Text);
 
             if (user != null) {
                 CurrentUser.MemberID = user.MemberID;
