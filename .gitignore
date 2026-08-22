@@ -1,0 +1,4 @@
+# Ignore Visual Studio cache 
+.vs/ 
+bin/ 
+obj/ 
