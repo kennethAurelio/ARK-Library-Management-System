@@ -29,6 +29,10 @@
             // 
             // dataGridViewResults
             // 
+            dataGridViewResults.AllowUserToAddRows = false;
+            dataGridViewResults.AllowUserToDeleteRows = false;
+            dataGridViewResults.AllowUserToResizeColumns = false;
+            dataGridViewResults.AllowUserToResizeRows = false;
             dataGridViewResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewResults.Location = new Point(12, 12);
             dataGridViewResults.Name = "dataGridViewResults";
@@ -45,7 +49,6 @@
             Name = "SearchResultForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Search Result";
-            Load += SearchResultForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewResults).EndInit();
             ResumeLayout(false);
         }

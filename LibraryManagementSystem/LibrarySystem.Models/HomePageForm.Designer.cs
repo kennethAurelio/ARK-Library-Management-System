@@ -66,7 +66,6 @@
             txtSearchBox.Name = "txtSearchBox";
             txtSearchBox.Size = new Size(332, 27);
             txtSearchBox.TabIndex = 1;
-            txtSearchBox.Text = "Search..";
             // 
             // btnSearch
             // 
