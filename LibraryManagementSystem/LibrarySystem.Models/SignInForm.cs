@@ -29,7 +29,7 @@ namespace LibrarySystem.Models {
                 return;
             }
 
-            UserRecord user = authentication.validateLogin(txtMemberID.Text, txtPassword.Text);
+            UserRecord user = authentication.ValidateLogin(txtMemberID.Text, txtPassword.Text);
 
             if (user != null) {
                 CurrentUser.MemberID = user.MemberID;
@@ -42,7 +42,9 @@ namespace LibrarySystem.Models {
                 if (CurrentUser.Role == "admin") {
                     MessageBox.Show($"Welcome, {CurrentUser.FullName}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 } else {
-                    MessageBox.Show("Student", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Welcome, {CurrentUser.FullName}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    HomePageForm homePageForm = new HomePageForm();
+                    homePageForm.Show();
                 }
             } else {
                 MessageBox.Show("Invalid credentials. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);

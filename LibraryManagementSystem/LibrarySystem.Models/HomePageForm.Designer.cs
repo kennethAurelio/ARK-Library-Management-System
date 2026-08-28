@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent() {
             lblText1 = new Label();
-            txtSeachBox = new TextBox();
+            txtSearchBox = new TextBox();
             btnSearch = new Button();
             lblText2 = new Label();
             btnOpenLogin = new Button();
@@ -38,6 +38,7 @@
             Panel1 = new Panel();
             pictureBox4 = new PictureBox();
             lblText3 = new Label();
+            btnLogout = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -58,14 +59,13 @@
             lblText1.TabIndex = 0;
             lblText1.Text = "Welcome to ARK";
             // 
-            // txtSeachBox
+            // txtSearchBox
             // 
-            txtSeachBox.Anchor = AnchorStyles.Top;
-            txtSeachBox.Location = new Point(405, 151);
-            txtSeachBox.Name = "txtSeachBox";
-            txtSeachBox.Size = new Size(332, 27);
-            txtSeachBox.TabIndex = 1;
-            txtSeachBox.Text = "Search..";
+            txtSearchBox.Anchor = AnchorStyles.Top;
+            txtSearchBox.Location = new Point(405, 151);
+            txtSearchBox.Name = "txtSearchBox";
+            txtSearchBox.Size = new Size(332, 27);
+            txtSearchBox.TabIndex = 1;
             // 
             // btnSearch
             // 
@@ -78,6 +78,7 @@
             btnSearch.Size = new Size(41, 31);
             btnSearch.TabIndex = 2;
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // lblText2
             // 
@@ -165,21 +166,36 @@
             lblText3.TabIndex = 9;
             lblText3.Text = "Your Archive and Resource Keeper";
             // 
+            // btnLogout
+            // 
+            btnLogout.BackgroundImage = Properties.Resources.images;
+            btnLogout.BackgroundImageLayout = ImageLayout.Stretch;
+            btnLogout.Location = new Point(1078, 16);
+            btnLogout.Margin = new Padding(3, 4, 3, 4);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(41, 44);
+            btnLogout.TabIndex = 10;
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Visible = false;
+            btnLogout.Click += btnLogout_Click;
+            // 
             // HomePageForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1133, 784);
+            Controls.Add(btnLogout);
             Controls.Add(lblText3);
             Controls.Add(Panel1);
             Controls.Add(btnOpenLogin);
             Controls.Add(lblText2);
             Controls.Add(btnSearch);
-            Controls.Add(txtSeachBox);
+            Controls.Add(txtSearchBox);
             Controls.Add(lblText1);
             Name = "HomePageForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Home Page";
+            Load += HomePageForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -192,7 +208,7 @@
         #endregion
 
         private Label lblText1;
-        private TextBox txtSeachBox;
+        private TextBox txtSearchBox;
         private Button btnSearch;
         private Label lblText2;
         private Button btnOpenLogin;
@@ -202,5 +218,6 @@
         private Panel Panel1;
         private PictureBox pictureBox4;
         private Label lblText3;
+        private Button btnLogout;
     }
 }

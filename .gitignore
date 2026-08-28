@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+# Ignore Visual Studio cache 
+>>>>>>> experiment/new-ui
 .vs/ 
 bin/ 
 obj/ 

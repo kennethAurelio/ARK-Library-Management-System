@@ -4,6 +4,9 @@
     <Compile Update="HomePageForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SearchResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="SignInForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LibrarySystem.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31238fee1f82dc198dc76c7c034a48830891af83")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b14b52e910cf7595ff1e94f833e3c8b4405fdae")]
+>>>>>>> experiment/new-ui
 [assembly: System.Reflection.AssemblyProductAttribute("LibrarySystem.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LibrarySystem.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

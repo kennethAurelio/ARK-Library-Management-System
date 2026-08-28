@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Models.csproj": {}
+    "C:\\Users\\Kenneth\\OneDrive\\Desktop\\ARK-Library-Management-System\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Models.csproj": {
+    "C:\\Users\\Kenneth\\OneDrive\\Desktop\\ARK-Library-Management-System\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Models.csproj",
+        "projectUniqueName": "C:\\Users\\Kenneth\\OneDrive\\Desktop\\ARK-Library-Management-System\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Models.csproj",
         "projectName": "LibrarySystem.Models",
-        "projectPath": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Models.csproj",
+        "projectPath": "C:\\Users\\Kenneth\\OneDrive\\Desktop\\ARK-Library-Management-System\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Models.csproj",
         "packagesPath": "C:\\Users\\Kenneth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kenneth\\OneDrive\\Documents\\ARK\\LibraryManagementSystem\\LibrarySystem.Models\\obj\\",
+        "outputPath": "C:\\Users\\Kenneth\\OneDrive\\Desktop\\ARK-Library-Management-System\\LibraryManagementSystem\\LibrarySystem.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Kenneth\\AppData\\Roaming\\NuGet\\NuGet.Config",
