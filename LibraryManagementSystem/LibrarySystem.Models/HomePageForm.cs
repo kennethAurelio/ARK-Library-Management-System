@@ -36,7 +36,7 @@ namespace LibrarySystem.Models
 
         private void btnLogout_Click(object sender, EventArgs e) {
             DialogResult result = MessageBox.Show(
-                    "Do you really want to log out?",
+                    "Do you want to log out?",
                     "Confirm Logout",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
