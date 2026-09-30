@@ -41,24 +41,26 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(538, 57);
+            label1.Location = new Point(471, 43);
             label1.Name = "label1";
-            label1.Size = new Size(0, 20);
+            label1.Size = new Size(0, 15);
             label1.TabIndex = 0;
             // 
             // txtMemberID
             // 
-            txtMemberID.Location = new Point(670, 392);
+            txtMemberID.Location = new Point(586, 294);
+            txtMemberID.Margin = new Padding(3, 2, 3, 2);
             txtMemberID.Name = "txtMemberID";
-            txtMemberID.Size = new Size(383, 27);
+            txtMemberID.Size = new Size(336, 23);
             txtMemberID.TabIndex = 2;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(669, 503);
+            txtPassword.Location = new Point(585, 377);
+            txtPassword.Margin = new Padding(3, 2, 3, 2);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(383, 27);
+            txtPassword.Size = new Size(336, 23);
             txtPassword.TabIndex = 3;
             // 
             // label3
@@ -66,28 +68,29 @@
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(667, 354);
+            label3.Location = new Point(584, 266);
             label3.Name = "label3";
-            label3.Size = new Size(78, 17);
+            label3.Size = new Size(50, 15);
             label3.TabIndex = 4;
-            label3.Text = "Member ID";
+            label3.Text = "Login ID";
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Times New Roman", 9F);
-            label4.Location = new Point(667, 466);
+            label4.Location = new Point(584, 350);
             label4.Name = "label4";
-            label4.Size = new Size(66, 17);
+            label4.Size = new Size(54, 15);
             label4.TabIndex = 5;
             label4.Text = "Password";
             // 
             // btnSignUp
             // 
-            btnSignUp.Location = new Point(893, 743);
+            btnSignUp.Location = new Point(781, 557);
+            btnSignUp.Margin = new Padding(3, 2, 3, 2);
             btnSignUp.Name = "btnSignUp";
-            btnSignUp.Size = new Size(128, 29);
+            btnSignUp.Size = new Size(112, 22);
             btnSignUp.TabIndex = 6;
             btnSignUp.Text = "Sign Up";
             btnSignUp.UseVisualStyleBackColor = true;
@@ -98,9 +101,10 @@
             chkShowPassword.AutoSize = true;
             chkShowPassword.BackColor = Color.Transparent;
             chkShowPassword.Font = new Font("Times New Roman", 9F);
-            chkShowPassword.Location = new Point(670, 547);
+            chkShowPassword.Location = new Point(586, 410);
+            chkShowPassword.Margin = new Padding(3, 2, 3, 2);
             chkShowPassword.Name = "chkShowPassword";
-            chkShowPassword.Size = new Size(125, 21);
+            chkShowPassword.Size = new Size(103, 19);
             chkShowPassword.TabIndex = 7;
             chkShowPassword.Text = "Show Password";
             chkShowPassword.UseVisualStyleBackColor = false;
@@ -108,9 +112,10 @@
             // 
             // btnSignIn
             // 
-            btnSignIn.Location = new Point(814, 612);
+            btnSignIn.Location = new Point(712, 459);
+            btnSignIn.Margin = new Padding(3, 2, 3, 2);
             btnSignIn.Name = "btnSignIn";
-            btnSignIn.Size = new Size(94, 29);
+            btnSignIn.Size = new Size(82, 22);
             btnSignIn.TabIndex = 8;
             btnSignIn.Text = "Sign in";
             btnSignIn.UseVisualStyleBackColor = true;
@@ -118,9 +123,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(1027, 743);
+            button1.Location = new Point(899, 557);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(82, 22);
             button1.TabIndex = 9;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
@@ -128,11 +134,11 @@
             // 
             // SignInForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.ARK___Sign_In;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1133, 784);
+            ClientSize = new Size(991, 588);
             Controls.Add(button1);
             Controls.Add(btnSignIn);
             Controls.Add(chkShowPassword);
@@ -142,6 +148,7 @@
             Controls.Add(txtPassword);
             Controls.Add(txtMemberID);
             Controls.Add(label1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "SignInForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sign in";

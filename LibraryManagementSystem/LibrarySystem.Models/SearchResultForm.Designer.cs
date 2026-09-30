@@ -23,38 +23,55 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            dataGridViewResults = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewResults).BeginInit();
+            dgvResults = new DataGridView();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvResults).BeginInit();
             SuspendLayout();
             // 
-            // dataGridViewResults
+            // dgvResults
             // 
-            dataGridViewResults.AllowUserToAddRows = false;
-            dataGridViewResults.AllowUserToDeleteRows = false;
-            dataGridViewResults.AllowUserToResizeColumns = false;
-            dataGridViewResults.AllowUserToResizeRows = false;
-            dataGridViewResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewResults.Location = new Point(12, 12);
-            dataGridViewResults.Name = "dataGridViewResults";
-            dataGridViewResults.RowHeadersWidth = 51;
-            dataGridViewResults.Size = new Size(1109, 433);
-            dataGridViewResults.TabIndex = 0;
+            dgvResults.AllowUserToAddRows = false;
+            dgvResults.AllowUserToDeleteRows = false;
+            dgvResults.AllowUserToResizeColumns = false;
+            dgvResults.AllowUserToResizeRows = false;
+            dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvResults.Location = new Point(79, 95);
+            dgvResults.Margin = new Padding(3, 2, 3, 2);
+            dgvResults.Name = "dgvResults";
+            dgvResults.RowHeadersWidth = 51;
+            dgvResults.Size = new Size(594, 263);
+            dgvResults.TabIndex = 0;
+            dgvResults.CellDoubleClick += dgvResults_CellDoubleClick;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(79, 67);
+            label1.Name = "label1";
+            label1.Size = new Size(75, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Search Result:";
             // 
             // SearchResultForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1133, 784);
-            Controls.Add(dataGridViewResults);
+            ClientSize = new Size(991, 588);
+            Controls.Add(label1);
+            Controls.Add(dgvResults);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "SearchResultForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Search Result";
-            ((System.ComponentModel.ISupportInitialize)dataGridViewResults).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvResults).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataGridViewResults;
+        private DataGridView dgvResults;
+        private Label label1;
     }
 }

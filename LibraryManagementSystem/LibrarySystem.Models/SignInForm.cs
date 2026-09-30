@@ -32,12 +32,15 @@ namespace LibrarySystem.Models {
             UserRecord user = authentication.ValidateLogin(txtMemberID.Text, txtPassword.Text);
 
             if (user != null) {
-                CurrentUser.MemberID = user.MemberID;
-                CurrentUser.FullName = user.FullName;
+                CurrentUser.UserId = user.UserId;
+                CurrentUser.FirstName = user.FirstName;
+                CurrentUser.MiddleName = user.MiddleName;
+                CurrentUser.LastName = user.LastName;
                 CurrentUser.Role = user.Role;
                 CurrentUser.isLoggedIn = true;
 
                 Hide();
+
 
                 if (CurrentUser.Role == "admin") {
                     MessageBox.Show($"Welcome, {CurrentUser.FullName}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -57,6 +57,7 @@ namespace LibrarySystem.Models
             }
 
             String query = @"SELECT
+                                book_id,
                                 title, 
                                 author, 
                                 year_published, 
