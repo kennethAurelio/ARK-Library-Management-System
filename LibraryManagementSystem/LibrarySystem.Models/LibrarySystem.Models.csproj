@@ -12,6 +12,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\book1.jpg" />
+    <None Remove="Resources\book2.jpg" />
+    <None Remove="Resources\book3.jpg" />
+    <None Remove="Resources\F3E021.png" />
+    <None Remove="Resources\ikigai-7.jpg" />
+    <None Remove="Resources\no_cover.jpg" />
+    <None Remove="Resources\null_cover.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.2" />
     <PackageReference Include="MySql.Data" Version="26.7.0" />

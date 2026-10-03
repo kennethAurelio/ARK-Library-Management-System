@@ -63,6 +63,16 @@ namespace LibrarySystem.Models.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ARK___Background {
+            get {
+                object obj = ResourceManager.GetObject("ARK - Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ARK___Sign_In {
             get {
                 object obj = ResourceManager.GetObject("ARK - Sign In", resourceCulture);
@@ -136,6 +146,26 @@ namespace LibrarySystem.Models.Properties {
         internal static System.Drawing.Bitmap jkhadkhuial {
             get {
                 object obj = ResourceManager.GetObject("jkhadkhuial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap no_cover {
+            get {
+                object obj = ResourceManager.GetObject("no_cover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap no_cover1 {
+            get {
+                object obj = ResourceManager.GetObject("no_cover1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

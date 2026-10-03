@@ -56,10 +56,6 @@ namespace LibrarySystem.Models {
             }
 
             using (var loanForm = new LoanForm(bookId, CurrentUser.UserId)) {
-                loanForm.ShowDialog();
-            }
-
-            using (var loanForm = new LoanForm(bookId, CurrentUser.UserId)) {
                 if (loanForm.ShowDialog() == DialogResult.OK) {
                     // successfully loaned the book, update the copies available in the DataGridView
                     row.Cells["copies_available"].Value = copies - 1;
@@ -67,5 +63,6 @@ namespace LibrarySystem.Models {
             }
 
         }
+
     }
 }

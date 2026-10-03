@@ -32,6 +32,15 @@
             btnSearch = new Button();
             btnOpenLogin = new Button();
             btnLogout = new Button();
+            pbBookDisplay1 = new PictureBox();
+            pbBookDisplay2 = new PictureBox();
+            pbBookDisplay3 = new PictureBox();
+            pbBookDisplay4 = new PictureBox();
+            label3 = new Label();
+            ((System.ComponentModel.ISupportInitialize)pbBookDisplay1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbBookDisplay2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbBookDisplay3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbBookDisplay4).BeginInit();
             SuspendLayout();
             // 
             // txtSearchBox
@@ -82,6 +91,50 @@
             btnLogout.Visible = false;
             btnLogout.Click += btnLogout_Click;
             // 
+            // pbBookDisplay1
+            // 
+            pbBookDisplay1.Location = new Point(106, 300);
+            pbBookDisplay1.Name = "pbBookDisplay1";
+            pbBookDisplay1.Size = new Size(109, 169);
+            pbBookDisplay1.TabIndex = 11;
+            pbBookDisplay1.TabStop = false;
+            // 
+            // pbBookDisplay2
+            // 
+            pbBookDisplay2.Location = new Point(262, 300);
+            pbBookDisplay2.Name = "pbBookDisplay2";
+            pbBookDisplay2.Size = new Size(109, 169);
+            pbBookDisplay2.TabIndex = 12;
+            pbBookDisplay2.TabStop = false;
+            // 
+            // pbBookDisplay3
+            // 
+            pbBookDisplay3.Location = new Point(415, 300);
+            pbBookDisplay3.Name = "pbBookDisplay3";
+            pbBookDisplay3.Size = new Size(109, 169);
+            pbBookDisplay3.TabIndex = 13;
+            pbBookDisplay3.TabStop = false;
+            // 
+            // pbBookDisplay4
+            // 
+            pbBookDisplay4.Location = new Point(570, 300);
+            pbBookDisplay4.Name = "pbBookDisplay4";
+            pbBookDisplay4.Size = new Size(109, 169);
+            pbBookDisplay4.TabIndex = 14;
+            pbBookDisplay4.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(91, 264);
+            label3.Name = "label3";
+            label3.Size = new Size(99, 15);
+            label3.TabIndex = 15;
+            label3.Text = "Newest to Library:";
+            // 
             // HomePageForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -89,6 +142,11 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(991, 588);
+            Controls.Add(label3);
+            Controls.Add(pbBookDisplay4);
+            Controls.Add(pbBookDisplay3);
+            Controls.Add(pbBookDisplay2);
+            Controls.Add(pbBookDisplay1);
             Controls.Add(btnLogout);
             Controls.Add(btnOpenLogin);
             Controls.Add(btnSearch);
@@ -98,6 +156,10 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Home Page";
             Load += HomePageForm_Load;
+            ((System.ComponentModel.ISupportInitialize)pbBookDisplay1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbBookDisplay2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbBookDisplay3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbBookDisplay4).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -113,5 +175,10 @@
         private Panel Panel1;
         private PictureBox pictureBox4;
         private Button btnLogout;
+        private PictureBox pbBookDisplay1;
+        private PictureBox pbBookDisplay2;
+        private PictureBox pbBookDisplay3;
+        private PictureBox pbBookDisplay4;
+        private Label label3;
     }
 }

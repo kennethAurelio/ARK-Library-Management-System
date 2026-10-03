@@ -32,7 +32,6 @@
             txtPassword = new TextBox();
             label3 = new Label();
             label4 = new Label();
-            btnSignUp = new Button();
             chkShowPassword = new CheckBox();
             btnSignIn = new Button();
             button1 = new Button();
@@ -85,17 +84,6 @@
             label4.TabIndex = 5;
             label4.Text = "Password";
             // 
-            // btnSignUp
-            // 
-            btnSignUp.Location = new Point(781, 557);
-            btnSignUp.Margin = new Padding(3, 2, 3, 2);
-            btnSignUp.Name = "btnSignUp";
-            btnSignUp.Size = new Size(112, 22);
-            btnSignUp.TabIndex = 6;
-            btnSignUp.Text = "Sign Up";
-            btnSignUp.UseVisualStyleBackColor = true;
-            btnSignUp.Click += btnSignIn_Click;
-            // 
             // chkShowPassword
             // 
             chkShowPassword.AutoSize = true;
@@ -142,7 +130,6 @@
             Controls.Add(button1);
             Controls.Add(btnSignIn);
             Controls.Add(chkShowPassword);
-            Controls.Add(btnSignUp);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(txtPassword);
@@ -163,7 +150,6 @@
         private TextBox txtPassword;
         private Label label3;
         private Label label4;
-        private Button btnSignUp;
         private CheckBox chkShowPassword;
         private Button btnSignIn;
         private Button button1;

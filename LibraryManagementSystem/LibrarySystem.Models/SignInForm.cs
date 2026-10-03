@@ -57,11 +57,6 @@ namespace LibrarySystem.Models {
 
         }
 
-        private void btnSignIn_Click(object sender, EventArgs e) {
-            SignUpForm signUpForm = new SignUpForm();
-            signUpForm.Show();
-        }
-
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e) {
             txtPassword.PasswordChar = chkShowPassword.Checked ? '\0' : '*';
         }

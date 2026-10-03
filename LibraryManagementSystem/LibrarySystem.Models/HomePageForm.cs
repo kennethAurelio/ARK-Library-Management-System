@@ -1,6 +1,7 @@
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 
 namespace LibrarySystem.Models
 {
@@ -14,6 +15,7 @@ namespace LibrarySystem.Models
             // Initialize placeholder for the search box
             InitializeSearchPlaceholder();
             this.ActiveControl = btnSearch;
+            LoadNewestBooks();
         }
 
         // This method is called when the form is loaded. It checks the login state and updates the UI accordingly.
@@ -21,6 +23,7 @@ namespace LibrarySystem.Models
             updateUIForLoginState();
         }
 
+        // This method updates the visibility of ui buttons based on the user's login state.
         private void updateUIForLoginState() {
             if (CurrentUser.isLoggedIn) {
                 btnOpenLogin.Visible = false;
@@ -127,5 +130,40 @@ namespace LibrarySystem.Models
                 RestoreSearchPlaceholder();
             }
         }
+
+
+        // This method loads the newest books from the database and displays their covers in the PictureBox controls.
+        private void LoadNewestBooks() {
+            // Array of PictureBox controls to display the newest books
+            PictureBox[] covers = {pbBookDisplay1, pbBookDisplay2, pbBookDisplay3, pbBookDisplay4};
+
+            using (var conn = DatabaseHelper.GetConnection())
+            using (var cmd = new MySqlCommand(
+                "SELECT book_id, title, author, book_cover FROM books " +
+                "ORDER BY date_added DESC LIMIT 4", conn)) {
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader()) {
+                    int i = 0;
+                    while (reader.Read() && i < covers.Length) {
+                        covers[i].BackgroundImageLayout = ImageLayout.Stretch;
+
+                        if (reader["book_cover"] != DBNull.Value) {
+                            byte[] data = (byte[])reader["book_cover"];
+                            using (var stream = new MemoryStream(data))
+                            using (var img = Image.FromStream(stream)) {
+                                covers[i].BackgroundImage = new Bitmap(img);
+                            }
+                        } else {
+                            covers[i].BackgroundImage = Properties.Resources.no_cover;
+                        }
+
+                        covers[i].Tag = reader["book_id"]; // saved so you can open the book when clicked
+                        i++;
+                    }
+                }
+            }
+        }
+
     }
 }

@@ -295,7 +295,6 @@ C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\Lib
 C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.Properties.Resources.resources
 C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.SearchResultForm.resources
 C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.SignInForm.resources
-C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.SignUpForm.resources
 C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.csproj.GenerateResource.cache
 C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.AssemblyInfoInputs.cache

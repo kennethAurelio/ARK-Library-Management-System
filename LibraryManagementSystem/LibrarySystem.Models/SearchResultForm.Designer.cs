@@ -23,6 +23,8 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             dgvResults = new DataGridView();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvResults).BeginInit();
@@ -34,8 +36,19 @@
             dgvResults.AllowUserToDeleteRows = false;
             dgvResults.AllowUserToResizeColumns = false;
             dgvResults.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dgvResults.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvResults.BackgroundColor = Color.LightYellow;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Ivory;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvResults.Location = new Point(79, 95);
+            dgvResults.Location = new Point(101, 191);
             dgvResults.Margin = new Padding(3, 2, 3, 2);
             dgvResults.Name = "dgvResults";
             dgvResults.RowHeadersWidth = 51;
@@ -46,8 +59,9 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(79, 67);
+            label1.Location = new Point(101, 162);
             label1.Name = "label1";
             label1.Size = new Size(75, 15);
             label1.TabIndex = 1;
@@ -57,6 +71,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.ARK___Background;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(991, 588);
             Controls.Add(label1);
             Controls.Add(dgvResults);

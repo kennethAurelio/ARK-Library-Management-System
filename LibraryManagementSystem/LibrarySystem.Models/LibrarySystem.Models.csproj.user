@@ -13,8 +13,5 @@
     <Compile Update="SignInForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SignUpForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
 </Project>
