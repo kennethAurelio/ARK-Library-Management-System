@@ -63,7 +63,7 @@ Fork the repo, create a branch (`feature-xyz`), and submit a pull request.
 MIT License
 
 ## Authors
-- Kenneth Aurelio — Backend & Database
-- Crisha Jane Amarado — UI & Design
-- King Joshsana Tocop — Testing & Documentation
-- Andrea Ella Toralde — Testing & Documentation
+- Andrea Ella Toralde — Project Leader & Documentation
+- Crisha Jane Amarado — Database Administrator & Documentation
+- Kenneth Aurelio — Backend & System Architect
+- King Joshsana Tocop — UI/UX Designer
