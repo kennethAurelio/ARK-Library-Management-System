@@ -27,7 +27,6 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePageForm));
             txtSearchBox = new TextBox();
             btnSearch = new Button();
             btnOpenLogin = new Button();
@@ -68,10 +67,10 @@
             // 
             // btnOpenLogin
             // 
-            btnOpenLogin.Anchor = AnchorStyles.Right;
+            btnOpenLogin.Anchor = AnchorStyles.None;
             btnOpenLogin.BackgroundImage = Properties.Resources.profile_icon_login_head_icon_vector;
             btnOpenLogin.BackgroundImageLayout = ImageLayout.Stretch;
-            btnOpenLogin.Location = new Point(933, 26);
+            btnOpenLogin.Location = new Point(928, 21);
             btnOpenLogin.Margin = new Padding(3, 2, 3, 2);
             btnOpenLogin.Name = "btnOpenLogin";
             btnOpenLogin.Size = new Size(36, 33);
@@ -81,9 +80,10 @@
             // 
             // btnLogout
             // 
+            btnLogout.Anchor = AnchorStyles.None;
             btnLogout.BackgroundImage = Properties.Resources.images;
             btnLogout.BackgroundImageLayout = ImageLayout.Stretch;
-            btnLogout.Location = new Point(933, 26);
+            btnLogout.Location = new Point(928, 21);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(36, 33);
             btnLogout.TabIndex = 10;
@@ -93,33 +93,37 @@
             // 
             // pbBookDisplay1
             // 
-            pbBookDisplay1.Location = new Point(106, 300);
+            pbBookDisplay1.Location = new Point(100, 303);
             pbBookDisplay1.Name = "pbBookDisplay1";
             pbBookDisplay1.Size = new Size(109, 169);
+            pbBookDisplay1.SizeMode = PictureBoxSizeMode.StretchImage;
             pbBookDisplay1.TabIndex = 11;
             pbBookDisplay1.TabStop = false;
             // 
             // pbBookDisplay2
             // 
-            pbBookDisplay2.Location = new Point(262, 300);
+            pbBookDisplay2.Location = new Point(256, 303);
             pbBookDisplay2.Name = "pbBookDisplay2";
             pbBookDisplay2.Size = new Size(109, 169);
+            pbBookDisplay2.SizeMode = PictureBoxSizeMode.StretchImage;
             pbBookDisplay2.TabIndex = 12;
             pbBookDisplay2.TabStop = false;
             // 
             // pbBookDisplay3
             // 
-            pbBookDisplay3.Location = new Point(415, 300);
+            pbBookDisplay3.Location = new Point(409, 303);
             pbBookDisplay3.Name = "pbBookDisplay3";
             pbBookDisplay3.Size = new Size(109, 169);
+            pbBookDisplay3.SizeMode = PictureBoxSizeMode.StretchImage;
             pbBookDisplay3.TabIndex = 13;
             pbBookDisplay3.TabStop = false;
             // 
             // pbBookDisplay4
             // 
-            pbBookDisplay4.Location = new Point(570, 300);
+            pbBookDisplay4.Location = new Point(564, 303);
             pbBookDisplay4.Name = "pbBookDisplay4";
             pbBookDisplay4.Size = new Size(109, 169);
+            pbBookDisplay4.SizeMode = PictureBoxSizeMode.StretchImage;
             pbBookDisplay4.TabIndex = 14;
             pbBookDisplay4.TabStop = false;
             // 
@@ -129,7 +133,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(91, 264);
+            label3.Location = new Point(99, 266);
             label3.Name = "label3";
             label3.Size = new Size(99, 15);
             label3.TabIndex = 15;
@@ -139,7 +143,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImage = Properties.Resources.ARK___New_Homepage_bg;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(991, 588);
             Controls.Add(label3);

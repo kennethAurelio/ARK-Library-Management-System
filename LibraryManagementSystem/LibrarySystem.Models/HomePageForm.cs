@@ -12,9 +12,19 @@ namespace LibrarySystem.Models
 
         public HomePageForm() {
             InitializeComponent();
+
+            this.Activated += (s, e) => updateUIForLoginState();
+
             // Initialize placeholder for the search box
             InitializeSearchPlaceholder();
             this.ActiveControl = btnSearch;
+
+            // Add click event handlers for the book cover PictureBoxes
+            foreach (var pb in new[] { pbBookDisplay1, pbBookDisplay2, pbBookDisplay3, pbBookDisplay4 }) {
+                pb.Click += BookCover_Click;
+                pb.Cursor = Cursors.Hand; // Change cursor to hand to indicate it's clickable
+            }
+
             LoadNewestBooks();
         }
 
@@ -25,16 +35,16 @@ namespace LibrarySystem.Models
 
         // This method updates the visibility of ui buttons based on the user's login state.
         private void updateUIForLoginState() {
-            if (CurrentUser.isLoggedIn) {
-                btnOpenLogin.Visible = false;
-                btnLogout.Visible = true;
-            }
+            btnOpenLogin.Visible = !CurrentUser.isLoggedIn;
+            btnLogout.Visible = CurrentUser.isLoggedIn;
         }
 
         private void btnOpenLogin_Click(object sender, EventArgs e) {
-            SignInForm signInForm = new SignInForm();
-            Hide();
-            signInForm.Show();
+            using (var signInForm = new SignInForm()) {
+                if (signInForm.ShowDialog(this) == DialogResult.OK) {
+                    updateUIForLoginState();   // update lang ang UI, hindi gagawa ng bagong homepage
+                }
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e) {
@@ -68,7 +78,7 @@ namespace LibrarySystem.Models
                                 genre, 
                                 publisher, 
                                 copies_available, 
-                                status
+                                book_status
                             FROM books 
                             WHERE title LIKE @search OR author LIKE @search";
 
@@ -164,6 +174,21 @@ namespace LibrarySystem.Models
                 }
             }
         }
+
+        private void BookCover_Click(object? sender, EventArgs e) {
+            if (sender is not PictureBox pb || pb.Tag == null) return;
+
+            int bookId = Convert.ToInt32(pb.Tag);
+            int userId = CurrentUser.isLoggedIn ? CurrentUser.UserId : 0;
+
+            using (var loanForm = new LoanForm(bookId, CurrentUser.UserId)) {
+                loanForm.ShowDialog(this);
+            }
+
+            updateUIForLoginState();
+            LoadNewestBooks();   // Refresh the newest books display in case a book was borrowed and its availability changed
+        }
+
 
     }
 }

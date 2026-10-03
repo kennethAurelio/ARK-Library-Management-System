@@ -73,6 +73,26 @@ namespace LibrarySystem.Models.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ARK___New_Background {
+            get {
+                object obj = ResourceManager.GetObject("ARK - New Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ARK___New_Homepage_bg {
+            get {
+                object obj = ResourceManager.GetObject("ARK - New Homepage_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ARK___Sign_In {
             get {
                 object obj = ResourceManager.GetObject("ARK - Sign In", resourceCulture);

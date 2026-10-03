@@ -32,12 +32,10 @@ namespace LibrarySystem.Models {
         }
 
         private void dgvResults_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
-            // Ensure the click is on a valid row and not on the header or an invalid index
             if (e.RowIndex < 0) return;
 
             var row = dgvResults.Rows[e.RowIndex];
             int bookId = Convert.ToInt32(row.Cells["book_id"].Value);
-            string title = row.Cells["title"].Value.ToString();
             int copies = Convert.ToInt32(row.Cells["copies_available"].Value);
 
             if (copies <= 0) {
@@ -46,22 +44,13 @@ namespace LibrarySystem.Models {
                 return;
             }
 
-            if (!CurrentUser.isLoggedIn) {
-                MessageBox.Show("Please log in to loan a book.", "Login Required",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                using (var signIn = new SignInForm()) {
-                    signIn.ShowDialog();
-                }
-                if (!CurrentUser.isLoggedIn) return;
-            }
+            int userId = CurrentUser.isLoggedIn ? CurrentUser.UserId : 0;
 
-            using (var loanForm = new LoanForm(bookId, CurrentUser.UserId)) {
-                if (loanForm.ShowDialog() == DialogResult.OK) {
-                    // successfully loaned the book, update the copies available in the DataGridView
+            using (var loanForm = new LoanForm(bookId, userId)) {
+                if (loanForm.ShowDialog(this) == DialogResult.OK) {
                     row.Cells["copies_available"].Value = copies - 1;
                 }
             }
-
         }
 
     }

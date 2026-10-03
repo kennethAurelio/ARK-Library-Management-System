@@ -39,15 +39,13 @@ namespace LibrarySystem.Models {
                 CurrentUser.Role = user.Role;
                 CurrentUser.isLoggedIn = true;
 
-                Hide();
-
 
                 if (CurrentUser.Role == "admin") {
                     MessageBox.Show($"Welcome, {CurrentUser.FullName}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 } else {
                     MessageBox.Show($"Welcome, {CurrentUser.FullName}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    HomePageForm homePageForm = new HomePageForm();
-                    homePageForm.Show();
+                    this.DialogResult = DialogResult.OK;
+                    this.Close(); 
                 }
             } else {
                 MessageBox.Show("Invalid credentials. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);

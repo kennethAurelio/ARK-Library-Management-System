@@ -28,8 +28,12 @@
             lblSynopsisHeader = new Label();
             txtSynopsis = new TextBox();
             txtAuthor = new TextBox();
-            button1 = new Button();
+            btnLoanBook = new Button();
             lblAuthor = new Label();
+            label1 = new Label();
+            txtBookCopies = new TextBox();
+            lblBookStatus = new Label();
+            lblGenre = new Label();
             ((System.ComponentModel.ISupportInitialize)pbCover).BeginInit();
             SuspendLayout();
             // 
@@ -68,7 +72,7 @@
             // txtSynopsis
             // 
             txtSynopsis.BorderStyle = BorderStyle.None;
-            txtSynopsis.Location = new Point(443, 192);
+            txtSynopsis.Location = new Point(443, 193);
             txtSynopsis.Multiline = true;
             txtSynopsis.Name = "txtSynopsis";
             txtSynopsis.ReadOnly = true;
@@ -86,14 +90,15 @@
             txtAuthor.Size = new Size(150, 44);
             txtAuthor.TabIndex = 6;
             // 
-            // button1
+            // btnLoanBook
             // 
-            button1.Location = new Point(101, 474);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 7;
-            button1.Text = "Loan Book";
-            button1.UseVisualStyleBackColor = true;
+            btnLoanBook.Location = new Point(101, 474);
+            btnLoanBook.Name = "btnLoanBook";
+            btnLoanBook.Size = new Size(75, 23);
+            btnLoanBook.TabIndex = 7;
+            btnLoanBook.Text = "Loan Book";
+            btnLoanBook.UseVisualStyleBackColor = true;
+            btnLoanBook.Click += btnLoanBook_Click;
             // 
             // lblAuthor
             // 
@@ -106,6 +111,49 @@
             lblAuthor.TabIndex = 8;
             lblAuthor.Text = "Author";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(274, 255);
+            label1.Name = "label1";
+            label1.Size = new Size(91, 15);
+            label1.TabIndex = 9;
+            label1.Text = "Available Copies:";
+            // 
+            // txtBookCopies
+            // 
+            txtBookCopies.BorderStyle = BorderStyle.None;
+            txtBookCopies.Location = new Point(371, 253);
+            txtBookCopies.Multiline = true;
+            txtBookCopies.Name = "txtBookCopies";
+            txtBookCopies.ReadOnly = true;
+            txtBookCopies.Size = new Size(52, 12);
+            txtBookCopies.TabIndex = 10;
+            // 
+            // lblBookStatus
+            // 
+            lblBookStatus.AutoSize = true;
+            lblBookStatus.BackColor = Color.Transparent;
+            lblBookStatus.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblBookStatus.Location = new Point(274, 281);
+            lblBookStatus.Name = "lblBookStatus";
+            lblBookStatus.Size = new Size(40, 15);
+            lblBookStatus.TabIndex = 12;
+            lblBookStatus.Text = "Status:";
+            // 
+            // lblGenre
+            // 
+            lblGenre.AutoSize = true;
+            lblGenre.BackColor = Color.Transparent;
+            lblGenre.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGenre.Location = new Point(274, 306);
+            lblGenre.Name = "lblGenre";
+            lblGenre.Size = new Size(39, 15);
+            lblGenre.TabIndex = 13;
+            lblGenre.Text = "Genre:";
+            // 
             // LoanForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -113,8 +161,12 @@
             BackgroundImage = Properties.Resources.ARK___Background;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(991, 588);
+            Controls.Add(lblGenre);
+            Controls.Add(lblBookStatus);
+            Controls.Add(txtBookCopies);
+            Controls.Add(label1);
             Controls.Add(lblAuthor);
-            Controls.Add(button1);
+            Controls.Add(btnLoanBook);
             Controls.Add(txtAuthor);
             Controls.Add(txtSynopsis);
             Controls.Add(lblSynopsisHeader);
@@ -135,7 +187,11 @@
         private Label lblSynopsisHeader;
         private TextBox txtSynopsis;
         private TextBox txtAuthor;
-        private Button button1;
+        private Button btnLoanBook;
         private Label lblAuthor;
+        private Label label1;
+        private TextBox txtBookCopies;
+        private Label lblBookStatus;
+        private Label lblGenre;
     }
 }
