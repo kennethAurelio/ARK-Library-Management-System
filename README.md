@@ -28,10 +28,10 @@ Fork the repo, create a branch (`feature-xyz`), and submit a pull request.
 MIT License
 
 ## Authors
-- Kenneth Aurelio - Backend and Database
-- Crisha Jane Amarado - UI Designing
-- King Joshsana Tocop - Documenting
-- Andrea Ella Toralde - Documenting
+- Andrea Ella Toralde — Project Leader & Documentation
+- Crisha Jane Amarado — Database Administrator & Documentation
+- Kenneth Aurelio — Backend & System Architect
+- King Joshsana Tocop — UI/UX Designer
 # ARK (Archive & Resource Keeper)
 
 A C# Windows Forms library management system connected to MySQL.
