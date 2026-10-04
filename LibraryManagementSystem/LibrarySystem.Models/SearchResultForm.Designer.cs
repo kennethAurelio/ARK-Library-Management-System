@@ -48,6 +48,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvResults.Cursor = Cursors.Hand;
             dgvResults.Location = new Point(101, 191);
             dgvResults.Margin = new Padding(3, 2, 3, 2);
             dgvResults.Name = "dgvResults";
