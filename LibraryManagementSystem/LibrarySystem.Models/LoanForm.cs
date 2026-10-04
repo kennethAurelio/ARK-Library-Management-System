@@ -52,7 +52,6 @@ namespace LibrarySystem.Models {
         }
 
         private void btnLoanBook_Click(object sender, EventArgs e) {
-
             if (!CurrentUser.isLoggedIn) {
                 DialogResult prompt = MessageBox.Show(
                     "You need to sign in before you can loan a book.",

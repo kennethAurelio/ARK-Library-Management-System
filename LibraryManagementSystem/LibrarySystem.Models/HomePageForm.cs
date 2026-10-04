@@ -12,8 +12,7 @@ namespace LibrarySystem.Models
 
         public HomePageForm() {
             InitializeComponent();
-
-            this.Activated += (s, e) => updateUIForLoginState();
+            this.Activated += (s, e) => updateUIForLoginState(); // Refresh updates when the form is activated (e.g., after returning from another form)
 
             // Initialize placeholder for the search box
             InitializeSearchPlaceholder();
@@ -22,10 +21,11 @@ namespace LibrarySystem.Models
             // Add click event handlers for the book cover PictureBoxes
             foreach (var pb in new[] { pbBookDisplay1, pbBookDisplay2, pbBookDisplay3, pbBookDisplay4 }) {
                 pb.Click += BookCover_Click;
-                pb.Cursor = Cursors.Hand; // Change cursor to hand to indicate it's clickable
+                pb.Cursor = Cursors.Hand;
             }
 
             LoadNewestBooks();
+            rtbUpdates.TabStop = false;
         }
 
         // This method is called when the form is loaded. It checks the login state and updates the UI accordingly.
@@ -33,10 +33,81 @@ namespace LibrarySystem.Models
             updateUIForLoginState();
         }
 
-        // This method updates the visibility of ui buttons based on the user's login state.
+        // This method updates the visibility of ui buttons based on the user's login state and refreshes the updates panel.
         private void updateUIForLoginState() {
             btnOpenLogin.Visible = !CurrentUser.isLoggedIn;
-            btnLogout.Visible = CurrentUser.isLoggedIn;
+            btnOpenUserControl.Visible = CurrentUser.isLoggedIn;
+
+            LoadUpdates();
+        }
+
+        // Adds one colored line to the updates box.
+        private void AddUpdate(string text, Color color) {
+            rtbUpdates.SelectionStart = rtbUpdates.TextLength;
+            rtbUpdates.SelectionLength = 0;
+            rtbUpdates.SelectionColor = color;
+            rtbUpdates.AppendText(text + Environment.NewLine + Environment.NewLine);
+        }
+
+        // Loads the logged-in student's pending and borrowed books into rtbUpdates.
+        private void LoadUpdates() {
+            rtbUpdates.Clear();
+
+            if (!CurrentUser.isLoggedIn) {
+                AddUpdate("Log in to see your updates.", Color.Gray);
+                return;
+            }
+
+            // Pending loans have no due_date yet, so the ones with due dates (soonest first) come first.
+            int count = 0; // count of updates added
+
+            try {
+                using (var conn = DatabaseHelper.GetConnection())
+                using (var cmd = new MySqlCommand(@"
+            SELECT b.title, l.status, l.due_date
+            FROM book_loans l
+            JOIN books b ON b.book_id = l.book_id
+            WHERE l.user_id = @userId
+              AND l.status IN ('pending', 'borrowed')
+            ORDER BY l.due_date IS NULL, l.due_date ASC, l.loan_date DESC", conn)) {
+                    cmd.Parameters.AddWithValue("@userId", CurrentUser.UserId);
+                    conn.Open();
+
+                    using (var reader = cmd.ExecuteReader()) {
+                        while (reader.Read()) {
+                            string title = reader.GetString("title");
+                            string status = reader.GetString("status");
+
+                            if (status.Equals("pending", StringComparison.OrdinalIgnoreCase)) {
+                                AddUpdate($"• {title} - Pending pickup", Color.DarkGoldenrod);
+                            } else { // borrowed
+                                if (reader.IsDBNull(reader.GetOrdinal("due_date"))) {
+                                    AddUpdate($"• {title} - Borrowed (no due date set)", Color.Gray);
+                                } else {
+                                    DateTime due = reader.GetDateTime("due_date");
+                                    int daysLeft = (due.Date - DateTime.Today).Days;
+
+                                    if (daysLeft < 0)
+                                        AddUpdate($"• {title} - OVERDUE by {-daysLeft} day(s)", Color.Red);
+                                    else if (daysLeft <= 2)
+                                        AddUpdate($"• {title} - Due {due:MMM dd} ({daysLeft} day(s) left)", Color.OrangeRed);
+                                    else
+                                        AddUpdate($"• {title} - Due {due:MMM dd}", Color.Black);
+                                }
+                            }
+                            count++;
+                        }
+                    }
+                }
+            } catch (MySqlException ex) { // database connection or query error
+                rtbUpdates.Clear();
+                AddUpdate("Unable to load updates.", Color.Gray);
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                return;
+            }
+
+            if (count == 0)
+                AddUpdate("No updates yet.", Color.Gray);
         }
 
         private void btnOpenLogin_Click(object sender, EventArgs e) {
@@ -44,20 +115,6 @@ namespace LibrarySystem.Models
                 if (signInForm.ShowDialog(this) == DialogResult.OK) {
                     updateUIForLoginState();   // update lang ang UI, hindi gagawa ng bagong homepage
                 }
-            }
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e) {
-            DialogResult result = MessageBox.Show(
-                    "Do you want to log out?",
-                    "Confirm Logout",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
-
-            if (result == DialogResult.Yes) {
-                MessageBox.Show("You have been logged out.");
-                Environment.Exit(0);
             }
         }
 
@@ -69,42 +126,29 @@ namespace LibrarySystem.Models
                 return;
             }
 
-            String query = @"SELECT
-                                book_id,
-                                title, 
-                                author, 
-                                year_published, 
-                                synopsis, 
-                                genre, 
-                                publisher, 
-                                copies_available, 
-                                book_status
-                            FROM books 
-                            WHERE title LIKE @search OR author LIKE @search";
+            var dt = new DataTable();
 
-            using (MySqlConnection conn = DatabaseHelper.GetConnection()) {
+            using (var conn = DatabaseHelper.GetConnection())
+            using (var cmd = new MySqlCommand(
+                "SELECT book_id, title, author, copies_available, book_status, year_published, synopsis, genre, publisher FROM books " +
+                "WHERE title LIKE @search OR author LIKE @search", conn)) {
+                cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%");
                 conn.Open();
 
-                using (MySqlCommand cmd = new MySqlCommand(query, conn)) {
-                    cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%");
-
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd)) {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-
-                        // Pass results to SearchResultsForm
-                        if (dt.Rows.Count > 0) {
-                            SearchResultForm resultsForm = new SearchResultForm(dt);
-                            resultsForm.Show();
-                            // Reset the search box to show the placeholder again
-                            RestoreSearchPlaceholder();
-                        } else {
-                            MessageBox.Show("No results found.", "Search", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            RestoreSearchPlaceholder();
-                        }
-                    }
+                using (var reader = cmd.ExecuteReader()) {
+                    dt.Load(reader);
                 }
             }
+
+            if (dt.Rows.Count > 0) {
+                var resultsForm = new SearchResultForm(dt);
+                resultsForm.Show();
+            } else {
+                MessageBox.Show("No results found.", "Search", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            // Reset the search box to show the placeholder again
+            RestoreSearchPlaceholder();
         }
 
         // This method initializes the placeholder functionality for the search box.
@@ -145,7 +189,7 @@ namespace LibrarySystem.Models
         // This method loads the newest books from the database and displays their covers in the PictureBox controls.
         private void LoadNewestBooks() {
             // Array of PictureBox controls to display the newest books
-            PictureBox[] covers = {pbBookDisplay1, pbBookDisplay2, pbBookDisplay3, pbBookDisplay4};
+            PictureBox[] covers = { pbBookDisplay1, pbBookDisplay2, pbBookDisplay3, pbBookDisplay4 };
 
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(
@@ -189,6 +233,35 @@ namespace LibrarySystem.Models
             LoadNewestBooks();   // Refresh the newest books display in case a book was borrowed and its availability changed
         }
 
+        private void btnBrowseAllBooks_Click(object sender, EventArgs e) {
+            var dt = new DataTable();
+
+            // book_id is still selected because the results grid needs it to open the LoanForm (hide it in the grid).
+            using (var conn = DatabaseHelper.GetConnection())
+            using (var cmd = new MySqlCommand(
+                "SELECT book_id, title, author, copies_available, book_status, year_published, synopsis, genre, publisher FROM books", conn)) {
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader()) {
+                    dt.Load(reader);
+                }
+            }
+
+            ShowResults(dt);
+        }
+
+        // This method displays the search results in a new SearchResultForm.
+        private void ShowResults(DataTable dt) {
+            if (dt == null) return;
+            var resultsForm = new SearchResultForm(dt);
+            resultsForm.Show();
+        }
+
+        private void btnOpenUserControl_Click(object sender, EventArgs e) {
+            using (var AccountForm = new AccountForm()) {
+                AccountForm.ShowDialog(this);
+            }
+        }
 
     }
 }

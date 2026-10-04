@@ -309,3 +309,6 @@ C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\Lib
 C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\ref\LibrarySystem.Models.dll
 C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.LoanForm.resources
 C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.RulesForm.resources
+C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.AccountForm.resources
+C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.UserHistoryForm.resources
+C:\Users\kenne\Desktop\ARK-Library-Management-System\LibraryManagementSystem\LibrarySystem.Models\obj\Debug\net10.0-windows\LibrarySystem.Models.ChangePasswordForm.resources

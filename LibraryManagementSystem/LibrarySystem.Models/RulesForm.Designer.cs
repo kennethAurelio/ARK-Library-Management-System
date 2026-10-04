@@ -60,6 +60,8 @@
             // 
             // txtRules
             // 
+            txtRules.BackColor = SystemColors.Control;
+            txtRules.BorderStyle = BorderStyle.None;
             txtRules.Location = new Point(34, 68);
             txtRules.Multiline = true;
             txtRules.Name = "txtRules";

@@ -38,6 +38,7 @@
             dgvResults.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.White;
             dgvResults.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvResults.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvResults.BackgroundColor = Color.LightYellow;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.Ivory;
@@ -52,7 +53,9 @@
             dgvResults.Location = new Point(101, 191);
             dgvResults.Margin = new Padding(3, 2, 3, 2);
             dgvResults.Name = "dgvResults";
+            dgvResults.RowHeadersVisible = false;
             dgvResults.RowHeadersWidth = 51;
+            dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResults.Size = new Size(594, 263);
             dgvResults.TabIndex = 0;
             dgvResults.CellDoubleClick += dgvResults_CellDoubleClick;

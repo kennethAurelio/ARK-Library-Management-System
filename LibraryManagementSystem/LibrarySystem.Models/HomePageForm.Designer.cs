@@ -30,12 +30,15 @@
             txtSearchBox = new TextBox();
             btnSearch = new Button();
             btnOpenLogin = new Button();
-            btnLogout = new Button();
             pbBookDisplay1 = new PictureBox();
             pbBookDisplay2 = new PictureBox();
             pbBookDisplay3 = new PictureBox();
             pbBookDisplay4 = new PictureBox();
             label3 = new Label();
+            label1 = new Label();
+            rtbUpdates = new RichTextBox();
+            btnBrowseAllBooks = new Button();
+            btnOpenUserControl = new Button();
             ((System.ComponentModel.ISupportInitialize)pbBookDisplay1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbBookDisplay2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbBookDisplay3).BeginInit();
@@ -77,19 +80,6 @@
             btnOpenLogin.TabIndex = 7;
             btnOpenLogin.UseVisualStyleBackColor = true;
             btnOpenLogin.Click += btnOpenLogin_Click;
-            // 
-            // btnLogout
-            // 
-            btnLogout.Anchor = AnchorStyles.None;
-            btnLogout.BackgroundImage = Properties.Resources.images;
-            btnLogout.BackgroundImageLayout = ImageLayout.Stretch;
-            btnLogout.Location = new Point(928, 21);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(36, 33);
-            btnLogout.TabIndex = 10;
-            btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Visible = false;
-            btnLogout.Click += btnLogout_Click;
             // 
             // pbBookDisplay1
             // 
@@ -139,6 +129,54 @@
             label3.TabIndex = 15;
             label3.Text = "Newest to Library:";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(844, 102);
+            label1.Name = "label1";
+            label1.Size = new Size(61, 19);
+            label1.TabIndex = 16;
+            label1.Text = "Bulletin";
+            // 
+            // rtbUpdates
+            // 
+            rtbUpdates.BackColor = Color.White;
+            rtbUpdates.BorderStyle = BorderStyle.None;
+            rtbUpdates.Location = new Point(775, 136);
+            rtbUpdates.Name = "rtbUpdates";
+            rtbUpdates.ReadOnly = true;
+            rtbUpdates.ScrollBars = RichTextBoxScrollBars.Vertical;
+            rtbUpdates.Size = new Size(204, 336);
+            rtbUpdates.TabIndex = 17;
+            rtbUpdates.Text = "";
+            // 
+            // btnBrowseAllBooks
+            // 
+            btnBrowseAllBooks.Location = new Point(606, 510);
+            btnBrowseAllBooks.Name = "btnBrowseAllBooks";
+            btnBrowseAllBooks.Size = new Size(115, 23);
+            btnBrowseAllBooks.TabIndex = 18;
+            btnBrowseAllBooks.Text = "Browse all books";
+            btnBrowseAllBooks.UseVisualStyleBackColor = true;
+            btnBrowseAllBooks.Click += btnBrowseAllBooks_Click;
+            // 
+            // btnOpenUserControl
+            // 
+            btnOpenUserControl.Anchor = AnchorStyles.None;
+            btnOpenUserControl.BackgroundImage = Properties.Resources.profile_icon_login_head_icon_vector;
+            btnOpenUserControl.BackgroundImageLayout = ImageLayout.Stretch;
+            btnOpenUserControl.Location = new Point(928, 21);
+            btnOpenUserControl.Margin = new Padding(3, 2, 3, 2);
+            btnOpenUserControl.Name = "btnOpenUserControl";
+            btnOpenUserControl.Size = new Size(36, 33);
+            btnOpenUserControl.TabIndex = 19;
+            btnOpenUserControl.UseVisualStyleBackColor = true;
+            btnOpenUserControl.Visible = false;
+            btnOpenUserControl.Click += btnOpenUserControl_Click;
+            // 
             // HomePageForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -146,12 +184,15 @@
             BackgroundImage = Properties.Resources.ARK___New_Homepage_bg;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(991, 588);
+            Controls.Add(btnOpenUserControl);
+            Controls.Add(btnBrowseAllBooks);
+            Controls.Add(rtbUpdates);
+            Controls.Add(label1);
             Controls.Add(label3);
             Controls.Add(pbBookDisplay4);
             Controls.Add(pbBookDisplay3);
             Controls.Add(pbBookDisplay2);
             Controls.Add(pbBookDisplay1);
-            Controls.Add(btnLogout);
             Controls.Add(btnOpenLogin);
             Controls.Add(btnSearch);
             Controls.Add(txtSearchBox);
@@ -178,11 +219,14 @@
         private PictureBox pictureBox1;
         private Panel Panel1;
         private PictureBox pictureBox4;
-        private Button btnLogout;
         private PictureBox pbBookDisplay1;
         private PictureBox pbBookDisplay2;
         private PictureBox pbBookDisplay3;
         private PictureBox pbBookDisplay4;
         private Label label3;
+        private Label label1;
+        private RichTextBox rtbUpdates;
+        private Button btnBrowseAllBooks;
+        private Button btnOpenUserControl;
     }
 }

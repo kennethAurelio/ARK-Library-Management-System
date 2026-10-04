@@ -4,6 +4,7 @@ namespace LibrarySystem.Models {
     public partial class SearchResultForm : Form {
         public SearchResultForm(DataTable results) {
             InitializeComponent();
+            SetupGrid();
             dgvResults.DataSource = results;
 
             // Hide the book_id column since it's not needed for display
@@ -30,6 +31,32 @@ namespace LibrarySystem.Models {
             dgvResults.EditMode = DataGridViewEditMode.EditProgrammatically;
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
+
+        private void SetupGrid() {
+            dgvResults.ReadOnly = true;
+            dgvResults.AllowUserToAddRows = false;
+            dgvResults.AllowUserToDeleteRows = false;
+            dgvResults.RowHeadersVisible = false;
+            dgvResults.MultiSelect = false;
+            dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvResults.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgvResults.CellFormatting += dgvResults_CellFormatting;
+        }
+
+        private void dgvResults_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e) {
+            if (e.RowIndex < 0 || e.Value == null) return;
+            if (dgvResults.Columns[e.ColumnIndex].Name != "status") return;
+
+            switch (e.Value.ToString()?.ToLower()) {
+                case "pending": e.CellStyle.ForeColor = Color.DarkGoldenrod; break;
+                case "borrowed": e.CellStyle.ForeColor = Color.RoyalBlue; break;
+                case "returned": e.CellStyle.ForeColor = Color.Gray; break;
+                case "lost": e.CellStyle.ForeColor = Color.Red; break;
+                case "cancelled": e.CellStyle.ForeColor = Color.DarkGray; break;
+            }
+        }
+
 
         private void dgvResults_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
             if (e.RowIndex < 0) return;

@@ -30,8 +30,6 @@
             label1 = new Label();
             txtMemberID = new TextBox();
             txtPassword = new TextBox();
-            label3 = new Label();
-            label4 = new Label();
             chkShowPassword = new CheckBox();
             btnSignIn = new Button();
             button1 = new Button();
@@ -62,28 +60,6 @@
             txtPassword.Size = new Size(336, 23);
             txtPassword.TabIndex = 3;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(584, 266);
-            label3.Name = "label3";
-            label3.Size = new Size(50, 15);
-            label3.TabIndex = 4;
-            label3.Text = "Login ID";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Times New Roman", 9F);
-            label4.Location = new Point(584, 350);
-            label4.Name = "label4";
-            label4.Size = new Size(54, 15);
-            label4.TabIndex = 5;
-            label4.Text = "Password";
-            // 
             // chkShowPassword
             // 
             chkShowPassword.AutoSize = true;
@@ -107,7 +83,7 @@
             btnSignIn.TabIndex = 8;
             btnSignIn.Text = "Sign in";
             btnSignIn.UseVisualStyleBackColor = true;
-            btnSignIn.Click += btnLogin_Click;
+            btnSignIn.Click += btnSignIn_Click;
             // 
             // button1
             // 
@@ -130,8 +106,6 @@
             Controls.Add(button1);
             Controls.Add(btnSignIn);
             Controls.Add(chkShowPassword);
-            Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(txtPassword);
             Controls.Add(txtMemberID);
             Controls.Add(label1);
@@ -139,6 +113,7 @@
             Name = "SignInForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sign in";
+            Load += SignInForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -148,8 +123,6 @@
         private Label label1;
         private TextBox txtMemberID;
         private TextBox txtPassword;
-        private Label label3;
-        private Label label4;
         private CheckBox chkShowPassword;
         private Button btnSignIn;
         private Button button1;

@@ -12,7 +12,7 @@ namespace LibrarySystem.Models {
         public RulesForm() {
             InitializeComponent();
             btnConfirm.Enabled = false;
-            chkAgree.CheckedChanged += (s, e) => btnConfirm.Enabled = chkAgree.Checked;
+            chkAgree.CheckedChanged += (s, e) => btnConfirm.Enabled = chkAgree.Checked; // Enable the confirm button only when the checkbox is checked
 
             txtRules.Text =
                 "1. Return the book on or before the due date." + Environment.NewLine + Environment.NewLine +
