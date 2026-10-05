@@ -2,7 +2,7 @@
 
 namespace LibrarySystem.Models {
     public class AuthService {
-        public UserRecord ValidateLogin(string memberID, string password) {
+        public CurrentUser ValidateLogin(string memberID, string password) {
             using (MySqlConnection conn = DatabaseHelper.GetConnection()) {
                 string query = "SELECT user_id, first_name, middle_name, last_name, role, password FROM accounts WHERE login_id = @login_id";
 
@@ -15,7 +15,7 @@ namespace LibrarySystem.Models {
                             string storedHash = reader["password"].ToString();
 
                             if (BCrypt.Net.BCrypt.Verify(password, storedHash)) {
-                                return new UserRecord {
+                                return new CurrentUser {
                                     UserId = reader.GetInt32("user_id"),
                                     FirstName = reader["first_name"].ToString(),
                                     MiddleName = reader["middle_name"].ToString(),

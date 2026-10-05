@@ -29,7 +29,7 @@ namespace LibrarySystem.Models {
                 LEFT JOIN shs_strands ss ON si.strand_id = ss.strand_id
                 WHERE a.user_id = @userId", conn)) {
 
-                cmd.Parameters.AddWithValue("@userId", CurrentUser.UserId);
+                cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
                 conn.Open();
 
                 using (var reader = cmd.ExecuteReader()) {

@@ -52,7 +52,7 @@ namespace LibrarySystem.Models {
         }
 
         private void btnLoanBook_Click(object sender, EventArgs e) {
-            if (!CurrentUser.isLoggedIn) {
+            if (!LoggedInUser.isLoggedIn) {
                 DialogResult prompt = MessageBox.Show(
                     "You need to sign in before you can loan a book.",
                     "Sign in required",
@@ -64,7 +64,7 @@ namespace LibrarySystem.Models {
                 using (var signIn = new SignInForm()) {
                     if (signIn.ShowDialog(this) != DialogResult.OK) return;
                 }
-                _userId = CurrentUser.UserId;
+                _userId = LoggedInUser.UserId;
             }
 
             // 1. Rules and agreement

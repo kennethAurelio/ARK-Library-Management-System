@@ -71,7 +71,7 @@ namespace LibrarySystem.Models {
                 return;
             }
 
-            int userId = CurrentUser.isLoggedIn ? CurrentUser.UserId : 0;
+            int userId = LoggedInUser.isLoggedIn ? LoggedInUser.UserId : 0;
 
             using (var loanForm = new LoanForm(bookId, userId)) {
                 if (loanForm.ShowDialog(this) == DialogResult.OK) {

@@ -62,21 +62,21 @@ namespace LibrarySystem.Models {
                 return;
             }
 
-            UserRecord user = authentication.ValidateLogin(memberId, password);
+            CurrentUser user = authentication.ValidateLogin(memberId, password);
 
             if (user != null) {
-                CurrentUser.UserId = user.UserId;
-                CurrentUser.FirstName = user.FirstName;
-                CurrentUser.MiddleName = user.MiddleName;
-                CurrentUser.LastName = user.LastName;
-                CurrentUser.Role = user.Role;
-                CurrentUser.isLoggedIn = true;
+                LoggedInUser.UserId = user.UserId;
+                LoggedInUser.FirstName = user.FirstName;
+                LoggedInUser.MiddleName = user.MiddleName;
+                LoggedInUser.LastName = user.LastName;
+                LoggedInUser.Role = user.Role;
+                LoggedInUser.isLoggedIn = true;
 
 
-                if (CurrentUser.Role == "admin") {
-                    MessageBox.Show($"Welcome, {CurrentUser.FullName}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (LoggedInUser.Role == "admin") {
+                    MessageBox.Show($"Welcome, {LoggedInUser.FullName}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 } else {
-                    MessageBox.Show($"Welcome, {CurrentUser.FullName}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Welcome, {LoggedInUser.FullName}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

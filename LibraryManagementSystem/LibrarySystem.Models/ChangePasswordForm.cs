@@ -173,7 +173,7 @@ namespace LibrarySystem.Models {
                     // 2. Get the stored hash and verify the current password
                     string? storedHash;
                     using (var cmd = new MySqlCommand("SELECT password FROM accounts WHERE user_id = @userId", conn)) {
-                        cmd.Parameters.AddWithValue("@userId", CurrentUser.UserId);
+                        cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
                         storedHash = cmd.ExecuteScalar() as string;
                     }
 
@@ -191,7 +191,7 @@ namespace LibrarySystem.Models {
                     string newHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
                     using (var cmd = new MySqlCommand("UPDATE accounts SET password = @newHash WHERE user_id = @userId", conn)) {
                         cmd.Parameters.AddWithValue("@newHash", newHash);
-                        cmd.Parameters.AddWithValue("@userId", CurrentUser.UserId);
+                        cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
 
                         if (cmd.ExecuteNonQuery() != 1) {
                             MessageBox.Show("Could not update the password. Please try again.", "Change Password", MessageBoxButtons.OK, MessageBoxIcon.Error);

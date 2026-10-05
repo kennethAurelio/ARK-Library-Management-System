@@ -68,7 +68,7 @@ namespace LibrarySystem.Models {
                   AND (@status IS NULL OR l.status = @status)
                 ORDER BY FIELD(l.status, 'Borrowed', 'Pending', 'Returned', 'Lost', 'Cancelled'),
                          l.loan_date DESC", conn)) {
-                cmd.Parameters.AddWithValue("@userId", CurrentUser.UserId);
+                cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
                 cmd.Parameters.AddWithValue("@status", status);
                 conn.Open();
 

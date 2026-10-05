@@ -35,8 +35,8 @@ namespace LibrarySystem.Models
 
         // This method updates the visibility of ui buttons based on the user's login state and refreshes the updates panel.
         private void updateUIForLoginState() {
-            btnOpenLogin.Visible = !CurrentUser.isLoggedIn;
-            btnOpenUserControl.Visible = CurrentUser.isLoggedIn;
+            btnOpenLogin.Visible = !LoggedInUser.isLoggedIn;
+            btnOpenUserControl.Visible = LoggedInUser.isLoggedIn;
 
             LoadUpdates();
         }
@@ -53,7 +53,7 @@ namespace LibrarySystem.Models
         private void LoadUpdates() {
             rtbUpdates.Clear();
 
-            if (!CurrentUser.isLoggedIn) {
+            if (!LoggedInUser.isLoggedIn) {
                 AddUpdate("Log in to see your updates.", Color.Gray);
                 return;
             }
@@ -70,7 +70,7 @@ namespace LibrarySystem.Models
             WHERE l.user_id = @userId
               AND l.status IN ('pending', 'borrowed')
             ORDER BY l.due_date IS NULL, l.due_date ASC, l.loan_date DESC", conn)) {
-                    cmd.Parameters.AddWithValue("@userId", CurrentUser.UserId);
+                    cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
                     conn.Open();
 
                     using (var reader = cmd.ExecuteReader()) {
@@ -223,9 +223,9 @@ namespace LibrarySystem.Models
             if (sender is not PictureBox pb || pb.Tag == null) return;
 
             int bookId = Convert.ToInt32(pb.Tag);
-            int userId = CurrentUser.isLoggedIn ? CurrentUser.UserId : 0;
+            int userId = LoggedInUser.isLoggedIn ? LoggedInUser.UserId : 0;
 
-            using (var loanForm = new LoanForm(bookId, CurrentUser.UserId)) {
+            using (var loanForm = new LoanForm(bookId, LoggedInUser.UserId)) {
                 loanForm.ShowDialog(this);
             }
 
