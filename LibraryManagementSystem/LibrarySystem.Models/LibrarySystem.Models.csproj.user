@@ -4,6 +4,9 @@
     <Compile Update="AccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Admin\AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ChangePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
