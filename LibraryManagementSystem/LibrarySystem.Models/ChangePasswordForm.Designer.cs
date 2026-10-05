@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangePasswordForm));
             lblStudentName = new Label();
             txtCurrentPassword = new TextBox();
             txtNewPassword = new TextBox();
@@ -122,6 +123,7 @@
             Controls.Add(txtNewPassword);
             Controls.Add(txtCurrentPassword);
             Controls.Add(lblStudentName);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ChangePasswordForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Change Password Form";

@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchResultForm));
             dgvResults = new DataGridView();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvResults).BeginInit();
@@ -80,6 +81,7 @@
             ClientSize = new Size(991, 588);
             Controls.Add(label1);
             Controls.Add(dgvResults);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "SearchResultForm";
             StartPosition = FormStartPosition.CenterScreen;

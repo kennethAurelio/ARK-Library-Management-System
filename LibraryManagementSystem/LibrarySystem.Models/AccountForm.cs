@@ -20,7 +20,7 @@ namespace LibrarySystem.Models {
                     a.user_id,
                     a.login_id,
                     CONCAT_WS(' ', a.first_name, NULLIF(a.middle_name, ''), a.last_name) AS full_name,
-                    si.education_level,
+                    si.year_level,
                     ss.strand_code,
                     si.section,
                     a.role
@@ -37,7 +37,7 @@ namespace LibrarySystem.Models {
                         lblStudentName.Text = "Student Name: " + reader["full_name"].ToString();
                         lblStudentId.Text = "Student ID: " + reader["login_id"].ToString();
                         lblStrandAndSection.Text = "Strand and Section: " + reader["strand_code"].ToString() + " - " + reader["section"].ToString();
-                        lblYearLevel.Text = "Year Level: Senior High School";
+                        lblYearLevel.Text = "Year Level: " + reader["year_level"].ToString();
                         lblPrivilege.Text = "Privilege: " + reader["role"].ToString();
                     }
                 }

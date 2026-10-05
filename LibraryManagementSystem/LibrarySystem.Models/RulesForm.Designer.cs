@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RulesForm));
             lblTitle = new Label();
             btnConfirm = new Button();
             chkAgree = new CheckBox();
@@ -79,6 +80,7 @@
             Controls.Add(chkAgree);
             Controls.Add(btnConfirm);
             Controls.Add(lblTitle);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "RulesForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Rules Form";

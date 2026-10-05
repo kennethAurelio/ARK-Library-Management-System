@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountForm));
             lblStudentName = new Label();
             lblStudentId = new Label();
             lblYearLevel = new Label();
@@ -133,6 +134,7 @@
             Controls.Add(lblYearLevel);
             Controls.Add(lblStudentId);
             Controls.Add(lblStudentName);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AccountForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Account Form";

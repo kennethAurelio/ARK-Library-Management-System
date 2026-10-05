@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoanForm));
             pbCover = new PictureBox();
             lblTitle = new Label();
             lblSynopsisHeader = new Label();
@@ -172,6 +173,7 @@
             Controls.Add(lblSynopsisHeader);
             Controls.Add(lblTitle);
             Controls.Add(pbCover);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "LoanForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Loan Form";

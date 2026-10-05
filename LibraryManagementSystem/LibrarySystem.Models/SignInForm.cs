@@ -167,8 +167,5 @@ namespace LibrarySystem.Models {
             MessageBox.Show(hash);
         }
 
-        private void SignInForm_Load(object sender, EventArgs e) {
-
-        }
     }
 }

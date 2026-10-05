@@ -27,6 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignInForm));
             label1 = new Label();
             txtMemberID = new TextBox();
             txtPassword = new TextBox();
@@ -109,11 +110,11 @@
             Controls.Add(txtPassword);
             Controls.Add(txtMemberID);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "SignInForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sign in";
-            Load += SignInForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

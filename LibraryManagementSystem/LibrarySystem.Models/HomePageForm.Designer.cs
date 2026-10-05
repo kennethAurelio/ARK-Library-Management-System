@@ -27,6 +27,7 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePageForm));
             txtSearchBox = new TextBox();
             btnSearch = new Button();
             btnOpenLogin = new Button();
@@ -196,6 +197,7 @@
             Controls.Add(btnOpenLogin);
             Controls.Add(btnSearch);
             Controls.Add(txtSearchBox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "HomePageForm";
             StartPosition = FormStartPosition.CenterScreen;

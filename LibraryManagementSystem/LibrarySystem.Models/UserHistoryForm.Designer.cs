@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserHistoryForm));
             label1 = new Label();
             dgvHistory = new DataGridView();
             cbFilterBy = new ComboBox();
@@ -99,6 +100,7 @@
             Controls.Add(cbFilterBy);
             Controls.Add(label1);
             Controls.Add(dgvHistory);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "UserHistoryForm";
             Text = "UserHistoryForm";
             ((System.ComponentModel.ISupportInitialize)dgvHistory).EndInit();
