@@ -65,6 +65,15 @@ namespace LibrarySystem.Models {
             CurrentUser user = authentication.ValidateLogin(memberId, password);
 
             if (user != null) {
+                // Student app only: librarian accounts must use the librarian app
+                if (user.Role == "admin") {
+                    MessageBox.Show("Librarian accounts can't sign in here. Please use the librarian app.",
+                                    "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ResetField(txtMemberID);
+                    ResetField(txtPassword);
+                    return;
+                }
+
                 LoggedInUser.UserId = user.UserId;
                 LoggedInUser.FirstName = user.FirstName;
                 LoggedInUser.MiddleName = user.MiddleName;
@@ -72,20 +81,17 @@ namespace LibrarySystem.Models {
                 LoggedInUser.Role = user.Role;
                 LoggedInUser.isLoggedIn = true;
 
+                MessageBox.Show($"Welcome, {LoggedInUser.FullName}!", "Login Successful",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                if (LoggedInUser.Role == "admin") {
-                    MessageBox.Show($"Welcome, {LoggedInUser.FullName}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                } else {
-                    MessageBox.Show($"Welcome, {LoggedInUser.FullName}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             } else {
-                MessageBox.Show("Invalid credentials. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid credentials. Please try again.", "Login Failed",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ResetField(txtMemberID);
                 ResetField(txtPassword);
             }
-
         }
 
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e) {
