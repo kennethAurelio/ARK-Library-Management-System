@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LibrarySystem.Models {
+namespace LibrarySystem.Core {
     public static class LoggedInUser {
         public static int UserId { get; set; }
         public static string FirstName { get; set; }

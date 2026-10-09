@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Data;
 using MySql.Data.MySqlClient;
+using LibrarySystem.Core;
 
-namespace LibrarySystem.Models {
+namespace LibrarySystem.Student {
     public partial class UserHistoryForm : Form {
         public UserHistoryForm() {
             InitializeComponent();

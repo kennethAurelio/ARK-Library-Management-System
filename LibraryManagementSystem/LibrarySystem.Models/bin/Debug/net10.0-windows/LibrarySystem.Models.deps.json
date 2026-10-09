@@ -9,6 +9,7 @@
       "LibrarySystem.Models/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.2.0",
+          "LibrarySystem.Core": "1.0.0",
           "Microsoft.Data.SqlClient": "7.0.2",
           "MySql.Data": "26.7.0",
           "TranceSql.MySql": "0.15.3"
@@ -414,6 +415,18 @@
             "fileVersion": "0.8.8.0"
           }
         }
+      },
+      "LibrarySystem.Core/1.0.0": {
+        "dependencies": {
+          "BCrypt.Net-Next": "4.2.0",
+          "MySql.Data": "26.7.0"
+        },
+        "runtime": {
+          "LibrarySystem.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -632,6 +645,11 @@
       "sha512": "sha512-UIDFkA5DC3en3tOJ3Mof11yBx9kUQLsaeo/oFdvN6Bbkr9E9+VCqfIadHci8cu+I51K2Sl7XYWVl2R/mA75NBQ==",
       "path": "zstdsharp.port/0.8.8",
       "hashPath": "zstdsharp.port.0.8.8.nupkg.sha512"
+    },
+    "LibrarySystem.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

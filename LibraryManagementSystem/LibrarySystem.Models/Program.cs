@@ -1,4 +1,4 @@
-namespace LibrarySystem.Models
+namespace LibrarySystem.Student
 {
     internal static class Program
     {

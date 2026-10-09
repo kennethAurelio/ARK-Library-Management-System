@@ -1,4 +1,4 @@
-﻿namespace LibrarySystem.Models {
+﻿namespace LibrarySystem.Student {
     partial class UserHistoryForm {
         /// <summary>
         /// Required designer variable.

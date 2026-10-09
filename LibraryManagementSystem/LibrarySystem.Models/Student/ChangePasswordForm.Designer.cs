@@ -1,4 +1,4 @@
-﻿namespace LibrarySystem.Models {
+﻿namespace LibrarySystem.Student {
     partial class ChangePasswordForm {
         /// <summary>
         /// Required designer variable.

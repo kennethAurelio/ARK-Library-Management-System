@@ -1,9 +1,7 @@
-﻿using System;
-using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Data;
+using LibrarySystem.Core;
 
-namespace LibrarySystem.Models {
+namespace LibrarySystem.Student {
     public partial class SearchResultForm : Form {
         public SearchResultForm(DataTable results) {
             InitializeComponent();

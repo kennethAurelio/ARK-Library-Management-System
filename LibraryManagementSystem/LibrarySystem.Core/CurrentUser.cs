@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace LibrarySystem.Models {
+namespace LibrarySystem.Core {
     public class CurrentUser {
         public int UserId { get; set; }
         public string FirstName { get; set; }

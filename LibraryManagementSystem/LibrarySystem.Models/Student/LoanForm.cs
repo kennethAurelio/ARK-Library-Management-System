@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Asn1.Ocsp;
+﻿using MySql.Data.MySqlClient;
+using LibrarySystem.Core;
 
-namespace LibrarySystem.Models {
+namespace LibrarySystem.Student {
     public partial class LoanForm : Form {
         private int _bookId;
         private int _userId;

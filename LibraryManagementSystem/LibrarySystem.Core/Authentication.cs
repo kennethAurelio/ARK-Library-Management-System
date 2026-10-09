@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 
-namespace LibrarySystem.Models {
+namespace LibrarySystem.Core {
     public class AuthService {
         public CurrentUser ValidateLogin(string memberID, string password) {
             using (MySqlConnection conn = DatabaseHelper.GetConnection()) {

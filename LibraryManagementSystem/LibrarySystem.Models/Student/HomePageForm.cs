@@ -1,9 +1,8 @@
 using MySql.Data.MySqlClient;
 using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
+using LibrarySystem.Core;
 
-namespace LibrarySystem.Models
+namespace LibrarySystem.Student
 {
     public partial class HomePageForm : Form {
         private const string SearchPlaceholder = "Search by title or author...";

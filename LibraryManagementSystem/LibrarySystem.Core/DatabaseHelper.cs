@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using MySql.Data.MySqlClient;
 
-namespace LibrarySystem.Models {
-    internal class DatabaseHelper {
+namespace LibrarySystem.Core {
+    public class DatabaseHelper {
         private static readonly string connectionString =
             "Server=localhost;Database=ark_db;Uid=root;Pwd=SQLAurelio;";
 

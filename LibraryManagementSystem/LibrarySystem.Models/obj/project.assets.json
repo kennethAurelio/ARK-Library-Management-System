@@ -546,6 +546,20 @@
         "runtime": {
           "lib/net9.0/ZstdSharp.dll": {}
         }
+      },
+      "LibrarySystem.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "BCrypt.Net-Next": "4.2.0",
+          "MySql.Data": "26.7.0"
+        },
+        "compile": {
+          "bin/placeholder/LibrarySystem.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LibrarySystem.Core.dll": {}
+        }
       }
     }
   },
@@ -1369,11 +1383,17 @@
         "zstdsharp.port.0.8.8.nupkg.sha512",
         "zstdsharp.port.nuspec"
       ]
+    },
+    "LibrarySystem.Core/1.0.0": {
+      "type": "project",
+      "path": "../LibrarySystem.Core/LibrarySystem.Core.csproj",
+      "msbuildProject": "../LibrarySystem.Core/LibrarySystem.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0-windows": [
       "BCrypt.Net-Next >= 4.2.0",
+      "LibrarySystem.Core >= 1.0.0",
       "Microsoft.Data.SqlClient >= 7.0.2",
       "MySql.Data >= 26.7.0",
       "TranceSql.MySql >= 0.15.3"
@@ -1385,9 +1405,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kenne\\Desktop\\ARK-Library-Management-System\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Models.csproj",
-      "projectName": "LibrarySystem.Models",
-      "projectPath": "C:\\Users\\kenne\\Desktop\\ARK-Library-Management-System\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Models.csproj",
+      "projectUniqueName": "C:\\Users\\kenne\\Desktop\\ARK-Library-Management-System\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Student.csproj",
+      "projectName": "LibrarySystem.Student",
+      "projectPath": "C:\\Users\\kenne\\Desktop\\ARK-Library-Management-System\\LibraryManagementSystem\\LibrarySystem.Models\\LibrarySystem.Student.csproj",
       "packagesPath": "C:\\Users\\kenne\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\kenne\\Desktop\\ARK-Library-Management-System\\LibraryManagementSystem\\LibrarySystem.Models\\obj\\",
       "projectStyle": "PackageReference",
@@ -1406,7 +1426,11 @@
         "net10.0-windows": {
           "framework": "net10.0-windows7.0",
           "targetAlias": "net10.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\kenne\\Desktop\\ARK-Library-Management-System\\LibraryManagementSystem\\LibrarySystem.Core\\LibrarySystem.Core.csproj": {
+              "projectPath": "C:\\Users\\kenne\\Desktop\\ARK-Library-Management-System\\LibraryManagementSystem\\LibrarySystem.Core\\LibrarySystem.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

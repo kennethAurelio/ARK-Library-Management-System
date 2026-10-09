@@ -1,13 +1,4 @@
-﻿using Org.BouncyCastle.Asn1.Ocsp;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
-namespace LibrarySystem.Models {
+﻿namespace LibrarySystem.Student {
     public partial class RulesForm : Form {
         public RulesForm() {
             InitializeComponent();

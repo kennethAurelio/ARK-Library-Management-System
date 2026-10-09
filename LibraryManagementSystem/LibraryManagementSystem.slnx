@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
-    <Project Path="LibrarySystem.Models/LibrarySystem.Models.csproj" />
+    <Project Path="LibrarySystem.Core/LibrarySystem.Core.csproj" Id="19a6d602-4a6e-40cf-b047-a68146c18fc1" />
+    <Project Path="LibrarySystem.Models/LibrarySystem.Student.csproj" />
     <Project Path="LibrarySystem.Staff/LibrarySystem.Staff.csproj" Id="447c55de-8858-4753-b5e8-ab4821762d00" />
   </Folder>
 </Solution>
