@@ -1,4 +1,7 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace LibrarySystem.Models {
     public partial class SearchResultForm : Form {
@@ -8,11 +11,14 @@ namespace LibrarySystem.Models {
             dgvResults.DataSource = results;
 
             // Hide the book_id column since it's not needed for display
-            dgvResults.Columns["book_id"].Visible = false;
-            dgvResults.Columns["year_published"].Visible = false;
-            dgvResults.Columns["synopsis"].Visible = false;
-            dgvResults.Columns["genre"].Visible = false;
-            dgvResults.Columns["publisher"].Visible = false;
+            if (dgvResults.Columns.Contains("book_id")) dgvResults.Columns["book_id"].Visible = false;
+            if (dgvResults.Columns.Contains("year_published")) dgvResults.Columns["year_published"].Visible = false;
+            if (dgvResults.Columns.Contains("synopsis")) dgvResults.Columns["synopsis"].Visible = false;
+            if (dgvResults.Columns.Contains("genre")) dgvResults.Columns["genre"].Visible = false;
+            if (dgvResults.Columns.Contains("publisher")) dgvResults.Columns["publisher"].Visible = false;
+
+            // Apply friendly header texts and column settings
+            ApplyColumnHeaders();
 
             // Enable text wrapping and let rows auto-size to fit wrapped content
             dgvResults.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -42,6 +48,28 @@ namespace LibrarySystem.Models {
             dgvResults.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dgvResults.CellFormatting += dgvResults_CellFormatting;
+        }
+
+        // New helper: set friendly header text for columns (safe-checks for existence)
+        private void ApplyColumnHeaders() {
+            SetHeader("title", "Title");
+            SetHeader("author", "Author");
+            SetHeader("copies_available", "Copies Available");
+            SetHeader("year_published", "Year Published");
+            SetHeader("status", "Status");
+            SetHeader("synopsis", "Synopsis");
+            SetHeader("genre", "Genre");
+            SetHeader("publisher", "Publisher");
+            SetHeader("book_status", "Book Status");
+            // Example: change display index or autosize mode if desired:
+            if (dgvResults.Columns.Contains("title")) dgvResults.Columns["title"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            if (dgvResults.Columns.Contains("author")) dgvResults.Columns["author"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void SetHeader(string columnName, string headerText) {
+            if (dgvResults.Columns.Contains(columnName)) {
+                dgvResults.Columns[columnName].HeaderText = headerText;
+            }
         }
 
         private void dgvResults_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e) {

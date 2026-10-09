@@ -147,6 +147,7 @@ namespace LibrarySystem.Models
                 MessageBox.Show("No results found.", "Search", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
+            txtSearchBox.Clear();
             // Reset the search box to show the placeholder again
             RestoreSearchPlaceholder();
         }

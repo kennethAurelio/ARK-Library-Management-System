@@ -49,19 +49,19 @@
             // txtSearchBox
             // 
             txtSearchBox.Anchor = AnchorStyles.Top;
-            txtSearchBox.Location = new Point(160, 210);
+            txtSearchBox.Location = new Point(338, 263);
             txtSearchBox.Margin = new Padding(3, 2, 3, 2);
             txtSearchBox.Name = "txtSearchBox";
-            txtSearchBox.Size = new Size(421, 23);
+            txtSearchBox.Size = new Size(532, 23);
             txtSearchBox.TabIndex = 1;
             // 
             // btnSearch
             // 
             btnSearch.Anchor = AnchorStyles.Top;
             btnSearch.BackgroundImage = Properties.Resources.jkhadkhuial;
-            btnSearch.BackgroundImageLayout = ImageLayout.Stretch;
+            btnSearch.BackgroundImageLayout = ImageLayout.Zoom;
             btnSearch.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSearch.Location = new Point(586, 208);
+            btnSearch.Location = new Point(875, 261);
             btnSearch.Margin = new Padding(3, 2, 3, 2);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(36, 23);
@@ -74,47 +74,45 @@
             btnOpenLogin.Anchor = AnchorStyles.None;
             btnOpenLogin.BackgroundImage = Properties.Resources.profile_icon_login_head_icon_vector;
             btnOpenLogin.BackgroundImageLayout = ImageLayout.Stretch;
-            btnOpenLogin.Location = new Point(928, 21);
+            btnOpenLogin.Location = new Point(1447, 35);
             btnOpenLogin.Margin = new Padding(3, 2, 3, 2);
             btnOpenLogin.Name = "btnOpenLogin";
-            btnOpenLogin.Size = new Size(36, 33);
+            btnOpenLogin.Size = new Size(60, 55);
             btnOpenLogin.TabIndex = 7;
             btnOpenLogin.UseVisualStyleBackColor = true;
             btnOpenLogin.Click += btnOpenLogin_Click;
             // 
             // pbBookDisplay1
             // 
-            pbBookDisplay1.Location = new Point(100, 303);
+            pbBookDisplay1.Location = new Point(136, 397);
             pbBookDisplay1.Name = "pbBookDisplay1";
-            pbBookDisplay1.Size = new Size(109, 169);
-            pbBookDisplay1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbBookDisplay1.Size = new Size(206, 303);
             pbBookDisplay1.TabIndex = 11;
             pbBookDisplay1.TabStop = false;
             // 
             // pbBookDisplay2
             // 
-            pbBookDisplay2.Location = new Point(256, 303);
+            pbBookDisplay2.Location = new Point(390, 397);
             pbBookDisplay2.Name = "pbBookDisplay2";
-            pbBookDisplay2.Size = new Size(109, 169);
-            pbBookDisplay2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbBookDisplay2.Size = new Size(206, 303);
             pbBookDisplay2.TabIndex = 12;
             pbBookDisplay2.TabStop = false;
             // 
             // pbBookDisplay3
             // 
-            pbBookDisplay3.Location = new Point(409, 303);
+            pbBookDisplay3.BackgroundImageLayout = ImageLayout.Zoom;
+            pbBookDisplay3.Location = new Point(643, 397);
             pbBookDisplay3.Name = "pbBookDisplay3";
-            pbBookDisplay3.Size = new Size(109, 169);
-            pbBookDisplay3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbBookDisplay3.Size = new Size(206, 303);
             pbBookDisplay3.TabIndex = 13;
             pbBookDisplay3.TabStop = false;
             // 
             // pbBookDisplay4
             // 
-            pbBookDisplay4.Location = new Point(564, 303);
+            pbBookDisplay4.BackgroundImageLayout = ImageLayout.Zoom;
+            pbBookDisplay4.Location = new Point(895, 397);
             pbBookDisplay4.Name = "pbBookDisplay4";
-            pbBookDisplay4.Size = new Size(109, 169);
-            pbBookDisplay4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbBookDisplay4.Size = new Size(206, 303);
             pbBookDisplay4.TabIndex = 14;
             pbBookDisplay4.TabStop = false;
             // 
@@ -122,11 +120,11 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Times New Roman", 12F);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(99, 266);
+            label3.Location = new Point(160, 334);
             label3.Name = "label3";
-            label3.Size = new Size(99, 15);
+            label3.Size = new Size(123, 19);
             label3.TabIndex = 15;
             label3.Text = "Newest to Library:";
             // 
@@ -136,7 +134,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(844, 102);
+            label1.Location = new Point(1325, 164);
             label1.Name = "label1";
             label1.Size = new Size(61, 19);
             label1.TabIndex = 16;
@@ -146,17 +144,18 @@
             // 
             rtbUpdates.BackColor = Color.White;
             rtbUpdates.BorderStyle = BorderStyle.None;
-            rtbUpdates.Location = new Point(775, 136);
+            rtbUpdates.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rtbUpdates.Location = new Point(1217, 211);
             rtbUpdates.Name = "rtbUpdates";
             rtbUpdates.ReadOnly = true;
             rtbUpdates.ScrollBars = RichTextBoxScrollBars.Vertical;
-            rtbUpdates.Size = new Size(204, 336);
+            rtbUpdates.Size = new Size(273, 442);
             rtbUpdates.TabIndex = 17;
-            rtbUpdates.Text = "";
+            rtbUpdates.Text = "Sample Text";
             // 
             // btnBrowseAllBooks
             // 
-            btnBrowseAllBooks.Location = new Point(606, 510);
+            btnBrowseAllBooks.Location = new Point(1009, 760);
             btnBrowseAllBooks.Name = "btnBrowseAllBooks";
             btnBrowseAllBooks.Size = new Size(115, 23);
             btnBrowseAllBooks.TabIndex = 18;
@@ -169,10 +168,10 @@
             btnOpenUserControl.Anchor = AnchorStyles.None;
             btnOpenUserControl.BackgroundImage = Properties.Resources.profile_icon_login_head_icon_vector;
             btnOpenUserControl.BackgroundImageLayout = ImageLayout.Stretch;
-            btnOpenUserControl.Location = new Point(928, 21);
+            btnOpenUserControl.Location = new Point(1447, 35);
             btnOpenUserControl.Margin = new Padding(3, 2, 3, 2);
             btnOpenUserControl.Name = "btnOpenUserControl";
-            btnOpenUserControl.Size = new Size(36, 33);
+            btnOpenUserControl.Size = new Size(60, 55);
             btnOpenUserControl.TabIndex = 19;
             btnOpenUserControl.UseVisualStyleBackColor = true;
             btnOpenUserControl.Visible = false;
@@ -184,7 +183,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.ARK___New_Homepage_bg;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(991, 588);
+            ClientSize = new Size(1540, 941);
             Controls.Add(btnOpenUserControl);
             Controls.Add(btnBrowseAllBooks);
             Controls.Add(rtbUpdates);
@@ -201,6 +200,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "HomePageForm";
             StartPosition = FormStartPosition.CenterScreen;
+            Tag = "Sample Text";
             Text = "JILCF - ARK";
             Load += HomePageForm_Load;
             ((System.ComponentModel.ISupportInitialize)pbBookDisplay1).EndInit();
