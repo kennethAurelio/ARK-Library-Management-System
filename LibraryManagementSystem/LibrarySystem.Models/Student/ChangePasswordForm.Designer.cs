@@ -126,7 +126,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ChangePasswordForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Change Password Form";
+            Text = "Change Password";
             ResumeLayout(false);
             PerformLayout();
         }

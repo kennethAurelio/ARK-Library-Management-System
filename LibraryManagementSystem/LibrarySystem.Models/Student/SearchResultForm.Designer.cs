@@ -85,7 +85,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "SearchResultForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Search Result";
+            Text = "JILCF - ARK";
             ((System.ComponentModel.ISupportInitialize)dgvResults).EndInit();
             ResumeLayout(false);
             PerformLayout();

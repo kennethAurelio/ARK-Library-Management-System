@@ -137,7 +137,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AccountForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Account Form";
+            Text = "Account";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -83,7 +83,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "RulesForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Rules Form";
+            Text = "Rules and Condition";
             ResumeLayout(false);
             PerformLayout();
         }

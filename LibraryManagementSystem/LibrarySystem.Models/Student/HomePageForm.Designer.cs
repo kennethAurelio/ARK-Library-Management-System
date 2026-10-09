@@ -201,7 +201,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "HomePageForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Home Page";
+            Text = "JILCF - ARK";
             Load += HomePageForm_Load;
             ((System.ComponentModel.ISupportInitialize)pbBookDisplay1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbBookDisplay2).EndInit();

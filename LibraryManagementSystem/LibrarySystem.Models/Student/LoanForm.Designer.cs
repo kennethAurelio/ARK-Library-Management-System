@@ -72,6 +72,7 @@
             // 
             // txtSynopsis
             // 
+            txtSynopsis.BackColor = Color.White;
             txtSynopsis.BorderStyle = BorderStyle.None;
             txtSynopsis.Location = new Point(443, 193);
             txtSynopsis.Multiline = true;
@@ -83,6 +84,7 @@
             // 
             // txtAuthor
             // 
+            txtAuthor.BackColor = Color.White;
             txtAuthor.BorderStyle = BorderStyle.None;
             txtAuthor.Location = new Point(274, 192);
             txtAuthor.Multiline = true;
@@ -125,6 +127,7 @@
             // 
             // txtBookCopies
             // 
+            txtBookCopies.BackColor = Color.White;
             txtBookCopies.BorderStyle = BorderStyle.None;
             txtBookCopies.Location = new Point(371, 253);
             txtBookCopies.Multiline = true;
@@ -176,7 +179,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "LoanForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Loan Form";
+            Text = "JILCF - ARK";
             ((System.ComponentModel.ISupportInitialize)pbCover).EndInit();
             ResumeLayout(false);
             PerformLayout();

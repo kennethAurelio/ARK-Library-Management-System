@@ -102,7 +102,7 @@
             Controls.Add(dgvHistory);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "UserHistoryForm";
-            Text = "UserHistoryForm";
+            Text = "JILCF - ARK";
             ((System.ComponentModel.ISupportInitialize)dgvHistory).EndInit();
             ResumeLayout(false);
             PerformLayout();
