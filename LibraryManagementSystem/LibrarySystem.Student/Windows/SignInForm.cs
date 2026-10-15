@@ -163,7 +163,7 @@ namespace LibrarySystem.Student {
 
         // Password hashing test button
         private void button1_Click(object sender, EventArgs e) {
-            string hash = BCrypt.Net.BCrypt.HashPassword("AurelioPassword2405");
+            string hash = BCrypt.Net.BCrypt.HashPassword("ARK2026");
             MessageBox.Show(hash);
         }
 

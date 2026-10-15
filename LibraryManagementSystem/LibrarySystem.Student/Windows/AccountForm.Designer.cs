@@ -28,7 +28,6 @@
             lblStudentId = new Label();
             lblYearLevel = new Label();
             lblStrandAndSection = new Label();
-            lblPrivilege = new Label();
             btnViewHistory = new Button();
             btnChangePassword = new Button();
             btnLogout = new Button();
@@ -78,17 +77,6 @@
             lblStrandAndSection.TabIndex = 4;
             lblStrandAndSection.Text = "Strand and Section:";
             // 
-            // lblPrivilege
-            // 
-            lblPrivilege.AutoSize = true;
-            lblPrivilege.BackColor = Color.Transparent;
-            lblPrivilege.Font = new Font("Times New Roman", 10.8F);
-            lblPrivilege.Location = new Point(12, 146);
-            lblPrivilege.Name = "lblPrivilege";
-            lblPrivilege.Size = new Size(62, 17);
-            lblPrivilege.TabIndex = 5;
-            lblPrivilege.Text = "Privilege:";
-            // 
             // btnViewHistory
             // 
             btnViewHistory.Location = new Point(31, 383);
@@ -129,7 +117,6 @@
             Controls.Add(btnLogout);
             Controls.Add(btnChangePassword);
             Controls.Add(btnViewHistory);
-            Controls.Add(lblPrivilege);
             Controls.Add(lblStrandAndSection);
             Controls.Add(lblYearLevel);
             Controls.Add(lblStudentId);
@@ -148,7 +135,6 @@
         private Label lblStudentId;
         private Label lblYearLevel;
         private Label lblStrandAndSection;
-        private Label lblPrivilege;
         private Button btnViewHistory;
         private Button btnChangePassword;
         private Button btnLogout;

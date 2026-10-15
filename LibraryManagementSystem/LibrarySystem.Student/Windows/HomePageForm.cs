@@ -1,6 +1,5 @@
 using LibrarySystem.Core;
 using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Tls;
 using System.Data;
 
 namespace LibrarySystem.Student
@@ -131,7 +130,7 @@ namespace LibrarySystem.Student
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(
                 "SELECT book_id, title, author, copies_available, book_status, year_published, synopsis, genre, publisher FROM books " +
-                "WHERE title LIKE @search OR author LIKE @search", conn)) {
+                "WHERE title LIKE @search OR author LIKE @search ORDER BY title", conn)) {
                 cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%");
                 conn.Open();
 
@@ -240,7 +239,7 @@ namespace LibrarySystem.Student
             // book_id is still selected because the results grid needs it to open the LoanForm (hide it in the grid).
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(
-                "SELECT book_id, title, author, copies_available, book_status, year_published, synopsis, genre, publisher FROM books", conn)) {
+                "SELECT book_id, title, author, copies_available, book_status, year_published, synopsis, genre, publisher FROM books ORDER BY title", conn)) {
                 conn.Open();
 
                 using (var reader = cmd.ExecuteReader()) {

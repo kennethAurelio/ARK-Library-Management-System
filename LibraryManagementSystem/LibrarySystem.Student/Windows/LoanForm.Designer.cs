@@ -35,6 +35,7 @@
             txtBookCopies = new TextBox();
             lblBookStatus = new Label();
             lblGenre = new Label();
+            txtGenre = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pbCover).BeginInit();
             SuspendLayout();
             // 
@@ -154,9 +155,20 @@
             lblGenre.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblGenre.Location = new Point(274, 306);
             lblGenre.Name = "lblGenre";
-            lblGenre.Size = new Size(39, 15);
+            lblGenre.Size = new Size(36, 15);
             lblGenre.TabIndex = 13;
-            lblGenre.Text = "Genre:";
+            lblGenre.Text = "Genre";
+            // 
+            // txtGenre
+            // 
+            txtGenre.BackColor = Color.White;
+            txtGenre.BorderStyle = BorderStyle.None;
+            txtGenre.Location = new Point(273, 324);
+            txtGenre.Multiline = true;
+            txtGenre.Name = "txtGenre";
+            txtGenre.ReadOnly = true;
+            txtGenre.Size = new Size(150, 44);
+            txtGenre.TabIndex = 14;
             // 
             // LoanForm
             // 
@@ -165,6 +177,7 @@
             BackgroundImage = Properties.Resources.ARK___Background;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(991, 588);
+            Controls.Add(txtGenre);
             Controls.Add(lblGenre);
             Controls.Add(lblBookStatus);
             Controls.Add(txtBookCopies);
@@ -198,5 +211,6 @@
         private TextBox txtBookCopies;
         private Label lblBookStatus;
         private Label lblGenre;
+        private TextBox txtGenre;
     }
 }

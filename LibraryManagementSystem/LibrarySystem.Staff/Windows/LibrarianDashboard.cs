@@ -1,13 +1,11 @@
 ﻿using LibrarySystem.Core;
 using MySql.Data.MySqlClient;
-using System;
 using System.Data;
-using System.Windows.Forms;
 
 namespace LibrarySystem.Staff {
     public partial class LibrarianDashboard : Form {
-
-        private const int LoanDays = 7;
+        private const int LoanDays = 3;
+        private int? _editingBookId = null;
 
         private const string PendingRequestsQuery = @"
             SELECT l.loan_id,
@@ -38,18 +36,47 @@ namespace LibrarySystem.Staff {
             WHERE l.status = 'Borrowed'
             ORDER BY l.due_date IS NULL, l.due_date ASC";
 
+        private const string CatalogQuery = @"
+            SELECT book_id, title, author, genre, publisher, year_published,
+                   copies_available, book_status, synopsis
+            FROM books
+            ORDER BY title";
+
+
+        private const string HistoryQuery = @"
+            SELECT l.loan_id,
+                   l.book_id,
+                   a.login_id AS student_id,
+                   CONCAT(a.first_name, ' ', COALESCE(a.middle_name, ''), ' ', a.last_name) AS student_name,
+                   b.title,
+                   l.loan_date,
+                   l.due_date,
+                   l.return_date,
+                   l.status
+            FROM book_loans l
+            JOIN accounts a ON a.user_id = l.user_id
+            JOIN books b ON b.book_id = l.book_id
+            WHERE l.status IN ('Pending', 'Returned', 'Lost', 'Cancelled')
+            ORDER BY l.return_date DESC";
+
         // The row the librarian has selected in a loan grid.
         private record SelectedLoan(int LoanId, int BookId, string Student, string Title);
 
         public LibrarianDashboard() {
             InitializeComponent();
-
             GridHelper.Style(dgvLoanRequest);
             GridHelper.Style(dgvReturns);
             GridHelper.HighlightOverdue(dgvReturns);
+            GridHelper.Style(dgvCatalog);
+            dgvCatalog.SelectionChanged += dgvCatalog_SelectionChanged;
+
+            // History grid style and filter initialization
+            GridHelper.Style(dgvTransactionHistory);
 
             LoadLoanRequests();
             LoadReturnDesk();
+            LoadCatalog();
+            LoadTransactionHistory();
         }
 
         private static DataTable LoadTable(string sql) {
@@ -72,6 +99,15 @@ namespace LibrarySystem.Staff {
 
         private void LoadReturnDesk() {
             GridHelper.Bind(dgvReturns, LoadTable(BorrowedLoansQuery));
+        }
+        private void LoadCatalog() {
+            GridHelper.Bind(dgvCatalog, LoadTable(CatalogQuery));
+            dgvCatalog.Columns["synopsis"].Visible = false;   // too long for a grid cell
+            StartNewBook();
+        }
+        private void LoadTransactionHistory() {
+            // !! WIP: Add filtering options for the history grid (e.g., by date range, status, student, etc.)
+            GridHelper.Bind(dgvTransactionHistory, LoadTable(HistoryQuery));
         }
 
         // Returns the selected row's loan info, or null (with a message) if nothing is selected.
@@ -196,9 +232,136 @@ namespace LibrarySystem.Staff {
             LoadLoanRequests();    // refresh "Copies Left" in the requests grid
         }
 
-        private void BtnRefreshData(object sender, EventArgs e) {
+        // Refresh both grids when the librarian clicks the refresh button.
+        private void btnRefreshData_Click(object sender, EventArgs e) {
             LoadReturnDesk();
             LoadLoanRequests();
         }
+
+        private void btnCancelRequest_Click(object sender, EventArgs e) {
+            var loan = GetSelectedLoan(dgvLoanRequest);
+            if (loan == null) return;
+
+            if (MessageBox.Show($"Cancel this request?\n\nStudent: {loan.Student}\nBook: {loan.Title}",
+                    "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+
+            using (var conn = DatabaseHelper.GetConnection())
+            using (var cmd = new MySqlCommand(
+                "UPDATE book_loans SET status = 'Cancelled'" +
+                "WHERE loan_id = @loanId AND status = 'Pending'", conn)) {
+                cmd.Parameters.AddWithValue("@loanId", loan.LoanId);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            LoadLoanRequests();
+        }
+
+        // Selecting a row fills the fields and switches to edit mode.
+        private void dgvCatalog_SelectionChanged(object? sender, EventArgs e) {
+            if (dgvCatalog.SelectedRows.Count == 0) return;
+
+            var cells = dgvCatalog.SelectedRows[0].Cells;
+            _editingBookId = Convert.ToInt32(cells["book_id"].Value);
+
+            txtTitle.Text = cells["title"].Value?.ToString();
+            txtAuthor.Text = cells["author"].Value?.ToString();
+            txtGenre.Text = cells["genre"].Value?.ToString();
+            txtPublisher.Text = cells["publisher"].Value?.ToString();
+            txtYear.Text = cells["year_published"].Value?.ToString();
+            txtSynopsis.Text = cells["synopsis"].Value?.ToString();
+
+            int copies = int.TryParse(cells["copies_available"].Value?.ToString(), out int c) ? c : 0;
+            nudCopies.Value = Math.Clamp(copies, (int)nudCopies.Minimum, (int)nudCopies.Maximum);
+
+            lblMode.Text = $"Editing: {txtTitle.Text}";
+            btnSaveBook.Text = "Save Changes";
+        }
+
+        // Clears everything and switches to add mode.
+        private void StartNewBook() {
+            _editingBookId = null;
+            dgvCatalog.ClearSelection();
+
+            txtTitle.Clear();
+            txtAuthor.Clear();
+            txtGenre.Clear();
+            txtPublisher.Clear();
+            txtYear.Clear();
+            txtSynopsis.Clear();
+            nudCopies.Value = 3;
+
+            lblMode.Text = "Adding a new book";
+            btnSaveBook.Text = "Add Book";
+            txtTitle.Focus();
+        }
+
+        private void btnNewBook_Click(object sender, EventArgs e) {
+            StartNewBook();
+        }
+
+        private void btnSaveBook_Click(object sender, EventArgs e) {
+            string title = txtTitle.Text.Trim();
+            string author = txtAuthor.Text.Trim();
+
+            if (title == "" || author == "") {
+                MessageBox.Show("Title and author are required.", "Missing Information",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            object year = DBNull.Value;
+            if (txtYear.Text.Trim() != "") {
+                if (!int.TryParse(txtYear.Text.Trim(), out int y)) {
+                    MessageBox.Show("Year must be a number.", "Invalid Year",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                year = y;
+            }
+
+            int copies = (int)nudCopies.Value;
+            string status = copies > 0 ? "Available" : "Unavailable";
+
+            string sql = _editingBookId == null
+                ? @"INSERT INTO books (title, author, genre, publisher, year_published, synopsis,
+                               copies_available, book_status, date_added)
+            VALUES (@title, @author, @genre, @publisher, @year, @synopsis, @copies, @status, NOW())"
+                : @"UPDATE books
+            SET title = @title, author = @author, genre = @genre, publisher = @publisher,
+                year_published = @year, synopsis = @synopsis,
+                copies_available = @copies, book_status = @status
+            WHERE book_id = @bookId";
+
+            try {
+                using (var conn = DatabaseHelper.GetConnection())
+                using (var cmd = new MySqlCommand(sql, conn)) {
+                    cmd.Parameters.AddWithValue("@title", title);
+                    cmd.Parameters.AddWithValue("@author", author);
+                    cmd.Parameters.AddWithValue("@genre", txtGenre.Text.Trim());
+                    cmd.Parameters.AddWithValue("@publisher", txtPublisher.Text.Trim());
+                    cmd.Parameters.AddWithValue("@year", year);
+                    cmd.Parameters.AddWithValue("@synopsis", txtSynopsis.Text.Trim());
+                    cmd.Parameters.AddWithValue("@copies", copies);
+                    cmd.Parameters.AddWithValue("@status", status);
+                    if (_editingBookId != null)
+                        cmd.Parameters.AddWithValue("@bookId", _editingBookId.Value);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            } catch (MySqlException ex) {
+                MessageBox.Show("Could not save the book.\n" + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show(_editingBookId == null ? "Book added." : "Book updated.", "Saved",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            LoadCatalog();        // refresh the grid and reset the form to add mode
+            LoadLoanRequests();   // keep "Copies Left" in the requests grid current
+        }
+
     }
 }

@@ -29,7 +29,7 @@ namespace LibrarySystem.Student {
                     txtSynopsis.Text = reader["synopsis"]?.ToString() ?? "Synopsis Missing";
                     txtBookCopies.Text = reader["copies_available"]?.ToString() ?? "Copies Unavailable";
                     lblBookStatus.Text = "Status: " + reader["book_status"]?.ToString() ?? "Status Unknown";
-                    lblGenre.Text = "Genre: " + reader["genre"]?.ToString() ?? "Genre Unknown";
+                    txtGenre.Text = reader["genre"]?.ToString() ?? "Genre Unknown";
 
                     if (reader["book_cover"] != DBNull.Value) {
                         byte[] data = (byte[])reader["book_cover"];
