@@ -584,6 +584,7 @@
             ClientSize = new Size(1540, 941);
             Controls.Add(tabControlStaff);
             Name = "StaffDashboard";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "JILCF - ARK";
             Load += btnRefreshData_Click;
             tabManageBooks.ResumeLayout(false);
