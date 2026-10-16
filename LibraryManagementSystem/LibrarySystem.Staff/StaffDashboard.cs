@@ -77,6 +77,18 @@ namespace LibrarySystem.Staff {
             LoadLoanRequests();
             LoadTransactionHistory();
         }
+
+        private void dgvLoanRequest_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+
+        }
+
+        private void tabManageBooks_Click(object sender, EventArgs e) {
+
+        }
+
+        private void btnSaveAccount_Click(object sender, EventArgs e) {
+
+        }
     }
 
 }

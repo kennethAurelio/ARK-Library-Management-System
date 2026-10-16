@@ -55,6 +55,7 @@
             cbFilterBy = new ComboBox();
             dgvTransactionHistory = new DataGridView();
             tabAccounts = new TabPage();
+            btnNewAccount = new Button();
             label1 = new Label();
             txtLastName = new TextBox();
             cbAccountRole = new ComboBox();
@@ -71,7 +72,6 @@
             txtLoginId = new TextBox();
             dgvAccounts = new DataGridView();
             tabReports = new TabPage();
-            btnNewAccount = new Button();
             tabManageBooks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudCopies).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCatalog).BeginInit();
@@ -110,15 +110,16 @@
             tabManageBooks.Controls.Add(dgvCatalog);
             tabManageBooks.Location = new Point(4, 24);
             tabManageBooks.Name = "tabManageBooks";
-            tabManageBooks.Size = new Size(975, 384);
+            tabManageBooks.Size = new Size(1536, 638);
             tabManageBooks.TabIndex = 2;
             tabManageBooks.Text = "Manage Books";
             tabManageBooks.UseVisualStyleBackColor = true;
+            tabManageBooks.Click += tabManageBooks_Click;
             // 
             // lblSynopsis
             // 
             lblSynopsis.AutoSize = true;
-            lblSynopsis.Location = new Point(544, 214);
+            lblSynopsis.Location = new Point(1061, 265);
             lblSynopsis.Name = "lblSynopsis";
             lblSynopsis.Size = new Size(53, 15);
             lblSynopsis.TabIndex = 22;
@@ -127,7 +128,7 @@
             // lblCopies
             // 
             lblCopies.AutoSize = true;
-            lblCopies.Location = new Point(739, 158);
+            lblCopies.Location = new Point(1300, 209);
             lblCopies.Name = "lblCopies";
             lblCopies.Size = new Size(43, 15);
             lblCopies.TabIndex = 21;
@@ -136,7 +137,7 @@
             // lblYear
             // 
             lblYear.AutoSize = true;
-            lblYear.Location = new Point(544, 159);
+            lblYear.Location = new Point(1061, 210);
             lblYear.Name = "lblYear";
             lblYear.Size = new Size(29, 15);
             lblYear.TabIndex = 20;
@@ -145,7 +146,7 @@
             // lblPublisher
             // 
             lblPublisher.AutoSize = true;
-            lblPublisher.Location = new Point(739, 112);
+            lblPublisher.Location = new Point(1300, 163);
             lblPublisher.Name = "lblPublisher";
             lblPublisher.Size = new Size(56, 15);
             lblPublisher.TabIndex = 19;
@@ -154,7 +155,7 @@
             // lblGenre
             // 
             lblGenre.AutoSize = true;
-            lblGenre.Location = new Point(544, 112);
+            lblGenre.Location = new Point(1061, 163);
             lblGenre.Name = "lblGenre";
             lblGenre.Size = new Size(38, 15);
             lblGenre.TabIndex = 18;
@@ -163,7 +164,7 @@
             // lblAuthor
             // 
             lblAuthor.AutoSize = true;
-            lblAuthor.Location = new Point(739, 63);
+            lblAuthor.Location = new Point(1300, 114);
             lblAuthor.Name = "lblAuthor";
             lblAuthor.Size = new Size(44, 15);
             lblAuthor.TabIndex = 17;
@@ -172,7 +173,7 @@
             // lblTitle
             // 
             lblTitle.AutoSize = true;
-            lblTitle.Location = new Point(544, 63);
+            lblTitle.Location = new Point(1061, 114);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(30, 15);
             lblTitle.TabIndex = 16;
@@ -180,16 +181,16 @@
             // 
             // txtSynopsis
             // 
-            txtSynopsis.Location = new Point(544, 232);
+            txtSynopsis.Location = new Point(1061, 283);
             txtSynopsis.Name = "txtSynopsis";
-            txtSynopsis.Size = new Size(290, 96);
+            txtSynopsis.Size = new Size(361, 242);
             txtSynopsis.TabIndex = 15;
             txtSynopsis.Text = "";
             // 
             // lblMode
             // 
             lblMode.AutoSize = true;
-            lblMode.Location = new Point(544, 34);
+            lblMode.Location = new Point(1061, 73);
             lblMode.Name = "lblMode";
             lblMode.Size = new Size(38, 15);
             lblMode.TabIndex = 14;
@@ -197,14 +198,14 @@
             // 
             // nudCopies
             // 
-            nudCopies.Location = new Point(739, 177);
+            nudCopies.Location = new Point(1300, 228);
             nudCopies.Name = "nudCopies";
-            nudCopies.Size = new Size(120, 23);
+            nudCopies.Size = new Size(122, 23);
             nudCopies.TabIndex = 13;
             // 
             // btnSaveBook
             // 
-            btnSaveBook.Location = new Point(863, 305);
+            btnSaveBook.Location = new Point(1449, 572);
             btnSaveBook.Name = "btnSaveBook";
             btnSaveBook.Size = new Size(75, 23);
             btnSaveBook.TabIndex = 12;
@@ -214,7 +215,7 @@
             // 
             // btnNewBook
             // 
-            btnNewBook.Location = new Point(863, 246);
+            btnNewBook.Location = new Point(1061, 572);
             btnNewBook.Name = "btnNewBook";
             btnNewBook.Size = new Size(75, 23);
             btnNewBook.TabIndex = 11;
@@ -224,46 +225,46 @@
             // 
             // txtYear
             // 
-            txtYear.Location = new Point(544, 177);
+            txtYear.Location = new Point(1061, 228);
             txtYear.Name = "txtYear";
-            txtYear.Size = new Size(166, 23);
+            txtYear.Size = new Size(199, 23);
             txtYear.TabIndex = 10;
             // 
             // txtPublisher
             // 
-            txtPublisher.Location = new Point(739, 129);
+            txtPublisher.Location = new Point(1300, 180);
             txtPublisher.Name = "txtPublisher";
-            txtPublisher.Size = new Size(166, 23);
+            txtPublisher.Size = new Size(199, 23);
             txtPublisher.TabIndex = 5;
             // 
             // txtGenre
             // 
-            txtGenre.Location = new Point(544, 129);
+            txtGenre.Location = new Point(1061, 180);
             txtGenre.Name = "txtGenre";
-            txtGenre.Size = new Size(166, 23);
+            txtGenre.Size = new Size(199, 23);
             txtGenre.TabIndex = 4;
             // 
             // txtAuthor
             // 
-            txtAuthor.Location = new Point(739, 81);
+            txtAuthor.Location = new Point(1300, 132);
             txtAuthor.Name = "txtAuthor";
-            txtAuthor.Size = new Size(166, 23);
+            txtAuthor.Size = new Size(199, 23);
             txtAuthor.TabIndex = 3;
             // 
             // txtTitle
             // 
-            txtTitle.Location = new Point(544, 81);
+            txtTitle.Location = new Point(1061, 132);
             txtTitle.Name = "txtTitle";
-            txtTitle.Size = new Size(166, 23);
+            txtTitle.Size = new Size(199, 23);
             txtTitle.TabIndex = 2;
             // 
             // dgvCatalog
             // 
             dgvCatalog.BackgroundColor = Color.LightYellow;
             dgvCatalog.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCatalog.Location = new Point(42, 53);
+            dgvCatalog.Location = new Point(36, 73);
             dgvCatalog.Name = "dgvCatalog";
-            dgvCatalog.Size = new Size(481, 293);
+            dgvCatalog.Size = new Size(1008, 522);
             dgvCatalog.TabIndex = 1;
             // 
             // tabReturnDesk
@@ -276,14 +277,14 @@
             tabReturnDesk.Location = new Point(4, 24);
             tabReturnDesk.Name = "tabReturnDesk";
             tabReturnDesk.Padding = new Padding(3);
-            tabReturnDesk.Size = new Size(975, 384);
+            tabReturnDesk.Size = new Size(1536, 638);
             tabReturnDesk.TabIndex = 1;
             tabReturnDesk.Text = "Return Desk";
             tabReturnDesk.UseVisualStyleBackColor = true;
             // 
             // btnMarkReturned
             // 
-            btnMarkReturned.Location = new Point(812, 289);
+            btnMarkReturned.Location = new Point(1101, 572);
             btnMarkReturned.Name = "btnMarkReturned";
             btnMarkReturned.Size = new Size(107, 23);
             btnMarkReturned.TabIndex = 2;
@@ -295,9 +296,9 @@
             // 
             dgvReturns.BackgroundColor = Color.LightYellow;
             dgvReturns.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvReturns.Location = new Point(42, 53);
+            dgvReturns.Location = new Point(36, 73);
             dgvReturns.Name = "dgvReturns";
-            dgvReturns.Size = new Size(713, 293);
+            dgvReturns.Size = new Size(1008, 522);
             dgvReturns.TabIndex = 1;
             // 
             // tabLoanRequest
@@ -312,24 +313,25 @@
             tabLoanRequest.Location = new Point(4, 24);
             tabLoanRequest.Name = "tabLoanRequest";
             tabLoanRequest.Padding = new Padding(3);
-            tabLoanRequest.Size = new Size(975, 384);
+            tabLoanRequest.Size = new Size(1536, 638);
             tabLoanRequest.TabIndex = 0;
             tabLoanRequest.Text = "Loan Requests";
             tabLoanRequest.UseVisualStyleBackColor = true;
             // 
             // btnRefreshData
             // 
-            btnRefreshData.Location = new Point(837, 248);
+            btnRefreshData.BackgroundImage = Properties.Resources.refresh;
+            btnRefreshData.BackgroundImageLayout = ImageLayout.Stretch;
+            btnRefreshData.Location = new Point(1489, 6);
             btnRefreshData.Name = "btnRefreshData";
-            btnRefreshData.Size = new Size(75, 23);
+            btnRefreshData.Size = new Size(35, 39);
             btnRefreshData.TabIndex = 3;
-            btnRefreshData.Text = "refresh";
             btnRefreshData.UseVisualStyleBackColor = true;
             btnRefreshData.Click += btnRefreshData_Click;
             // 
             // btnCancelRequest
             // 
-            btnCancelRequest.Location = new Point(822, 277);
+            btnCancelRequest.Location = new Point(1222, 572);
             btnCancelRequest.Name = "btnCancelRequest";
             btnCancelRequest.Size = new Size(107, 23);
             btnCancelRequest.TabIndex = 2;
@@ -339,7 +341,7 @@
             // 
             // btnAcceptRequest
             // 
-            btnAcceptRequest.Location = new Point(822, 306);
+            btnAcceptRequest.Location = new Point(1089, 572);
             btnAcceptRequest.Name = "btnAcceptRequest";
             btnAcceptRequest.Size = new Size(107, 23);
             btnAcceptRequest.TabIndex = 1;
@@ -351,10 +353,11 @@
             // 
             dgvLoanRequest.BackgroundColor = Color.LightYellow;
             dgvLoanRequest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvLoanRequest.Location = new Point(42, 53);
+            dgvLoanRequest.Location = new Point(36, 73);
             dgvLoanRequest.Name = "dgvLoanRequest";
-            dgvLoanRequest.Size = new Size(713, 293);
+            dgvLoanRequest.Size = new Size(1008, 522);
             dgvLoanRequest.TabIndex = 0;
+            dgvLoanRequest.CellContentClick += dgvLoanRequest_CellContentClick;
             // 
             // tabControlStaff
             // 
@@ -364,10 +367,10 @@
             tabControlStaff.Controls.Add(tabBorrowingHistory);
             tabControlStaff.Controls.Add(tabAccounts);
             tabControlStaff.Controls.Add(tabReports);
-            tabControlStaff.Location = new Point(11, 137);
+            tabControlStaff.Location = new Point(0, 199);
             tabControlStaff.Name = "tabControlStaff";
             tabControlStaff.SelectedIndex = 0;
-            tabControlStaff.Size = new Size(983, 412);
+            tabControlStaff.Size = new Size(1539, 665);
             tabControlStaff.TabIndex = 0;
             // 
             // tabBorrowingHistory
@@ -379,7 +382,7 @@
             tabBorrowingHistory.Location = new Point(4, 24);
             tabBorrowingHistory.Name = "tabBorrowingHistory";
             tabBorrowingHistory.Padding = new Padding(3);
-            tabBorrowingHistory.Size = new Size(975, 384);
+            tabBorrowingHistory.Size = new Size(1536, 638);
             tabBorrowingHistory.TabIndex = 3;
             tabBorrowingHistory.Text = "Borrowing History";
             tabBorrowingHistory.UseVisualStyleBackColor = true;
@@ -387,7 +390,7 @@
             // cbFilterBy
             // 
             cbFilterBy.FormattingEnabled = true;
-            cbFilterBy.Location = new Point(820, 103);
+            cbFilterBy.Location = new Point(1097, 572);
             cbFilterBy.Name = "cbFilterBy";
             cbFilterBy.Size = new Size(121, 23);
             cbFilterBy.TabIndex = 5;
@@ -396,13 +399,14 @@
             // 
             dgvTransactionHistory.BackgroundColor = Color.LightYellow;
             dgvTransactionHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTransactionHistory.Location = new Point(42, 53);
+            dgvTransactionHistory.Location = new Point(36, 73);
             dgvTransactionHistory.Name = "dgvTransactionHistory";
-            dgvTransactionHistory.Size = new Size(713, 293);
+            dgvTransactionHistory.Size = new Size(1008, 522);
             dgvTransactionHistory.TabIndex = 1;
             // 
             // tabAccounts
             // 
+            tabAccounts.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
             tabAccounts.Controls.Add(btnNewAccount);
             tabAccounts.Controls.Add(label1);
             tabAccounts.Controls.Add(txtLastName);
@@ -422,15 +426,25 @@
             tabAccounts.Location = new Point(4, 24);
             tabAccounts.Name = "tabAccounts";
             tabAccounts.Padding = new Padding(3);
-            tabAccounts.Size = new Size(975, 384);
+            tabAccounts.Size = new Size(1531, 637);
             tabAccounts.TabIndex = 4;
             tabAccounts.Text = "Accounts";
             tabAccounts.UseVisualStyleBackColor = true;
             // 
+            // btnNewAccount
+            // 
+            btnNewAccount.Location = new Point(1196, 572);
+            btnNewAccount.Name = "btnNewAccount";
+            btnNewAccount.Size = new Size(97, 23);
+            btnNewAccount.TabIndex = 44;
+            btnNewAccount.Text = "New Account";
+            btnNewAccount.UseVisualStyleBackColor = true;
+            btnNewAccount.Click += btnNewAccount_Click;
+            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(541, 214);
+            label1.Location = new Point(1060, 257);
             label1.Name = "label1";
             label1.Size = new Size(63, 15);
             label1.TabIndex = 43;
@@ -438,7 +452,7 @@
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(541, 232);
+            txtLastName.Location = new Point(1060, 275);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(166, 23);
             txtLastName.TabIndex = 42;
@@ -446,7 +460,7 @@
             // cbAccountRole
             // 
             cbAccountRole.FormattingEnabled = true;
-            cbAccountRole.Location = new Point(736, 131);
+            cbAccountRole.Location = new Point(1250, 174);
             cbAccountRole.Name = "cbAccountRole";
             cbAccountRole.Size = new Size(121, 23);
             cbAccountRole.TabIndex = 41;
@@ -454,7 +468,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(736, 114);
+            label2.Location = new Point(1250, 157);
             label2.Name = "label2";
             label2.Size = new Size(30, 15);
             label2.TabIndex = 39;
@@ -463,7 +477,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(541, 161);
+            label3.Location = new Point(1060, 204);
             label3.Name = "label3";
             label3.Size = new Size(79, 15);
             label3.TabIndex = 38;
@@ -472,7 +486,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(541, 114);
+            label5.Location = new Point(1060, 157);
             label5.Name = "label5";
             label5.Size = new Size(64, 15);
             label5.TabIndex = 36;
@@ -481,7 +495,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(736, 65);
+            label6.Location = new Point(1250, 108);
             label6.Name = "label6";
             label6.Size = new Size(57, 15);
             label6.TabIndex = 35;
@@ -490,7 +504,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(541, 65);
+            label7.Location = new Point(1060, 108);
             label7.Name = "label7";
             label7.Size = new Size(50, 15);
             label7.TabIndex = 34;
@@ -499,7 +513,7 @@
             // lblAccountMode
             // 
             lblAccountMode.AutoSize = true;
-            lblAccountMode.Location = new Point(541, 36);
+            lblAccountMode.Location = new Point(1060, 73);
             lblAccountMode.Name = "lblAccountMode";
             lblAccountMode.Size = new Size(38, 15);
             lblAccountMode.TabIndex = 32;
@@ -507,38 +521,38 @@
             // 
             // btnSaveAccount
             // 
-            btnSaveAccount.Location = new Point(541, 325);
+            btnSaveAccount.Location = new Point(1060, 572);
             btnSaveAccount.Name = "btnSaveAccount";
             btnSaveAccount.Size = new Size(97, 23);
             btnSaveAccount.TabIndex = 30;
             btnSaveAccount.Text = "Save Account";
             btnSaveAccount.UseVisualStyleBackColor = true;
-            btnSaveAccount.Click += btnSaveAccount_Click;
+            btnSaveAccount.Click += this.btnSaveAccount_Click;
             // 
             // txtMiddleName
             // 
-            txtMiddleName.Location = new Point(541, 179);
+            txtMiddleName.Location = new Point(1060, 222);
             txtMiddleName.Name = "txtMiddleName";
             txtMiddleName.Size = new Size(166, 23);
             txtMiddleName.TabIndex = 28;
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(541, 131);
+            txtFirstName.Location = new Point(1060, 174);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(166, 23);
             txtFirstName.TabIndex = 26;
             // 
             // txtAccountPassword
             // 
-            txtAccountPassword.Location = new Point(736, 83);
+            txtAccountPassword.Location = new Point(1250, 126);
             txtAccountPassword.Name = "txtAccountPassword";
             txtAccountPassword.Size = new Size(166, 23);
             txtAccountPassword.TabIndex = 25;
             // 
             // txtLoginId
             // 
-            txtLoginId.Location = new Point(541, 83);
+            txtLoginId.Location = new Point(1060, 126);
             txtLoginId.Name = "txtLoginId";
             txtLoginId.Size = new Size(166, 23);
             txtLoginId.TabIndex = 24;
@@ -547,9 +561,9 @@
             // 
             dgvAccounts.BackgroundColor = Color.LightYellow;
             dgvAccounts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAccounts.Location = new Point(39, 55);
+            dgvAccounts.Location = new Point(36, 73);
             dgvAccounts.Name = "dgvAccounts";
-            dgvAccounts.Size = new Size(481, 293);
+            dgvAccounts.Size = new Size(1008, 522);
             dgvAccounts.TabIndex = 23;
             // 
             // tabReports
@@ -557,20 +571,10 @@
             tabReports.Location = new Point(4, 24);
             tabReports.Name = "tabReports";
             tabReports.Padding = new Padding(3);
-            tabReports.Size = new Size(975, 384);
+            tabReports.Size = new Size(1536, 638);
             tabReports.TabIndex = 5;
             tabReports.Text = "Reports";
             tabReports.UseVisualStyleBackColor = true;
-            // 
-            // btnNewAccount
-            // 
-            btnNewAccount.Location = new Point(657, 325);
-            btnNewAccount.Name = "btnNewAccount";
-            btnNewAccount.Size = new Size(97, 23);
-            btnNewAccount.TabIndex = 44;
-            btnNewAccount.Text = "New Account";
-            btnNewAccount.UseVisualStyleBackColor = true;
-            btnNewAccount.Click += btnNewAccount_Click;
             // 
             // StaffDashboard
             // 
@@ -579,7 +583,7 @@
             BackColor = SystemColors.Control;
             BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianDashboard__1556__980_;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1006, 616);
+            ClientSize = new Size(1540, 941);
             Controls.Add(tabControlStaff);
             Name = "StaffDashboard";
             Text = "JILCF - ARK";
