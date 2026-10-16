@@ -85,7 +85,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "StaffSignInForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "s";
+            Text = "ARK - JILCF";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -127,17 +127,10 @@ namespace LibrarySystem.Staff {
                 MessageBox.Show($"Welcome, {LoggedInUser.FullName}!", "Login Successful",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                if (LoggedInUser.Role.Equals("librarian", StringComparison.OrdinalIgnoreCase)) {
-                    LibrarianDashboard dashboard = new LibrarianDashboard();
-                    dashboard.FormClosed += (s, args) => Application.Exit();
-                    dashboard.Show();
-                    this.Hide();
-                } else {
-                    /* StaffDashboardForm dashboard = new StaffDashboardForm();
-                    dashboard.FormClosed += (s, args) => Application.Exit();
-                    dashboard.Show();
-                    this.Hide(); */
-                }
+                StaffDashboard staffDashboard = new StaffDashboard();
+                staffDashboard.FormClosed += (s, args) => Application.Exit();
+                staffDashboard.Show();
+                this.Hide();
             } else {
                 MessageBox.Show("Invalid credentials. Please try again.", "Login Failed",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);

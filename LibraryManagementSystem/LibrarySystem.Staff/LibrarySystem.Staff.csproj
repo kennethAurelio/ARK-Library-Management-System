@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿    <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 	<OutputType>WinExe</OutputType>
@@ -33,6 +33,24 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+	  <Compile Update="StaffIAMTab.cs">
+		  <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="StaffBookManagingTab.cs">
+		  <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="StaffHistoryTransactionTab.cs">
+		  <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="StaffLoanRequestsTab.cs">
+		  <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="StaffReturnTab.cs">
+		  <SubType>Code</SubType>
+	  </Compile>
   </ItemGroup>
 
 </Project>

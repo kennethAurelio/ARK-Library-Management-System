@@ -1,5 +1,5 @@
 ﻿namespace LibrarySystem.Staff {
-    partial class LibrarianDashboard {
+    partial class StaffDashboard {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -50,10 +50,28 @@
             btnCancelRequest = new Button();
             btnAcceptRequest = new Button();
             dgvLoanRequest = new DataGridView();
-            tabControl = new TabControl();
+            tabControlStaff = new TabControl();
             tabBorrowingHistory = new TabPage();
             cbFilterBy = new ComboBox();
             dgvTransactionHistory = new DataGridView();
+            tabAccounts = new TabPage();
+            label1 = new Label();
+            txtLastName = new TextBox();
+            cbAccountRole = new ComboBox();
+            label2 = new Label();
+            label3 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            lblAccountMode = new Label();
+            btnSaveAccount = new Button();
+            txtMiddleName = new TextBox();
+            txtFirstName = new TextBox();
+            txtAccountPassword = new TextBox();
+            txtLoginId = new TextBox();
+            dgvAccounts = new DataGridView();
+            tabReports = new TabPage();
+            btnNewAccount = new Button();
             tabManageBooks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudCopies).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCatalog).BeginInit();
@@ -61,9 +79,11 @@
             ((System.ComponentModel.ISupportInitialize)dgvReturns).BeginInit();
             tabLoanRequest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvLoanRequest).BeginInit();
-            tabControl.SuspendLayout();
+            tabControlStaff.SuspendLayout();
             tabBorrowingHistory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTransactionHistory).BeginInit();
+            tabAccounts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvAccounts).BeginInit();
             SuspendLayout();
             // 
             // tabManageBooks
@@ -336,17 +356,19 @@
             dgvLoanRequest.Size = new Size(713, 293);
             dgvLoanRequest.TabIndex = 0;
             // 
-            // tabControl
+            // tabControlStaff
             // 
-            tabControl.Controls.Add(tabLoanRequest);
-            tabControl.Controls.Add(tabReturnDesk);
-            tabControl.Controls.Add(tabManageBooks);
-            tabControl.Controls.Add(tabBorrowingHistory);
-            tabControl.Location = new Point(11, 137);
-            tabControl.Name = "tabControl";
-            tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(983, 412);
-            tabControl.TabIndex = 0;
+            tabControlStaff.Controls.Add(tabLoanRequest);
+            tabControlStaff.Controls.Add(tabReturnDesk);
+            tabControlStaff.Controls.Add(tabManageBooks);
+            tabControlStaff.Controls.Add(tabBorrowingHistory);
+            tabControlStaff.Controls.Add(tabAccounts);
+            tabControlStaff.Controls.Add(tabReports);
+            tabControlStaff.Location = new Point(11, 137);
+            tabControlStaff.Name = "tabControlStaff";
+            tabControlStaff.SelectedIndex = 0;
+            tabControlStaff.Size = new Size(983, 412);
+            tabControlStaff.TabIndex = 0;
             // 
             // tabBorrowingHistory
             // 
@@ -379,7 +401,178 @@
             dgvTransactionHistory.Size = new Size(713, 293);
             dgvTransactionHistory.TabIndex = 1;
             // 
-            // LibrarianDashboard
+            // tabAccounts
+            // 
+            tabAccounts.Controls.Add(btnNewAccount);
+            tabAccounts.Controls.Add(label1);
+            tabAccounts.Controls.Add(txtLastName);
+            tabAccounts.Controls.Add(cbAccountRole);
+            tabAccounts.Controls.Add(label2);
+            tabAccounts.Controls.Add(label3);
+            tabAccounts.Controls.Add(label5);
+            tabAccounts.Controls.Add(label6);
+            tabAccounts.Controls.Add(label7);
+            tabAccounts.Controls.Add(lblAccountMode);
+            tabAccounts.Controls.Add(btnSaveAccount);
+            tabAccounts.Controls.Add(txtMiddleName);
+            tabAccounts.Controls.Add(txtFirstName);
+            tabAccounts.Controls.Add(txtAccountPassword);
+            tabAccounts.Controls.Add(txtLoginId);
+            tabAccounts.Controls.Add(dgvAccounts);
+            tabAccounts.Location = new Point(4, 24);
+            tabAccounts.Name = "tabAccounts";
+            tabAccounts.Padding = new Padding(3);
+            tabAccounts.Size = new Size(975, 384);
+            tabAccounts.TabIndex = 4;
+            tabAccounts.Text = "Accounts";
+            tabAccounts.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(541, 214);
+            label1.Name = "label1";
+            label1.Size = new Size(63, 15);
+            label1.TabIndex = 43;
+            label1.Text = "Last Name";
+            // 
+            // txtLastName
+            // 
+            txtLastName.Location = new Point(541, 232);
+            txtLastName.Name = "txtLastName";
+            txtLastName.Size = new Size(166, 23);
+            txtLastName.TabIndex = 42;
+            // 
+            // cbAccountRole
+            // 
+            cbAccountRole.FormattingEnabled = true;
+            cbAccountRole.Location = new Point(736, 131);
+            cbAccountRole.Name = "cbAccountRole";
+            cbAccountRole.Size = new Size(121, 23);
+            cbAccountRole.TabIndex = 41;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(736, 114);
+            label2.Name = "label2";
+            label2.Size = new Size(30, 15);
+            label2.TabIndex = 39;
+            label2.Text = "Role";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(541, 161);
+            label3.Name = "label3";
+            label3.Size = new Size(79, 15);
+            label3.TabIndex = 38;
+            label3.Text = "Middle Name";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(541, 114);
+            label5.Name = "label5";
+            label5.Size = new Size(64, 15);
+            label5.TabIndex = 36;
+            label5.Text = "First Name";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(736, 65);
+            label6.Name = "label6";
+            label6.Size = new Size(57, 15);
+            label6.TabIndex = 35;
+            label6.Text = "Password";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(541, 65);
+            label7.Name = "label7";
+            label7.Size = new Size(50, 15);
+            label7.TabIndex = 34;
+            label7.Text = "Login Id";
+            // 
+            // lblAccountMode
+            // 
+            lblAccountMode.AutoSize = true;
+            lblAccountMode.Location = new Point(541, 36);
+            lblAccountMode.Name = "lblAccountMode";
+            lblAccountMode.Size = new Size(38, 15);
+            lblAccountMode.TabIndex = 32;
+            lblAccountMode.Text = "label1";
+            // 
+            // btnSaveAccount
+            // 
+            btnSaveAccount.Location = new Point(541, 325);
+            btnSaveAccount.Name = "btnSaveAccount";
+            btnSaveAccount.Size = new Size(97, 23);
+            btnSaveAccount.TabIndex = 30;
+            btnSaveAccount.Text = "Save Account";
+            btnSaveAccount.UseVisualStyleBackColor = true;
+            btnSaveAccount.Click += btnSaveAccount_Click;
+            // 
+            // txtMiddleName
+            // 
+            txtMiddleName.Location = new Point(541, 179);
+            txtMiddleName.Name = "txtMiddleName";
+            txtMiddleName.Size = new Size(166, 23);
+            txtMiddleName.TabIndex = 28;
+            // 
+            // txtFirstName
+            // 
+            txtFirstName.Location = new Point(541, 131);
+            txtFirstName.Name = "txtFirstName";
+            txtFirstName.Size = new Size(166, 23);
+            txtFirstName.TabIndex = 26;
+            // 
+            // txtAccountPassword
+            // 
+            txtAccountPassword.Location = new Point(736, 83);
+            txtAccountPassword.Name = "txtAccountPassword";
+            txtAccountPassword.Size = new Size(166, 23);
+            txtAccountPassword.TabIndex = 25;
+            // 
+            // txtLoginId
+            // 
+            txtLoginId.Location = new Point(541, 83);
+            txtLoginId.Name = "txtLoginId";
+            txtLoginId.Size = new Size(166, 23);
+            txtLoginId.TabIndex = 24;
+            // 
+            // dgvAccounts
+            // 
+            dgvAccounts.BackgroundColor = Color.LightYellow;
+            dgvAccounts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvAccounts.Location = new Point(39, 55);
+            dgvAccounts.Name = "dgvAccounts";
+            dgvAccounts.Size = new Size(481, 293);
+            dgvAccounts.TabIndex = 23;
+            // 
+            // tabReports
+            // 
+            tabReports.Location = new Point(4, 24);
+            tabReports.Name = "tabReports";
+            tabReports.Padding = new Padding(3);
+            tabReports.Size = new Size(975, 384);
+            tabReports.TabIndex = 5;
+            tabReports.Text = "Reports";
+            tabReports.UseVisualStyleBackColor = true;
+            // 
+            // btnNewAccount
+            // 
+            btnNewAccount.Location = new Point(657, 325);
+            btnNewAccount.Name = "btnNewAccount";
+            btnNewAccount.Size = new Size(97, 23);
+            btnNewAccount.TabIndex = 44;
+            btnNewAccount.Text = "New Account";
+            btnNewAccount.UseVisualStyleBackColor = true;
+            btnNewAccount.Click += btnNewAccount_Click;
+            // 
+            // StaffDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -387,8 +580,8 @@
             BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianDashboard__1556__980_;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1006, 616);
-            Controls.Add(tabControl);
-            Name = "LibrarianDashboard";
+            Controls.Add(tabControlStaff);
+            Name = "StaffDashboard";
             Text = "JILCF - ARK";
             Load += btnRefreshData_Click;
             tabManageBooks.ResumeLayout(false);
@@ -399,9 +592,12 @@
             ((System.ComponentModel.ISupportInitialize)dgvReturns).EndInit();
             tabLoanRequest.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvLoanRequest).EndInit();
-            tabControl.ResumeLayout(false);
+            tabControlStaff.ResumeLayout(false);
             tabBorrowingHistory.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvTransactionHistory).EndInit();
+            tabAccounts.ResumeLayout(false);
+            tabAccounts.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvAccounts).EndInit();
             ResumeLayout(false);
         }
 
@@ -409,7 +605,7 @@
         private TabPage tabManageBooks;
         private TabPage tabReturnDesk;
         private TabPage tabLoanRequest;
-        private TabControl tabControl;
+        private TabControl tabControlStaff;
         private DataGridView dgvLoanRequest;
         private Button btnAcceptRequest;
         private DataGridView dgvReturns;
@@ -437,5 +633,23 @@
         private Label lblGenre;
         private DataGridView dgvTransactionHistory;
         private ComboBox cbFilterBy;
+        private TabPage tabAccounts;
+        private TabPage tabReports;
+        private Label label2;
+        private Label label3;
+        private Label label5;
+        private Label label6;
+        private Label label7;
+        private Label lblAccountMode;
+        private Button btnSaveAccount;
+        private TextBox txtMiddleName;
+        private TextBox txtFirstName;
+        private TextBox txtAccountPassword;
+        private TextBox txtLoginId;
+        private DataGridView dgvAccounts;
+        private ComboBox cbAccountRole;
+        private Label label1;
+        private TextBox txtLastName;
+        private Button btnNewAccount;
     }
 }
