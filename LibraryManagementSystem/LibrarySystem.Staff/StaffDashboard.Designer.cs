@@ -110,11 +110,10 @@
             tabManageBooks.Controls.Add(dgvCatalog);
             tabManageBooks.Location = new Point(4, 24);
             tabManageBooks.Name = "tabManageBooks";
-            tabManageBooks.Size = new Size(1536, 638);
+            tabManageBooks.Size = new Size(1531, 637);
             tabManageBooks.TabIndex = 2;
             tabManageBooks.Text = "Manage Books";
             tabManageBooks.UseVisualStyleBackColor = true;
-            tabManageBooks.Click += tabManageBooks_Click;
             // 
             // lblSynopsis
             // 
@@ -277,7 +276,7 @@
             tabReturnDesk.Location = new Point(4, 24);
             tabReturnDesk.Name = "tabReturnDesk";
             tabReturnDesk.Padding = new Padding(3);
-            tabReturnDesk.Size = new Size(1536, 638);
+            tabReturnDesk.Size = new Size(1531, 637);
             tabReturnDesk.TabIndex = 1;
             tabReturnDesk.Text = "Return Desk";
             tabReturnDesk.UseVisualStyleBackColor = true;
@@ -313,7 +312,7 @@
             tabLoanRequest.Location = new Point(4, 24);
             tabLoanRequest.Name = "tabLoanRequest";
             tabLoanRequest.Padding = new Padding(3);
-            tabLoanRequest.Size = new Size(1536, 638);
+            tabLoanRequest.Size = new Size(1531, 637);
             tabLoanRequest.TabIndex = 0;
             tabLoanRequest.Text = "Loan Requests";
             tabLoanRequest.UseVisualStyleBackColor = true;
@@ -357,7 +356,6 @@
             dgvLoanRequest.Name = "dgvLoanRequest";
             dgvLoanRequest.Size = new Size(1008, 522);
             dgvLoanRequest.TabIndex = 0;
-            dgvLoanRequest.CellContentClick += dgvLoanRequest_CellContentClick;
             // 
             // tabControlStaff
             // 
@@ -382,7 +380,7 @@
             tabBorrowingHistory.Location = new Point(4, 24);
             tabBorrowingHistory.Name = "tabBorrowingHistory";
             tabBorrowingHistory.Padding = new Padding(3);
-            tabBorrowingHistory.Size = new Size(1536, 638);
+            tabBorrowingHistory.Size = new Size(1531, 637);
             tabBorrowingHistory.TabIndex = 3;
             tabBorrowingHistory.Text = "Borrowing History";
             tabBorrowingHistory.UseVisualStyleBackColor = true;
@@ -527,7 +525,7 @@
             btnSaveAccount.TabIndex = 30;
             btnSaveAccount.Text = "Save Account";
             btnSaveAccount.UseVisualStyleBackColor = true;
-            btnSaveAccount.Click += this.btnSaveAccount_Click;
+            btnSaveAccount.Click += btnSaveAccount_Click;
             // 
             // txtMiddleName
             // 
@@ -571,7 +569,7 @@
             tabReports.Location = new Point(4, 24);
             tabReports.Name = "tabReports";
             tabReports.Padding = new Padding(3);
-            tabReports.Size = new Size(1536, 638);
+            tabReports.Size = new Size(1531, 637);
             tabReports.TabIndex = 5;
             tabReports.Text = "Reports";
             tabReports.UseVisualStyleBackColor = true;
@@ -586,6 +584,7 @@
             ClientSize = new Size(1540, 941);
             Controls.Add(tabControlStaff);
             Name = "StaffDashboard";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "JILCF - ARK";
             Load += btnRefreshData_Click;
             tabManageBooks.ResumeLayout(false);
