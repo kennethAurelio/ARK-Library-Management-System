@@ -18,7 +18,7 @@ namespace LibrarySystem.Staff {
             FROM book_loans l
             JOIN accounts a ON a.user_id = l.user_id
             JOIN books b ON b.book_id = l.book_id
-            WHERE l.status IN ('Pending', 'Returned', 'Lost', 'Cancelled')
+            WHERE l.status IN ('Pending', 'Borrowed', 'Returned', 'Lost', 'Cancelled')
             ORDER BY l.return_date DESC";
 
         private void LoadTransactionHistory() {

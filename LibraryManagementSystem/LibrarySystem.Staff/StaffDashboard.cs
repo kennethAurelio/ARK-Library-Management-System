@@ -21,7 +21,7 @@ namespace LibrarySystem.Staff {
                 InitAccountsTab();
                 //InitReportsTab();
             } else {
-                tabControlStaff.TabPages.Remove(tabAccounts);
+                tabControlStaff.TabPages.Remove(tabIAM);
                 tabControlStaff.TabPages.Remove(tabReports);
             }
 

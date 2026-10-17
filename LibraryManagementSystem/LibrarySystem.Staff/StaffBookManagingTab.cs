@@ -1,4 +1,7 @@
-﻿using LibrarySystem.Core;
+﻿using System;
+using System.Data;
+using System.Windows.Forms;
+using LibrarySystem.Core;
 using MySql.Data.MySqlClient;
 
 namespace LibrarySystem.Staff {
@@ -7,15 +10,61 @@ namespace LibrarySystem.Staff {
         private int? _editingBookId = null;   // null = adding a new book
 
         private const string CatalogQuery = @"
-            SELECT book_id, title, author, genre, publisher, year_published,
-                   copies_available, book_status, synopsis
-            FROM books
-            ORDER BY title";
+            SELECT 
+	            b.book_id AS book_id,
+                b.title AS title,
+                b.author as author,
+                g.genre AS genre,
+                b.publisher AS publisher,
+                b.year_published AS year_published,
+                b.copies_available AS copies_available,
+                b.book_status AS book_status,
+                b.synopsis AS synopsis
+            FROM books b
+            INNER JOIN genre g ON b.genre = g.genre_id
+            ORDER BY title;";
 
         private void LoadCatalog() {
+            LoadGenres();
             GridHelper.Bind(dgvCatalog, LoadTable(CatalogQuery));
             dgvCatalog.Columns["synopsis"].Visible = false;   // too long for a grid cell
             StartNewBook();
+        }
+
+        // Load genres into cbGenre. If none exist, insert default set then reload.
+        private void LoadGenres() {
+            DataTable genres = new DataTable();
+            using (var conn = DatabaseHelper.GetConnection())
+            using (var cmd = new MySqlCommand("SELECT genre_id, genre FROM genre ORDER BY genre;", conn)) {
+                conn.Open();
+                using var reader = cmd.ExecuteReader();
+                genres.Load(reader);
+            }
+
+            if (genres.Rows.Count == 0) {
+                using (var conn = DatabaseHelper.GetConnection())
+                using (var cmd = new MySqlCommand(@"
+                    INSERT INTO genre (genre) VALUES
+                    ('Fiction'),('Science'),('Technology'),('Self-Help'),
+                    ('Psychology'),('Politics'),('Business'),('History');", conn)) {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                genres = new DataTable();
+                using (var conn = DatabaseHelper.GetConnection())
+                using (var cmd = new MySqlCommand("SELECT genre_id, genre FROM genre ORDER BY genre;", conn)) {
+                    conn.Open();
+                    using var reader = cmd.ExecuteReader();
+                    genres.Load(reader);
+                }
+            }
+
+            cbGenre.DisplayMember = "genre";
+            cbGenre.ValueMember = "genre_id";
+            cbGenre.DataSource = genres;
+            cbGenre.SelectedIndex = -1;
+            cbGenre.DropDownStyle = ComboBoxStyle.DropDown; // allow typing new genres
         }
 
         // Selecting a row fills the fields and switches to edit mode.
@@ -27,7 +76,7 @@ namespace LibrarySystem.Staff {
 
             txtTitle.Text = cells["title"].Value?.ToString();
             txtAuthor.Text = cells["author"].Value?.ToString();
-            txtGenre.Text = cells["genre"].Value?.ToString();
+            cbGenre.Text = cells["genre"].Value?.ToString();
             txtPublisher.Text = cells["publisher"].Value?.ToString();
             txtYear.Text = cells["year_published"].Value?.ToString();
             txtSynopsis.Text = cells["synopsis"].Value?.ToString();
@@ -46,7 +95,8 @@ namespace LibrarySystem.Staff {
 
             txtTitle.Clear();
             txtAuthor.Clear();
-            txtGenre.Clear();
+            cbGenre.SelectedIndex = -1;
+            cbGenre.Text = "";
             txtPublisher.Clear();
             txtYear.Clear();
             txtSynopsis.Clear();
@@ -97,21 +147,41 @@ namespace LibrarySystem.Staff {
             bool wasAdding = _editingBookId == null;
 
             try {
-                using (var conn = DatabaseHelper.GetConnection())
-                using (var cmd = new MySqlCommand(sql, conn)) {
-                    cmd.Parameters.AddWithValue("@title", title);
-                    cmd.Parameters.AddWithValue("@author", author);
-                    cmd.Parameters.AddWithValue("@genre", txtGenre.Text.Trim());
-                    cmd.Parameters.AddWithValue("@publisher", txtPublisher.Text.Trim());
-                    cmd.Parameters.AddWithValue("@year", year);
-                    cmd.Parameters.AddWithValue("@synopsis", txtSynopsis.Text.Trim());
-                    cmd.Parameters.AddWithValue("@copies", copies);
-                    cmd.Parameters.AddWithValue("@status", status);
-                    if (_editingBookId != null)
-                        cmd.Parameters.AddWithValue("@bookId", _editingBookId.Value);
-
+                using (var conn = DatabaseHelper.GetConnection()) {
                     conn.Open();
-                    cmd.ExecuteNonQuery();
+
+                    // Determine genre id. If user typed a new genre, insert it and use the new id.
+                    object genreParam = DBNull.Value;
+                    string genreText = cbGenre.Text.Trim();
+                    if (!string.IsNullOrEmpty(genreText)) {
+                        using (var findCmd = new MySqlCommand("SELECT genre_id FROM genre WHERE genre = @g LIMIT 1", conn)) {
+                            findCmd.Parameters.AddWithValue("@g", genreText);
+                            var existing = findCmd.ExecuteScalar();
+                            if (existing != null) {
+                                genreParam = Convert.ToInt32(existing);
+                            } else {
+                                using (var insCmd = new MySqlCommand("INSERT INTO genre (genre) VALUES (@g); SELECT LAST_INSERT_ID();", conn)) {
+                                    insCmd.Parameters.AddWithValue("@g", genreText);
+                                    genreParam = Convert.ToInt32(insCmd.ExecuteScalar());
+                                }
+                            }
+                        }
+                    }
+
+                    using (var cmd = new MySqlCommand(sql, conn)) {
+                        cmd.Parameters.AddWithValue("@title", title);
+                        cmd.Parameters.AddWithValue("@author", author);
+                        cmd.Parameters.AddWithValue("@genre", genreParam);
+                        cmd.Parameters.AddWithValue("@publisher", txtPublisher.Text.Trim());
+                        cmd.Parameters.AddWithValue("@year", year);
+                        cmd.Parameters.AddWithValue("@synopsis", txtSynopsis.Text.Trim());
+                        cmd.Parameters.AddWithValue("@copies", copies);
+                        cmd.Parameters.AddWithValue("@status", status);
+                        if (_editingBookId != null)
+                            cmd.Parameters.AddWithValue("@bookId", _editingBookId.Value);
+
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             } catch (MySqlException ex) {
                 MessageBox.Show("Could not save the book.\n" + ex.Message, "Error",
@@ -122,7 +192,7 @@ namespace LibrarySystem.Staff {
             MessageBox.Show(wasAdding ? "Book added." : "Book updated.", "Saved",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            LoadCatalog();        // refresh the grid and reset the form to add mode
+            LoadCatalog();        // refresh the grid and reset the form to add mode (LoadCatalog calls LoadGenres)
             LoadLoanRequests();   // keep "Copies Left" in the requests grid current
         }
     }

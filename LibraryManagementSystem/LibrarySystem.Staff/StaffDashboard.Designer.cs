@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             tabManageBooks = new TabPage();
+            cbGenre = new ComboBox();
             lblSynopsis = new Label();
             lblCopies = new Label();
             lblYear = new Label();
@@ -38,7 +39,6 @@
             btnNewBook = new Button();
             txtYear = new TextBox();
             txtPublisher = new TextBox();
-            txtGenre = new TextBox();
             txtAuthor = new TextBox();
             txtTitle = new TextBox();
             dgvCatalog = new DataGridView();
@@ -54,7 +54,15 @@
             tabBorrowingHistory = new TabPage();
             cbFilterBy = new ComboBox();
             dgvTransactionHistory = new DataGridView();
-            tabAccounts = new TabPage();
+            tabIAM = new TabPage();
+            lblSection = new Label();
+            lblStrand = new Label();
+            lblYearLevel = new Label();
+            lblEducationLevel = new Label();
+            txtEducationLevel = new TextBox();
+            cbSection = new ComboBox();
+            cbStrand = new ComboBox();
+            cbYearLevel = new ComboBox();
             btnNewAccount = new Button();
             label1 = new Label();
             txtLastName = new TextBox();
@@ -82,7 +90,7 @@
             tabControlStaff.SuspendLayout();
             tabBorrowingHistory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTransactionHistory).BeginInit();
-            tabAccounts.SuspendLayout();
+            tabIAM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAccounts).BeginInit();
             SuspendLayout();
             // 
@@ -90,6 +98,7 @@
             // 
             tabManageBooks.AccessibleName = "";
             tabManageBooks.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
+            tabManageBooks.Controls.Add(cbGenre);
             tabManageBooks.Controls.Add(lblSynopsis);
             tabManageBooks.Controls.Add(lblCopies);
             tabManageBooks.Controls.Add(lblYear);
@@ -104,16 +113,23 @@
             tabManageBooks.Controls.Add(btnNewBook);
             tabManageBooks.Controls.Add(txtYear);
             tabManageBooks.Controls.Add(txtPublisher);
-            tabManageBooks.Controls.Add(txtGenre);
             tabManageBooks.Controls.Add(txtAuthor);
             tabManageBooks.Controls.Add(txtTitle);
             tabManageBooks.Controls.Add(dgvCatalog);
             tabManageBooks.Location = new Point(4, 24);
             tabManageBooks.Name = "tabManageBooks";
-            tabManageBooks.Size = new Size(1531, 637);
+            tabManageBooks.Size = new Size(1530, 595);
             tabManageBooks.TabIndex = 2;
             tabManageBooks.Text = "Manage Books";
             tabManageBooks.UseVisualStyleBackColor = true;
+            // 
+            // cbGenre
+            // 
+            cbGenre.FormattingEnabled = true;
+            cbGenre.Location = new Point(1061, 181);
+            cbGenre.Name = "cbGenre";
+            cbGenre.Size = new Size(121, 23);
+            cbGenre.TabIndex = 23;
             // 
             // lblSynopsis
             // 
@@ -204,9 +220,9 @@
             // 
             // btnSaveBook
             // 
-            btnSaveBook.Location = new Point(1449, 572);
+            btnSaveBook.Location = new Point(1413, 569);
             btnSaveBook.Name = "btnSaveBook";
-            btnSaveBook.Size = new Size(75, 23);
+            btnSaveBook.Size = new Size(97, 23);
             btnSaveBook.TabIndex = 12;
             btnSaveBook.Text = "Save Book";
             btnSaveBook.UseVisualStyleBackColor = true;
@@ -214,11 +230,11 @@
             // 
             // btnNewBook
             // 
-            btnNewBook.Location = new Point(1061, 572);
+            btnNewBook.Location = new Point(1061, 569);
             btnNewBook.Name = "btnNewBook";
-            btnNewBook.Size = new Size(75, 23);
+            btnNewBook.Size = new Size(119, 23);
             btnNewBook.TabIndex = 11;
-            btnNewBook.Text = "New Book";
+            btnNewBook.Text = "Add New Book";
             btnNewBook.UseVisualStyleBackColor = true;
             btnNewBook.Click += btnNewBook_Click;
             // 
@@ -235,13 +251,6 @@
             txtPublisher.Name = "txtPublisher";
             txtPublisher.Size = new Size(199, 23);
             txtPublisher.TabIndex = 5;
-            // 
-            // txtGenre
-            // 
-            txtGenre.Location = new Point(1061, 180);
-            txtGenre.Name = "txtGenre";
-            txtGenre.Size = new Size(199, 23);
-            txtGenre.TabIndex = 4;
             // 
             // txtAuthor
             // 
@@ -276,7 +285,7 @@
             tabReturnDesk.Location = new Point(4, 24);
             tabReturnDesk.Name = "tabReturnDesk";
             tabReturnDesk.Padding = new Padding(3);
-            tabReturnDesk.Size = new Size(1531, 637);
+            tabReturnDesk.Size = new Size(1530, 595);
             tabReturnDesk.TabIndex = 1;
             tabReturnDesk.Text = "Return Desk";
             tabReturnDesk.UseVisualStyleBackColor = true;
@@ -312,7 +321,7 @@
             tabLoanRequest.Location = new Point(4, 24);
             tabLoanRequest.Name = "tabLoanRequest";
             tabLoanRequest.Padding = new Padding(3);
-            tabLoanRequest.Size = new Size(1531, 637);
+            tabLoanRequest.Size = new Size(1530, 595);
             tabLoanRequest.TabIndex = 0;
             tabLoanRequest.Text = "Loan Requests";
             tabLoanRequest.UseVisualStyleBackColor = true;
@@ -363,12 +372,12 @@
             tabControlStaff.Controls.Add(tabReturnDesk);
             tabControlStaff.Controls.Add(tabManageBooks);
             tabControlStaff.Controls.Add(tabBorrowingHistory);
-            tabControlStaff.Controls.Add(tabAccounts);
+            tabControlStaff.Controls.Add(tabIAM);
             tabControlStaff.Controls.Add(tabReports);
-            tabControlStaff.Location = new Point(0, 199);
+            tabControlStaff.Location = new Point(2, 184);
             tabControlStaff.Name = "tabControlStaff";
             tabControlStaff.SelectedIndex = 0;
-            tabControlStaff.Size = new Size(1539, 665);
+            tabControlStaff.Size = new Size(1538, 623);
             tabControlStaff.TabIndex = 0;
             // 
             // tabBorrowingHistory
@@ -380,7 +389,7 @@
             tabBorrowingHistory.Location = new Point(4, 24);
             tabBorrowingHistory.Name = "tabBorrowingHistory";
             tabBorrowingHistory.Padding = new Padding(3);
-            tabBorrowingHistory.Size = new Size(1531, 637);
+            tabBorrowingHistory.Size = new Size(1530, 595);
             tabBorrowingHistory.TabIndex = 3;
             tabBorrowingHistory.Text = "Borrowing History";
             tabBorrowingHistory.UseVisualStyleBackColor = true;
@@ -402,32 +411,121 @@
             dgvTransactionHistory.Size = new Size(1008, 522);
             dgvTransactionHistory.TabIndex = 1;
             // 
-            // tabAccounts
+            // tabIAM
             // 
-            tabAccounts.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
-            tabAccounts.Controls.Add(btnNewAccount);
-            tabAccounts.Controls.Add(label1);
-            tabAccounts.Controls.Add(txtLastName);
-            tabAccounts.Controls.Add(cbAccountRole);
-            tabAccounts.Controls.Add(label2);
-            tabAccounts.Controls.Add(label3);
-            tabAccounts.Controls.Add(label5);
-            tabAccounts.Controls.Add(label6);
-            tabAccounts.Controls.Add(label7);
-            tabAccounts.Controls.Add(lblAccountMode);
-            tabAccounts.Controls.Add(btnSaveAccount);
-            tabAccounts.Controls.Add(txtMiddleName);
-            tabAccounts.Controls.Add(txtFirstName);
-            tabAccounts.Controls.Add(txtAccountPassword);
-            tabAccounts.Controls.Add(txtLoginId);
-            tabAccounts.Controls.Add(dgvAccounts);
-            tabAccounts.Location = new Point(4, 24);
-            tabAccounts.Name = "tabAccounts";
-            tabAccounts.Padding = new Padding(3);
-            tabAccounts.Size = new Size(1531, 637);
-            tabAccounts.TabIndex = 4;
-            tabAccounts.Text = "Accounts";
-            tabAccounts.UseVisualStyleBackColor = true;
+            tabIAM.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
+            tabIAM.Controls.Add(lblSection);
+            tabIAM.Controls.Add(lblStrand);
+            tabIAM.Controls.Add(lblYearLevel);
+            tabIAM.Controls.Add(lblEducationLevel);
+            tabIAM.Controls.Add(txtEducationLevel);
+            tabIAM.Controls.Add(cbSection);
+            tabIAM.Controls.Add(cbStrand);
+            tabIAM.Controls.Add(cbYearLevel);
+            tabIAM.Controls.Add(btnNewAccount);
+            tabIAM.Controls.Add(label1);
+            tabIAM.Controls.Add(txtLastName);
+            tabIAM.Controls.Add(cbAccountRole);
+            tabIAM.Controls.Add(label2);
+            tabIAM.Controls.Add(label3);
+            tabIAM.Controls.Add(label5);
+            tabIAM.Controls.Add(label6);
+            tabIAM.Controls.Add(label7);
+            tabIAM.Controls.Add(lblAccountMode);
+            tabIAM.Controls.Add(btnSaveAccount);
+            tabIAM.Controls.Add(txtMiddleName);
+            tabIAM.Controls.Add(txtFirstName);
+            tabIAM.Controls.Add(txtAccountPassword);
+            tabIAM.Controls.Add(txtLoginId);
+            tabIAM.Controls.Add(dgvAccounts);
+            tabIAM.Location = new Point(4, 24);
+            tabIAM.Name = "tabIAM";
+            tabIAM.Padding = new Padding(3);
+            tabIAM.Size = new Size(1530, 595);
+            tabIAM.TabIndex = 4;
+            tabIAM.Text = "IAM";
+            tabIAM.UseVisualStyleBackColor = true;
+            // 
+            // lblSection
+            // 
+            lblSection.AutoSize = true;
+            lblSection.Location = new Point(1060, 460);
+            lblSection.Name = "lblSection";
+            lblSection.Size = new Size(49, 15);
+            lblSection.TabIndex = 53;
+            lblSection.Text = "Section:";
+            lblSection.Visible = false;
+            // 
+            // lblStrand
+            // 
+            lblStrand.AutoSize = true;
+            lblStrand.Location = new Point(1060, 411);
+            lblStrand.Name = "lblStrand";
+            lblStrand.Size = new Size(44, 15);
+            lblStrand.TabIndex = 52;
+            lblStrand.Text = "Strand:";
+            lblStrand.Visible = false;
+            // 
+            // lblYearLevel
+            // 
+            lblYearLevel.AutoSize = true;
+            lblYearLevel.Location = new Point(1060, 361);
+            lblYearLevel.Name = "lblYearLevel";
+            lblYearLevel.Size = new Size(62, 15);
+            lblYearLevel.TabIndex = 51;
+            lblYearLevel.Text = "Year Level:";
+            lblYearLevel.Visible = false;
+            // 
+            // lblEducationLevel
+            // 
+            lblEducationLevel.AutoSize = true;
+            lblEducationLevel.Location = new Point(1060, 312);
+            lblEducationLevel.Name = "lblEducationLevel";
+            lblEducationLevel.Size = new Size(93, 15);
+            lblEducationLevel.TabIndex = 50;
+            lblEducationLevel.Text = "Education Level:";
+            lblEducationLevel.Visible = false;
+            // 
+            // txtEducationLevel
+            // 
+            txtEducationLevel.Enabled = false;
+            txtEducationLevel.Location = new Point(1060, 330);
+            txtEducationLevel.Name = "txtEducationLevel";
+            txtEducationLevel.PlaceholderText = "Senior High";
+            txtEducationLevel.Size = new Size(166, 23);
+            txtEducationLevel.TabIndex = 49;
+            txtEducationLevel.TabStop = false;
+            txtEducationLevel.Visible = false;
+            // 
+            // cbSection
+            // 
+            cbSection.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbSection.FormattingEnabled = true;
+            cbSection.Location = new Point(1060, 478);
+            cbSection.Name = "cbSection";
+            cbSection.Size = new Size(121, 23);
+            cbSection.TabIndex = 48;
+            cbSection.Visible = false;
+            // 
+            // cbStrand
+            // 
+            cbStrand.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbStrand.FormattingEnabled = true;
+            cbStrand.Location = new Point(1060, 429);
+            cbStrand.Name = "cbStrand";
+            cbStrand.Size = new Size(121, 23);
+            cbStrand.TabIndex = 47;
+            cbStrand.Visible = false;
+            // 
+            // cbYearLevel
+            // 
+            cbYearLevel.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbYearLevel.FormattingEnabled = true;
+            cbYearLevel.Location = new Point(1060, 379);
+            cbYearLevel.Name = "cbYearLevel";
+            cbYearLevel.Size = new Size(121, 23);
+            cbYearLevel.TabIndex = 46;
+            cbYearLevel.Visible = false;
             // 
             // btnNewAccount
             // 
@@ -569,7 +667,7 @@
             tabReports.Location = new Point(4, 24);
             tabReports.Name = "tabReports";
             tabReports.Padding = new Padding(3);
-            tabReports.Size = new Size(1531, 637);
+            tabReports.Size = new Size(1530, 595);
             tabReports.TabIndex = 5;
             tabReports.Text = "Reports";
             tabReports.UseVisualStyleBackColor = true;
@@ -598,8 +696,8 @@
             tabControlStaff.ResumeLayout(false);
             tabBorrowingHistory.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvTransactionHistory).EndInit();
-            tabAccounts.ResumeLayout(false);
-            tabAccounts.PerformLayout();
+            tabIAM.ResumeLayout(false);
+            tabIAM.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAccounts).EndInit();
             ResumeLayout(false);
         }
@@ -617,7 +715,6 @@
         private Button btnRefreshData;
         private TabPage tabBorrowingHistory;
         private DataGridView dgvCatalog;
-        private TextBox txtGenre;
         private TextBox txtAuthor;
         private TextBox txtTitle;
         private TextBox txtYear;
@@ -636,8 +733,16 @@
         private Label lblGenre;
         private DataGridView dgvTransactionHistory;
         private ComboBox cbFilterBy;
-        private TabPage tabAccounts;
         private TabPage tabReports;
+        private ComboBox cbGenre;
+        private TabPage tabIAM;
+        private ComboBox cbSection;
+        private ComboBox cbStrand;
+        private ComboBox cbYearLevel;
+        private Button btnNewAccount;
+        private Label label1;
+        private TextBox txtLastName;
+        private ComboBox cbAccountRole;
         private Label label2;
         private Label label3;
         private Label label5;
@@ -650,9 +755,10 @@
         private TextBox txtAccountPassword;
         private TextBox txtLoginId;
         private DataGridView dgvAccounts;
-        private ComboBox cbAccountRole;
-        private Label label1;
-        private TextBox txtLastName;
-        private Button btnNewAccount;
+        private Label lblSection;
+        private Label lblStrand;
+        private Label lblYearLevel;
+        private Label lblEducationLevel;
+        private TextBox txtEducationLevel;
     }
 }

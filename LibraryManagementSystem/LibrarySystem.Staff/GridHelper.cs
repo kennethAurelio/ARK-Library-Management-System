@@ -23,7 +23,12 @@ namespace LibrarySystem.Staff {
             ["loan_date"] = "Borrowed On",
             ["due_date"] = "Due Date",
             ["return_date"] = "Returned On",
-            ["status"] = "Status"
+            ["status"] = "Status",
+            ["login_id"] = "Login ID",
+            ["first_name"] = "First Name",
+            ["middle_name"] = "Middle Name",
+            ["last_name"] = "Last Name",
+            ["role"] = "Role"
         };
 
         // Columns the librarian never needs to see (but the code still reads).
