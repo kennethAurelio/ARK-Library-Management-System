@@ -1,6 +1,5 @@
 ﻿using LibrarySystem.Core;
 using MySql.Data.MySqlClient;
-using System.Data;
 
 namespace LibrarySystem.Staff {
     // Information and Account Management (IAM) tab for admins.
@@ -10,10 +9,15 @@ namespace LibrarySystem.Staff {
         private const string DefaultPassword = "ARK@2026";
         private const string DefaultEducationLevel = "Senior High School";
 
-        private static bool IsAdmin =>
-            LoggedInUser.Role.Equals("admin", StringComparison.OrdinalIgnoreCase);
+        private static bool IsAdmin => LoggedInUser.Role.Equals("admin", StringComparison.OrdinalIgnoreCase);
+        private static readonly Dictionary<string, char> StrandLastSection =
+            new(StringComparer.OrdinalIgnoreCase) {
+                ["STEM"] = 'J',   // A to J
+                ["TVL"] = 'D',   // A to D
+                ["ABM"] = 'D',   // A to D
+                ["HUMSS"] = 'E'    // A to E
+            };
 
-        // student_infos / shs_strands are LEFT JOINs, so admins and librarians (no student info) still show up.
         private const string AccountsQuery = @"
             SELECT a.user_id, a.login_id, a.first_name, a.middle_name, a.last_name, a.role,
                    si.education_level, si.year_level, s.strand_code, si.section
@@ -31,22 +35,16 @@ namespace LibrarySystem.Staff {
             cbAccountRole.Items.AddRange(new object[] { "student", "librarian", "admin" });
             cbAccountRole.SelectedIndexChanged += cbAccountRole_SelectedIndexChanged;
 
-            // Student-only fields
             cbYearLevel.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbYearLevel.Items.AddRange(new object[] { "11", "12" });   // match your year_level values
+            cbYearLevel.Items.AddRange(new object[] { "11", "12" });
+            cbYearLevel.SelectedIndexChanged += (s, e) => { }; // dummy handler to avoid firing when binding
 
             cbStrand.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbStrand.DisplayMember = "strand_code";
-            cbStrand.ValueMember = "strand_id";
-            cbStrand.DataSource = LoadTable("SELECT strand_id, strand_code FROM shs_strands ORDER BY strand_code");
+            BindCombo(cbStrand, "SELECT strand_id, strand_code FROM shs_strands ORDER BY strand_code",
+                      "strand_code", "strand_id");
+            cbStrand.SelectedIndexChanged += cbStrand_SelectedIndexChanged;   // after binding, so it doesn't fire early
 
-            // Sections come from the database, but the admin can also type a new one.
-            cbSection.DropDownStyle = ComboBoxStyle.DropDown;
-            foreach (DataRow row in LoadTable(
-                "SELECT DISTINCT section FROM student_infos WHERE section IS NOT NULL AND section <> '' ORDER BY section").Rows)
-                cbSection.Items.Add(row["section"].ToString()!);
-
-            txtAccountPassword.UseSystemPasswordChar = true;
+            cbSection.DropDownStyle = ComboBoxStyle.DropDownList;
 
             LoadAccounts();
         }
@@ -71,6 +69,16 @@ namespace LibrarySystem.Staff {
                                             StringComparison.OrdinalIgnoreCase));
         }
 
+        // Section choices depend on the selected strand (STEM A-J, TVL A-D, ABM A-D, HUMSS A-E).
+        private void cbStrand_SelectedIndexChanged(object? sender, EventArgs e) {
+            cbSection.Items.Clear();
+
+            if (cbStrand.SelectedIndex >= 0 && StrandLastSection.TryGetValue(cbStrand.Text, out char last)) {
+                for (char c = 'A'; c <= last; c++)
+                    cbSection.Items.Add(c.ToString());
+            }
+        }
+
         // Selecting a row fills the fields and switches to edit mode.
         private void dgvAccounts_SelectionChanged(object? sender, EventArgs e) {
             if (dgvAccounts.SelectedRows.Count == 0) return;
@@ -90,8 +98,8 @@ namespace LibrarySystem.Staff {
             // Student info (blank for admins/librarians or students without a student_infos row)
             txtEducationLevel.Text = cells["education_level"].Value?.ToString();
             cbYearLevel.SelectedIndex = cbYearLevel.FindStringExact(cells["year_level"].Value?.ToString() ?? "");
-            cbStrand.SelectedIndex = cbStrand.FindStringExact(cells["strand_code"].Value?.ToString() ?? "");
-            cbSection.Text = cells["section"].Value?.ToString() ?? "";
+            cbStrand.SelectedIndex = cbStrand.FindStringExact(cells["strand_code"].Value?.ToString() ?? "");   // fills the sections
+            cbSection.SelectedIndex = cbSection.FindStringExact(cells["section"].Value?.ToString() ?? "");
 
             lblAccountMode.Text = $"Editing: {txtLoginId.Text}  (leave password blank to keep it)";
             btnSaveAccount.Text = "Save Changes";
@@ -112,7 +120,6 @@ namespace LibrarySystem.Staff {
             txtEducationLevel.Text = DefaultEducationLevel;
             cbYearLevel.SelectedIndex = -1;
             cbStrand.SelectedIndex = -1;
-            cbSection.Text = "";
 
             lblAccountMode.Text = $"Adding a new account (blank password = {DefaultPassword})";
             btnSaveAccount.Text = "Add Account";
@@ -124,7 +131,7 @@ namespace LibrarySystem.Staff {
         }
 
         private void btnSaveAccount_Click(object sender, EventArgs e) {
-            if (!IsAdmin) return;   // safety net: only admins manage accounts
+            if (!IsAdmin) return;   // SAFETY NET: only admins manage accounts
 
             string loginId = txtLoginId.Text.Trim();
             string firstName = txtFirstName.Text.Trim();
@@ -138,6 +145,15 @@ namespace LibrarySystem.Staff {
             if (loginId == "" || firstName == "" || lastName == "" || role == null) {
                 MessageBox.Show("Login ID, first name, last name, and role are required.", "Missing Information",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // SAFETY NET: Student login IDs must look like 00-00000 (2 digits, a dash, then 5 digits).
+            if (role.Equals("student", StringComparison.OrdinalIgnoreCase) &&
+                !System.Text.RegularExpressions.Regex.IsMatch(loginId, @"^\d{2}-\d{5}$")) {
+                MessageBox.Show("Student Login ID must be in the format 00-00000 (2 digits, a dash, then 5 digits).",
+                                "Invalid Login ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLoginId.Focus();
                 return;
             }
 
@@ -162,7 +178,7 @@ namespace LibrarySystem.Staff {
             bool isStudent = role.Equals("student", StringComparison.OrdinalIgnoreCase);
             string educationLevel = txtEducationLevel.Text.Trim();
             string? yearLevel = cbYearLevel.SelectedItem?.ToString();
-            string section = cbSection.Text.Trim();
+            string section = cbSection.SelectedItem?.ToString() ?? "";
 
             if (isStudent && (educationLevel == "" || yearLevel == null || cbStrand.SelectedIndex < 0 || section == "")) {
                 MessageBox.Show("Education level, year level, strand, and section are required for students.",

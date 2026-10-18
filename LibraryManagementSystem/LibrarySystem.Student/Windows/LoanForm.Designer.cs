@@ -43,9 +43,9 @@
             // 
             pbCover.BackColor = SystemColors.ControlLightLight;
             pbCover.BackgroundImageLayout = ImageLayout.Stretch;
-            pbCover.Location = new Point(101, 146);
+            pbCover.Location = new Point(147, 194);
             pbCover.Name = "pbCover";
-            pbCover.Size = new Size(158, 230);
+            pbCover.Size = new Size(189, 278);
             pbCover.TabIndex = 0;
             pbCover.TabStop = false;
             // 
@@ -54,7 +54,7 @@
             lblTitle.AutoSize = true;
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.Location = new Point(274, 146);
+            lblTitle.Location = new Point(342, 194);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(40, 19);
             lblTitle.TabIndex = 1;
@@ -65,7 +65,7 @@
             lblSynopsisHeader.AutoSize = true;
             lblSynopsisHeader.BackColor = Color.Transparent;
             lblSynopsisHeader.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSynopsisHeader.Location = new Point(443, 174);
+            lblSynopsisHeader.Location = new Point(512, 253);
             lblSynopsisHeader.Name = "lblSynopsisHeader";
             lblSynopsisHeader.Size = new Size(55, 15);
             lblSynopsisHeader.TabIndex = 0;
@@ -75,7 +75,8 @@
             // 
             txtSynopsis.BackColor = Color.White;
             txtSynopsis.BorderStyle = BorderStyle.None;
-            txtSynopsis.Location = new Point(443, 193);
+            txtSynopsis.Font = new Font("Times New Roman", 11F);
+            txtSynopsis.Location = new Point(512, 272);
             txtSynopsis.Multiline = true;
             txtSynopsis.Name = "txtSynopsis";
             txtSynopsis.ReadOnly = true;
@@ -87,16 +88,17 @@
             // 
             txtAuthor.BackColor = Color.White;
             txtAuthor.BorderStyle = BorderStyle.None;
-            txtAuthor.Location = new Point(274, 192);
+            txtAuthor.Font = new Font("Times New Roman", 11F);
+            txtAuthor.Location = new Point(342, 240);
             txtAuthor.Multiline = true;
             txtAuthor.Name = "txtAuthor";
             txtAuthor.ReadOnly = true;
-            txtAuthor.Size = new Size(150, 44);
+            txtAuthor.Size = new Size(150, 72);
             txtAuthor.TabIndex = 6;
             // 
             // btnLoanBook
             // 
-            btnLoanBook.Location = new Point(101, 474);
+            btnLoanBook.Location = new Point(147, 532);
             btnLoanBook.Name = "btnLoanBook";
             btnLoanBook.Size = new Size(75, 23);
             btnLoanBook.TabIndex = 7;
@@ -109,7 +111,7 @@
             lblAuthor.AutoSize = true;
             lblAuthor.BackColor = Color.Transparent;
             lblAuthor.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAuthor.Location = new Point(274, 174);
+            lblAuthor.Location = new Point(342, 222);
             lblAuthor.Name = "lblAuthor";
             lblAuthor.Size = new Size(42, 15);
             lblAuthor.TabIndex = 8;
@@ -120,7 +122,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(274, 255);
+            label1.Location = new Point(343, 326);
             label1.Name = "label1";
             label1.Size = new Size(91, 15);
             label1.TabIndex = 9;
@@ -130,7 +132,7 @@
             // 
             txtBookCopies.BackColor = Color.White;
             txtBookCopies.BorderStyle = BorderStyle.None;
-            txtBookCopies.Location = new Point(371, 253);
+            txtBookCopies.Location = new Point(440, 327);
             txtBookCopies.Multiline = true;
             txtBookCopies.Name = "txtBookCopies";
             txtBookCopies.ReadOnly = true;
@@ -142,7 +144,7 @@
             lblBookStatus.AutoSize = true;
             lblBookStatus.BackColor = Color.Transparent;
             lblBookStatus.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblBookStatus.Location = new Point(274, 281);
+            lblBookStatus.Location = new Point(343, 352);
             lblBookStatus.Name = "lblBookStatus";
             lblBookStatus.Size = new Size(40, 15);
             lblBookStatus.TabIndex = 12;
@@ -153,17 +155,18 @@
             lblGenre.AutoSize = true;
             lblGenre.BackColor = Color.Transparent;
             lblGenre.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGenre.Location = new Point(274, 306);
+            lblGenre.Location = new Point(343, 377);
             lblGenre.Name = "lblGenre";
-            lblGenre.Size = new Size(36, 15);
+            lblGenre.Size = new Size(39, 15);
             lblGenre.TabIndex = 13;
-            lblGenre.Text = "Genre";
+            lblGenre.Text = "Genre:";
             // 
             // txtGenre
             // 
             txtGenre.BackColor = Color.White;
             txtGenre.BorderStyle = BorderStyle.None;
-            txtGenre.Location = new Point(273, 324);
+            txtGenre.Font = new Font("Times New Roman", 11F);
+            txtGenre.Location = new Point(342, 395);
             txtGenre.Multiline = true;
             txtGenre.Name = "txtGenre";
             txtGenre.ReadOnly = true;
@@ -176,7 +179,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.ARK___Background;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(991, 588);
+            ClientSize = new Size(1084, 741);
             Controls.Add(txtGenre);
             Controls.Add(lblGenre);
             Controls.Add(lblBookStatus);

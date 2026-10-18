@@ -132,11 +132,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Black;
             label1.Location = new Point(1325, 164);
             label1.Name = "label1";
-            label1.Size = new Size(82, 19);
+            label1.Size = new Size(100, 22);
             label1.TabIndex = 16;
             label1.Text = "Dashboard";
             // 

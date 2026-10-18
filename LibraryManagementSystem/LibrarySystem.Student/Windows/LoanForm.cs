@@ -16,8 +16,12 @@ namespace LibrarySystem.Student {
 
         private void LoadBook() {
             using (var conn = DatabaseHelper.GetConnection())
-            using (var cmd = new MySqlCommand(
-                "SELECT title, author, synopsis, copies_available, book_status, genre, book_cover FROM books WHERE book_id = @id", conn)) {
+            using (var cmd = new MySqlCommand(@"
+                SELECT b.title, b.author, b.synopsis, b.copies_available, b.book_status,
+                       g.genre AS genre_name, b.book_cover
+                FROM books b
+                LEFT JOIN genre g ON g.genre_id = b.genre
+                WHERE b.book_id = @id", conn)) {
                 cmd.Parameters.AddWithValue("@id", _bookId);
                 conn.Open();
 
@@ -29,7 +33,7 @@ namespace LibrarySystem.Student {
                     txtSynopsis.Text = reader["synopsis"]?.ToString() ?? "Synopsis Missing";
                     txtBookCopies.Text = reader["copies_available"]?.ToString() ?? "Copies Unavailable";
                     lblBookStatus.Text = "Status: " + reader["book_status"]?.ToString() ?? "Status Unknown";
-                    txtGenre.Text = reader["genre"]?.ToString() ?? "Genre Unknown";
+                    txtGenre.Text = reader["genre_name"]?.ToString() ?? "Genre Unknown";
 
                     if (reader["book_cover"] != DBNull.Value) {
                         byte[] data = (byte[])reader["book_cover"];
@@ -115,6 +119,6 @@ namespace LibrarySystem.Student {
                     "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
+
 }

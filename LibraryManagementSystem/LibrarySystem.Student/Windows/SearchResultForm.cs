@@ -3,16 +3,23 @@ using System.Data;
 
 namespace LibrarySystem.Student {
     public partial class SearchResultForm : Form {
+        private readonly DataView _view;
+
         public SearchResultForm(DataTable results) {
             InitializeComponent();
             SetupGrid();
-            dgvResults.DataSource = results;
+
+            _view = results.DefaultView;
+            dgvResults.DataSource = _view;
+
+            LoadFilterOptions(results);
+            cbFilterBy.SelectedIndexChanged += cbFilterBy_SelectedIndexChanged;
 
             // Hide the book_id column since it's not needed for display
             if (dgvResults.Columns.Contains("book_id")) dgvResults.Columns["book_id"].Visible = false;
             if (dgvResults.Columns.Contains("year_published")) dgvResults.Columns["year_published"].Visible = false;
             if (dgvResults.Columns.Contains("synopsis")) dgvResults.Columns["synopsis"].Visible = false;
-            if (dgvResults.Columns.Contains("genre")) dgvResults.Columns["genre"].Visible = false;
+            //if (dgvResults.Columns.Contains("genre")) dgvResults.Columns["genre"].Visible = false;
             if (dgvResults.Columns.Contains("publisher")) dgvResults.Columns["publisher"].Visible = false;
 
             // Apply friendly header texts and column settings
@@ -100,9 +107,42 @@ namespace LibrarySystem.Student {
             int userId = LoggedInUser.isLoggedIn ? LoggedInUser.UserId : 0;
 
             using (var loanForm = new LoanForm(bookId, userId)) {
-                if (loanForm.ShowDialog(this) == DialogResult.OK); 
+                if (loanForm.ShowDialog(this) == DialogResult.OK) ;
             }
         }
 
+        // Filters the displayed results by genre. Text starting with "All" (or empty) shows everything.
+        private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e) {
+            string genre = cbFilterBy.Text.Trim();
+
+            if (cbFilterBy.SelectedIndex < 0 || genre == "" ||
+                genre.StartsWith("All", StringComparison.OrdinalIgnoreCase)) {
+                _view.RowFilter = "";               // no filter
+                return;
+            }
+
+            // Escape single quotes so a genre like "Children's" doesn't break the filter
+            _view.RowFilter = $"genre = '{genre.Replace("'", "''")}'";
+        }
+
+        // Fills cbFilterBy with "All Genres" plus each distinct genre in the current results.
+        private void LoadFilterOptions(DataTable results) {
+            cbFilterBy.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFilterBy.Items.Clear();
+            cbFilterBy.Items.Add("All Genres");
+
+            if (results.Columns.Contains("genre")) {
+                var genres = results.AsEnumerable()
+                                    .Select(r => r["genre"]?.ToString())
+                                    .Where(g => !string.IsNullOrWhiteSpace(g))
+                                    .Distinct()
+                                    .OrderBy(g => g);
+
+                foreach (var g in genres)
+                    cbFilterBy.Items.Add(g!);
+            }
+
+            cbFilterBy.SelectedIndex = 0;   // "All Genres"
+        }
     }
 }

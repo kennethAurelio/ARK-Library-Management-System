@@ -33,7 +33,6 @@
             txtPasswordField = new TextBox();
             chkShowPassword = new CheckBox();
             btnSignIn = new Button();
-            button1 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -86,17 +85,6 @@
             btnSignIn.UseVisualStyleBackColor = true;
             btnSignIn.Click += btnSignIn_Click;
             // 
-            // button1
-            // 
-            button1.Location = new Point(899, 557);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(82, 22);
-            button1.TabIndex = 9;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // SignInForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -104,7 +92,6 @@
             BackgroundImage = Properties.Resources.ARK___Sign_In;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(991, 588);
-            Controls.Add(button1);
             Controls.Add(btnSignIn);
             Controls.Add(chkShowPassword);
             Controls.Add(txtPasswordField);
@@ -126,6 +113,5 @@
         private TextBox txtPasswordField;
         private CheckBox chkShowPassword;
         private Button btnSignIn;
-        private Button button1;
     }
 }

@@ -88,7 +88,7 @@ namespace LibrarySystem.Student
 
                                     if (daysLeft < 0)
                                         AddUpdate($"• {title} - OVERDUE by {-daysLeft} day(s)", Color.Red);
-                                    else if (daysLeft <= 2)
+                                    else if (daysLeft <= 1)
                                         AddUpdate($"• {title} - Due {due:MMM dd} ({daysLeft} day(s) left)", Color.OrangeRed);
                                     else
                                         AddUpdate($"• {title} - Due {due:MMM dd}", Color.Black);
@@ -129,7 +129,9 @@ namespace LibrarySystem.Student
 
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(
-                "SELECT book_id, title, author, copies_available, book_status, year_published, synopsis, genre, publisher FROM books " +
+                "SELECT b.book_id, b.title, b.author, b.copies_available, b.book_status, " +
+                "b.year_published, b.synopsis, g.genre AS genre, b.publisher " +
+                "FROM books b LEFT JOIN genre g ON g.genre_id = b.genre " +
                 "WHERE title LIKE @search OR author LIKE @search ORDER BY title", conn)) {
                 cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%");
                 conn.Open();
@@ -239,7 +241,10 @@ namespace LibrarySystem.Student
             // book_id is still selected because the results grid needs it to open the LoanForm (hide it in the grid).
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(
-                "SELECT book_id, title, author, copies_available, book_status, year_published, synopsis, genre, publisher FROM books ORDER BY title", conn)) {
+                "SELECT b.book_id, b.title, b.author, b.copies_available, b.book_status, " +
+                "b.year_published, b.synopsis, g.genre AS genre, b.publisher " +
+                "FROM books b LEFT JOIN genre g ON g.genre_id = b.genre " +
+                "ORDER BY b.title", conn)) {
                 conn.Open();
 
                 using (var reader = cmd.ExecuteReader()) {
@@ -258,7 +263,7 @@ namespace LibrarySystem.Student
         }
 
         private void btnOpenUserControl_Click(object sender, EventArgs e) {
-            using (var AccountForm = new AccountForm()) {
+            using (var AccountForm = new UserControl()) {
                 AccountForm.ShowDialog(this);
             }
         }

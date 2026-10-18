@@ -160,12 +160,6 @@ namespace LibrarySystem.Student {
         private void UpdateShowCheckbox() {
             chkShowPassword.Visible = txtPasswordField.Focused || chkShowPassword.Focused;
         }
-
-        // Password hashing test button
-        private void button1_Click(object sender, EventArgs e) {
-            string hash = BCrypt.Net.BCrypt.HashPassword("ARK2026");
-            MessageBox.Show(hash);
-        }
-
     }
+
 }

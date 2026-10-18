@@ -505,6 +505,7 @@
             cbSection.Name = "cbSection";
             cbSection.Size = new Size(121, 23);
             cbSection.TabIndex = 48;
+            cbSection.TabStop = false;
             cbSection.Visible = false;
             // 
             // cbStrand
@@ -515,6 +516,7 @@
             cbStrand.Name = "cbStrand";
             cbStrand.Size = new Size(121, 23);
             cbStrand.TabIndex = 47;
+            cbStrand.TabStop = false;
             cbStrand.Visible = false;
             // 
             // cbYearLevel
@@ -525,6 +527,7 @@
             cbYearLevel.Name = "cbYearLevel";
             cbYearLevel.Size = new Size(121, 23);
             cbYearLevel.TabIndex = 46;
+            cbYearLevel.TabStop = false;
             cbYearLevel.Visible = false;
             // 
             // btnNewAccount

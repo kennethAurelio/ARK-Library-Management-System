@@ -1,5 +1,5 @@
 ﻿namespace LibrarySystem.Student {
-    partial class AccountForm {
+    partial class UserControl {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControl));
             lblStudentName = new Label();
             lblStudentId = new Label();
             lblYearLevel = new Label();

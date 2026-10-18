@@ -31,40 +31,17 @@ namespace LibrarySystem.Staff {
             StartNewBook();
         }
 
-        // Load genres into cbGenre. If none exist, insert default set then reload.
+        // Fills a ComboBox from a query: shows one column, stores another as the value.
+        private void BindCombo(ComboBox cb, string sql, string display, string value) {
+            cb.DisplayMember = display;
+            cb.ValueMember = value;
+            cb.DataSource = LoadTable(sql);
+            cb.SelectedIndex = -1;
+        }
+
         private void LoadGenres() {
-            DataTable genres = new DataTable();
-            using (var conn = DatabaseHelper.GetConnection())
-            using (var cmd = new MySqlCommand("SELECT genre_id, genre FROM genre ORDER BY genre;", conn)) {
-                conn.Open();
-                using var reader = cmd.ExecuteReader();
-                genres.Load(reader);
-            }
-
-            if (genres.Rows.Count == 0) {
-                using (var conn = DatabaseHelper.GetConnection())
-                using (var cmd = new MySqlCommand(@"
-                    INSERT INTO genre (genre) VALUES
-                    ('Fiction'),('Science'),('Technology'),('Self-Help'),
-                    ('Psychology'),('Politics'),('Business'),('History');", conn)) {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
-
-                genres = new DataTable();
-                using (var conn = DatabaseHelper.GetConnection())
-                using (var cmd = new MySqlCommand("SELECT genre_id, genre FROM genre ORDER BY genre;", conn)) {
-                    conn.Open();
-                    using var reader = cmd.ExecuteReader();
-                    genres.Load(reader);
-                }
-            }
-
-            cbGenre.DisplayMember = "genre";
-            cbGenre.ValueMember = "genre_id";
-            cbGenre.DataSource = genres;
-            cbGenre.SelectedIndex = -1;
-            cbGenre.DropDownStyle = ComboBoxStyle.DropDown; // allow typing new genres
+            BindCombo(cbGenre, "SELECT genre_id, genre FROM genre ORDER BY genre", "genre", "genre_id");
+            cbGenre.DropDownStyle = ComboBoxStyle.DropDown;   // allow typing new genres
         }
 
         // Selecting a row fills the fields and switches to edit mode.

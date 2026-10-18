@@ -1,8 +1,8 @@
 ﻿using LibrarySystem.Core;
 
 namespace LibrarySystem.Student {
-    public partial class AccountForm : Form {
-        public AccountForm() {
+    public partial class UserControl : Form {
+        public UserControl() {
             InitializeComponent();
             LoadUserInfo();
         }

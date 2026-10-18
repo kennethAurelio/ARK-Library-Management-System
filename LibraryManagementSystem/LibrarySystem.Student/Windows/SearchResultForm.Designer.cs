@@ -28,6 +28,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchResultForm));
             dgvResults = new DataGridView();
             label1 = new Label();
+            cbFilterBy = new ComboBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvResults).BeginInit();
             SuspendLayout();
             // 
@@ -51,13 +53,13 @@
             dgvResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvResults.Cursor = Cursors.Hand;
-            dgvResults.Location = new Point(101, 191);
+            dgvResults.Location = new Point(220, 238);
             dgvResults.Margin = new Padding(3, 2, 3, 2);
             dgvResults.Name = "dgvResults";
             dgvResults.RowHeadersVisible = false;
             dgvResults.RowHeadersWidth = 51;
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvResults.Size = new Size(594, 263);
+            dgvResults.Size = new Size(1008, 522);
             dgvResults.TabIndex = 0;
             dgvResults.CellDoubleClick += dgvResults_CellDoubleClick;
             // 
@@ -65,12 +67,32 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(101, 162);
+            label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(220, 209);
             label1.Name = "label1";
-            label1.Size = new Size(75, 15);
+            label1.Size = new Size(108, 19);
             label1.TabIndex = 1;
             label1.Text = "Search Result:";
+            // 
+            // cbFilterBy
+            // 
+            cbFilterBy.FormattingEnabled = true;
+            cbFilterBy.Location = new Point(294, 776);
+            cbFilterBy.Name = "cbFilterBy";
+            cbFilterBy.Size = new Size(121, 23);
+            cbFilterBy.TabIndex = 2;
+            cbFilterBy.SelectedIndexChanged += cbFilterBy_SelectedIndexChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Times New Roman", 11F);
+            label2.Location = new Point(220, 782);
+            label2.Name = "label2";
+            label2.Size = new Size(59, 17);
+            label2.TabIndex = 3;
+            label2.Text = "Filter by:";
             // 
             // SearchResultForm
             // 
@@ -78,7 +100,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.ARK___Background;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(991, 588);
+            ClientSize = new Size(1540, 941);
+            Controls.Add(label2);
+            Controls.Add(cbFilterBy);
             Controls.Add(label1);
             Controls.Add(dgvResults);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -95,5 +119,7 @@
 
         private DataGridView dgvResults;
         private Label label1;
+        private ComboBox cbFilterBy;
+        private Label label2;
     }
 }
