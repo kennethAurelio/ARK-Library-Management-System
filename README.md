@@ -46,10 +46,11 @@ Fork the repo, create a branch (`feature-xyz`), and submit a pull request.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the Apache License 2.0
 
 ## Development Team
 - Andrea Ella Toralde — Project Leader & Documentation
 - Crisha Jane Amarado — Database Administrator & Documentation
 - Kenneth Aurelio — Backend & System Architect
+- Rachel Ann Lobo  — Database Developer
 - King Joshsana Tocop — UI/UX Designer
