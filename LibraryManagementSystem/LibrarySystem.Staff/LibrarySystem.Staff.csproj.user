@@ -7,13 +7,13 @@
     <Compile Update="StaffBookManagingTab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="StaffHistoryTransactionTab.cs">
+    <Compile Update="StaffTransactionHistoryTab.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="StaffLoanRequestsTab.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="StaffReturnTab.cs">
+    <Compile Update="StaffReturnDeskTab.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="StaffDashboard.cs">

@@ -69,13 +69,36 @@ namespace LibrarySystem.Staff {
         }
 
         // Optional: call once on a grid that has a due_date column (Returns).
+        // Optional: call once on a grid that has a due_date column (Returns).
+        // Red     = past the due date AND time
+        // Orange  = still on time, but due within DueSoonWindow
         public static void HighlightOverdue(DataGridView dgv) {
+            TimeSpan DueSoonWindow = TimeSpan.FromHours(24);   // change this to taste
+
             dgv.RowPrePaint += (s, e) => {
-                if (!dgv.Columns.Contains("due_date")) return;
-                var v = dgv.Rows[e.RowIndex].Cells["due_date"].Value;
-                if (v != null && v != DBNull.Value && Convert.ToDateTime(v).Date < DateTime.Today)
-                    dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+                if (e.RowIndex < 0 || !dgv.Columns.Contains("due_date")) return;
+
+                var row = dgv.Rows[e.RowIndex];
+                var v = row.Cells["due_date"].Value;
+
+                if (v == null || v == DBNull.Value) return;
+
+                DateTime due = Convert.ToDateTime(v);      // keeps the time, no .Date
+                TimeSpan left = due - DateTime.Now;
+
+                if (left < TimeSpan.Zero)
+                    row.DefaultCellStyle.ForeColor = Color.Red;
+                else if (left <= DueSoonWindow)
+                    row.DefaultCellStyle.ForeColor = Color.DarkOrange;
+                else
+                    row.DefaultCellStyle.ForeColor = dgv.DefaultCellStyle.ForeColor;   // reset
             };
+
+            // Colors are only recalculated when the grid repaints, so repaint once a minute.
+            var timer = new System.Windows.Forms.Timer { Interval = 60_000 };
+            timer.Tick += (s, e) => dgv.Invalidate();
+            timer.Start();
+            dgv.Disposed += (s, e) => timer.Dispose();
         }
 
         // Colors a "status" column if the grid has one (history, catalog later).

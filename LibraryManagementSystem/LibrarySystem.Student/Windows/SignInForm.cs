@@ -160,6 +160,6 @@ namespace LibrarySystem.Student {
         private void UpdateShowCheckbox() {
             chkShowPassword.Visible = txtPasswordField.Focused || chkShowPassword.Focused;
         }
-    }
 
+    }
 }

@@ -42,13 +42,13 @@
 	  <Compile Update="StaffBookManagingTab.cs">
 		  <SubType>Code</SubType>
 	  </Compile>
-	  <Compile Update="StaffHistoryTransactionTab.cs">
+	  <Compile Update="StaffTransactionHistoryTab.cs">
 		  <SubType>Code</SubType>
 	  </Compile>
 	  <Compile Update="StaffLoanRequestsTab.cs">
 		  <SubType>Code</SubType>
 	  </Compile>
-	  <Compile Update="StaffReturnTab.cs">
+	  <Compile Update="StaffReturnDeskTab.cs">
 		  <SubType>Code</SubType>
 	  </Compile>
   </ItemGroup>

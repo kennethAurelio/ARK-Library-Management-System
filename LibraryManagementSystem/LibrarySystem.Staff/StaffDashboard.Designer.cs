@@ -52,10 +52,10 @@
             btnAcceptRequest = new Button();
             dgvLoanRequest = new DataGridView();
             tabControlStaff = new TabControl();
-            tabBorrowingHistory = new TabPage();
+            tabTransactionHistory = new TabPage();
             cbFilterBy = new ComboBox();
             dgvTransactionHistory = new DataGridView();
-            tabIAM = new TabPage();
+            tabInformationAndAccountManagement = new TabPage();
             lblSection = new Label();
             lblStrand = new Label();
             lblGradeLevel = new Label();
@@ -89,9 +89,9 @@
             tabLoanRequest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvLoanRequest).BeginInit();
             tabControlStaff.SuspendLayout();
-            tabBorrowingHistory.SuspendLayout();
+            tabTransactionHistory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTransactionHistory).BeginInit();
-            tabIAM.SuspendLayout();
+            tabInformationAndAccountManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAccounts).BeginInit();
             SuspendLayout();
             // 
@@ -372,8 +372,8 @@
             tabControlStaff.Controls.Add(tabLoanRequest);
             tabControlStaff.Controls.Add(tabReturnDesk);
             tabControlStaff.Controls.Add(tabManageBooks);
-            tabControlStaff.Controls.Add(tabBorrowingHistory);
-            tabControlStaff.Controls.Add(tabIAM);
+            tabControlStaff.Controls.Add(tabTransactionHistory);
+            tabControlStaff.Controls.Add(tabInformationAndAccountManagement);
             tabControlStaff.Controls.Add(tabReports);
             tabControlStaff.Location = new Point(2, 184);
             tabControlStaff.Name = "tabControlStaff";
@@ -381,24 +381,24 @@
             tabControlStaff.Size = new Size(1538, 623);
             tabControlStaff.TabIndex = 0;
             // 
-            // tabBorrowingHistory
+            // tabTransactionHistory
             // 
-            tabBorrowingHistory.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
-            tabBorrowingHistory.BackgroundImageLayout = ImageLayout.Stretch;
-            tabBorrowingHistory.Controls.Add(cbFilterBy);
-            tabBorrowingHistory.Controls.Add(dgvTransactionHistory);
-            tabBorrowingHistory.Location = new Point(4, 24);
-            tabBorrowingHistory.Name = "tabBorrowingHistory";
-            tabBorrowingHistory.Padding = new Padding(3);
-            tabBorrowingHistory.Size = new Size(1530, 595);
-            tabBorrowingHistory.TabIndex = 3;
-            tabBorrowingHistory.Text = "Borrowing History";
-            tabBorrowingHistory.UseVisualStyleBackColor = true;
+            tabTransactionHistory.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
+            tabTransactionHistory.BackgroundImageLayout = ImageLayout.Stretch;
+            tabTransactionHistory.Controls.Add(cbFilterBy);
+            tabTransactionHistory.Controls.Add(dgvTransactionHistory);
+            tabTransactionHistory.Location = new Point(4, 24);
+            tabTransactionHistory.Name = "tabTransactionHistory";
+            tabTransactionHistory.Padding = new Padding(3);
+            tabTransactionHistory.Size = new Size(1530, 595);
+            tabTransactionHistory.TabIndex = 3;
+            tabTransactionHistory.Text = "Transaction History";
+            tabTransactionHistory.UseVisualStyleBackColor = true;
             // 
             // cbFilterBy
             // 
             cbFilterBy.FormattingEnabled = true;
-            cbFilterBy.Location = new Point(1097, 572);
+            cbFilterBy.Location = new Point(1096, 73);
             cbFilterBy.Name = "cbFilterBy";
             cbFilterBy.Size = new Size(121, 23);
             cbFilterBy.TabIndex = 5;
@@ -412,40 +412,40 @@
             dgvTransactionHistory.Size = new Size(1008, 522);
             dgvTransactionHistory.TabIndex = 1;
             // 
-            // tabIAM
+            // tabInformationAndAccountManagement
             // 
-            tabIAM.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
-            tabIAM.Controls.Add(lblSection);
-            tabIAM.Controls.Add(lblStrand);
-            tabIAM.Controls.Add(lblGradeLevel);
-            tabIAM.Controls.Add(lblEducationLevel);
-            tabIAM.Controls.Add(txtEducationLevel);
-            tabIAM.Controls.Add(cbSection);
-            tabIAM.Controls.Add(cbStrand);
-            tabIAM.Controls.Add(cbGradeLevel);
-            tabIAM.Controls.Add(btnNewAccount);
-            tabIAM.Controls.Add(label1);
-            tabIAM.Controls.Add(txtLastName);
-            tabIAM.Controls.Add(cbAccountRole);
-            tabIAM.Controls.Add(label2);
-            tabIAM.Controls.Add(label3);
-            tabIAM.Controls.Add(label5);
-            tabIAM.Controls.Add(label6);
-            tabIAM.Controls.Add(label7);
-            tabIAM.Controls.Add(lblAccountMode);
-            tabIAM.Controls.Add(btnSaveAccount);
-            tabIAM.Controls.Add(txtMiddleName);
-            tabIAM.Controls.Add(txtFirstName);
-            tabIAM.Controls.Add(txtAccountPassword);
-            tabIAM.Controls.Add(txtLoginId);
-            tabIAM.Controls.Add(dgvAccounts);
-            tabIAM.Location = new Point(4, 24);
-            tabIAM.Name = "tabIAM";
-            tabIAM.Padding = new Padding(3);
-            tabIAM.Size = new Size(1530, 595);
-            tabIAM.TabIndex = 4;
-            tabIAM.Text = "IAM";
-            tabIAM.UseVisualStyleBackColor = true;
+            tabInformationAndAccountManagement.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
+            tabInformationAndAccountManagement.Controls.Add(lblSection);
+            tabInformationAndAccountManagement.Controls.Add(lblStrand);
+            tabInformationAndAccountManagement.Controls.Add(lblGradeLevel);
+            tabInformationAndAccountManagement.Controls.Add(lblEducationLevel);
+            tabInformationAndAccountManagement.Controls.Add(txtEducationLevel);
+            tabInformationAndAccountManagement.Controls.Add(cbSection);
+            tabInformationAndAccountManagement.Controls.Add(cbStrand);
+            tabInformationAndAccountManagement.Controls.Add(cbGradeLevel);
+            tabInformationAndAccountManagement.Controls.Add(btnNewAccount);
+            tabInformationAndAccountManagement.Controls.Add(label1);
+            tabInformationAndAccountManagement.Controls.Add(txtLastName);
+            tabInformationAndAccountManagement.Controls.Add(cbAccountRole);
+            tabInformationAndAccountManagement.Controls.Add(label2);
+            tabInformationAndAccountManagement.Controls.Add(label3);
+            tabInformationAndAccountManagement.Controls.Add(label5);
+            tabInformationAndAccountManagement.Controls.Add(label6);
+            tabInformationAndAccountManagement.Controls.Add(label7);
+            tabInformationAndAccountManagement.Controls.Add(lblAccountMode);
+            tabInformationAndAccountManagement.Controls.Add(btnSaveAccount);
+            tabInformationAndAccountManagement.Controls.Add(txtMiddleName);
+            tabInformationAndAccountManagement.Controls.Add(txtFirstName);
+            tabInformationAndAccountManagement.Controls.Add(txtAccountPassword);
+            tabInformationAndAccountManagement.Controls.Add(txtLoginId);
+            tabInformationAndAccountManagement.Controls.Add(dgvAccounts);
+            tabInformationAndAccountManagement.Location = new Point(4, 24);
+            tabInformationAndAccountManagement.Name = "tabInformationAndAccountManagement";
+            tabInformationAndAccountManagement.Padding = new Padding(3);
+            tabInformationAndAccountManagement.Size = new Size(1530, 595);
+            tabInformationAndAccountManagement.TabIndex = 4;
+            tabInformationAndAccountManagement.Text = "Info and Account Management";
+            tabInformationAndAccountManagement.UseVisualStyleBackColor = true;
             // 
             // lblSection
             // 
@@ -699,10 +699,10 @@
             tabLoanRequest.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvLoanRequest).EndInit();
             tabControlStaff.ResumeLayout(false);
-            tabBorrowingHistory.ResumeLayout(false);
+            tabTransactionHistory.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvTransactionHistory).EndInit();
-            tabIAM.ResumeLayout(false);
-            tabIAM.PerformLayout();
+            tabInformationAndAccountManagement.ResumeLayout(false);
+            tabInformationAndAccountManagement.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAccounts).EndInit();
             ResumeLayout(false);
         }
@@ -718,7 +718,7 @@
         private Button btnMarkReturned;
         private Button btnCancelRequest;
         private Button btnRefreshData;
-        private TabPage tabBorrowingHistory;
+        private TabPage tabTransactionHistory;
         private DataGridView dgvCatalog;
         private TextBox txtAuthor;
         private TextBox txtTitle;
@@ -740,7 +740,7 @@
         private ComboBox cbFilterBy;
         private TabPage tabReports;
         private ComboBox cbGenre;
-        private TabPage tabIAM;
+        private TabPage tabInformationAndAccountManagement;
         private ComboBox cbSection;
         private ComboBox cbStrand;
         private ComboBox cbGradeLevel;

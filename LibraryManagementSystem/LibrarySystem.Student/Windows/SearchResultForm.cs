@@ -145,5 +145,6 @@ namespace LibrarySystem.Student {
 
             cbFilterBy.SelectedIndex = 0;   // "All Genres"
         }
+
     }
 }

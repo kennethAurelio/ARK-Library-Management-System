@@ -89,7 +89,7 @@ namespace LibrarySystem.Student
                                     if (daysLeft < 0)
                                         AddUpdate($"• {title} - OVERDUE by {-daysLeft} day(s)", Color.Red);
                                     else if (daysLeft <= 1)
-                                        AddUpdate($"• {title} - Due {due:MMM dd} ({daysLeft} day(s) left)", Color.OrangeRed);
+                                        AddUpdate($"• {title} - Due {due:MMM dd} ({daysLeft} day left)", Color.OrangeRed);
                                     else
                                         AddUpdate($"• {title} - Due {due:MMM dd}", Color.Black);
                                 }
