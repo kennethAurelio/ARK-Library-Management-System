@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace LibrarySystem.Staff {
     internal static class GridHelper {
@@ -28,7 +24,11 @@ namespace LibrarySystem.Staff {
             ["first_name"] = "First Name",
             ["middle_name"] = "Middle Name",
             ["last_name"] = "Last Name",
-            ["role"] = "Role"
+            ["role"] = "Role",
+            ["education_level"] = "Education Level",
+            ["grade_level"] = "Year Level",
+            ["strand_code"] = "Strand",
+            ["section"] = "Section"
         };
 
         // Columns the librarian never needs to see (but the code still reads).
@@ -91,5 +91,6 @@ namespace LibrarySystem.Staff {
                 case "cancelled": e.CellStyle.ForeColor = Color.DarkGray; break;
             }
         }
+
     }
 }

@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffDashboard));
             tabManageBooks = new TabPage();
             cbGenre = new ComboBox();
             lblSynopsis = new Label();
@@ -57,12 +58,12 @@
             tabIAM = new TabPage();
             lblSection = new Label();
             lblStrand = new Label();
-            lblYearLevel = new Label();
+            lblGradeLevel = new Label();
             lblEducationLevel = new Label();
             txtEducationLevel = new TextBox();
             cbSection = new ComboBox();
             cbStrand = new ComboBox();
-            cbYearLevel = new ComboBox();
+            cbGradeLevel = new ComboBox();
             btnNewAccount = new Button();
             label1 = new Label();
             txtLastName = new TextBox();
@@ -416,12 +417,12 @@
             tabIAM.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
             tabIAM.Controls.Add(lblSection);
             tabIAM.Controls.Add(lblStrand);
-            tabIAM.Controls.Add(lblYearLevel);
+            tabIAM.Controls.Add(lblGradeLevel);
             tabIAM.Controls.Add(lblEducationLevel);
             tabIAM.Controls.Add(txtEducationLevel);
             tabIAM.Controls.Add(cbSection);
             tabIAM.Controls.Add(cbStrand);
-            tabIAM.Controls.Add(cbYearLevel);
+            tabIAM.Controls.Add(cbGradeLevel);
             tabIAM.Controls.Add(btnNewAccount);
             tabIAM.Controls.Add(label1);
             tabIAM.Controls.Add(txtLastName);
@@ -466,15 +467,15 @@
             lblStrand.Text = "Strand:";
             lblStrand.Visible = false;
             // 
-            // lblYearLevel
+            // lblGradeLevel
             // 
-            lblYearLevel.AutoSize = true;
-            lblYearLevel.Location = new Point(1060, 361);
-            lblYearLevel.Name = "lblYearLevel";
-            lblYearLevel.Size = new Size(62, 15);
-            lblYearLevel.TabIndex = 51;
-            lblYearLevel.Text = "Year Level:";
-            lblYearLevel.Visible = false;
+            lblGradeLevel.AutoSize = true;
+            lblGradeLevel.Location = new Point(1060, 361);
+            lblGradeLevel.Name = "lblGradeLevel";
+            lblGradeLevel.Size = new Size(71, 15);
+            lblGradeLevel.TabIndex = 51;
+            lblGradeLevel.Text = "Grade Level:";
+            lblGradeLevel.Visible = false;
             // 
             // lblEducationLevel
             // 
@@ -519,16 +520,16 @@
             cbStrand.TabStop = false;
             cbStrand.Visible = false;
             // 
-            // cbYearLevel
+            // cbGradeLevel
             // 
-            cbYearLevel.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbYearLevel.FormattingEnabled = true;
-            cbYearLevel.Location = new Point(1060, 379);
-            cbYearLevel.Name = "cbYearLevel";
-            cbYearLevel.Size = new Size(121, 23);
-            cbYearLevel.TabIndex = 46;
-            cbYearLevel.TabStop = false;
-            cbYearLevel.Visible = false;
+            cbGradeLevel.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbGradeLevel.FormattingEnabled = true;
+            cbGradeLevel.Location = new Point(1060, 379);
+            cbGradeLevel.Name = "cbGradeLevel";
+            cbGradeLevel.Size = new Size(121, 23);
+            cbGradeLevel.TabIndex = 46;
+            cbGradeLevel.TabStop = false;
+            cbGradeLevel.Visible = false;
             // 
             // btnNewAccount
             // 
@@ -684,9 +685,10 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1540, 941);
             Controls.Add(tabControlStaff);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "StaffDashboard";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "JILCF - ARK";
+            Text = "JILCF - ARK_STAFF";
             Load += btnRefreshData_Click;
             tabManageBooks.ResumeLayout(false);
             tabManageBooks.PerformLayout();
@@ -741,7 +743,7 @@
         private TabPage tabIAM;
         private ComboBox cbSection;
         private ComboBox cbStrand;
-        private ComboBox cbYearLevel;
+        private ComboBox cbGradeLevel;
         private Button btnNewAccount;
         private Label label1;
         private TextBox txtLastName;
@@ -760,7 +762,7 @@
         private DataGridView dgvAccounts;
         private Label lblSection;
         private Label lblStrand;
-        private Label lblYearLevel;
+        private Label lblGradeLevel;
         private Label lblEducationLevel;
         private TextBox txtEducationLevel;
     }

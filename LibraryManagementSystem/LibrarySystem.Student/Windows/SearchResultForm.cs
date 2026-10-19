@@ -99,6 +99,7 @@ namespace LibrarySystem.Student {
             int copies = Convert.ToInt32(row.Cells["copies_available"].Value);
 
             if (copies <= 0) {
+
                 MessageBox.Show("Sorry, this book has no available copies right now.",
                                 "Not available", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;

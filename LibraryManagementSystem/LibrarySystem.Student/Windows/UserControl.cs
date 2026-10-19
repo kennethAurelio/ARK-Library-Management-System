@@ -15,7 +15,7 @@ namespace LibrarySystem.Student {
                     a.user_id,
                     a.login_id,
                     CONCAT_WS(' ', a.first_name, NULLIF(a.middle_name, ''), a.last_name) AS full_name,
-                    si.year_level,
+                    si.grade_level,
                     ss.strand_code,
                     si.section,
                     a.role
@@ -31,7 +31,7 @@ namespace LibrarySystem.Student {
                         if (reader.Read()) {
                             var fullName = SafeText(reader["full_name"], "Unable to load");
                             var loginId = SafeText(reader["login_id"], "Unable to load");
-                            var yearLevel = SafeText(reader["year_level"], "Unable to load");
+                            var yearLevel = SafeText(reader["grade_level"], "Unable to load");
                             var strandCode = SafeText(reader["strand_code"], "");
                             var section = SafeText(reader["section"], "");
 
@@ -43,12 +43,12 @@ namespace LibrarySystem.Student {
                                 var strandSection = string.IsNullOrEmpty(strandCode) ? section : (string.IsNullOrEmpty(section) ? strandCode : $"{strandCode} - {section}");
                                 lblStrandAndSection.Text = "Strand and Section: " + strandSection;
                             }
-                            lblYearLevel.Text = "Year Level: " + yearLevel;
+                            lblGradeLevel.Text = "Year Level: " + yearLevel;
                         } else {
                             lblStudentName.Text = "Student Name: Unable to load";
                             lblStudentId.Text = "Student/login Id: Unable to load";
                             lblStrandAndSection.Text = "Strand and Section: Unable to load";
-                            lblYearLevel.Text = "Year Level: Unable to load";
+                            lblGradeLevel.Text = "Year Level: Unable to load";
                         }
                     }
                 }
@@ -57,7 +57,7 @@ namespace LibrarySystem.Student {
                 lblStudentName.Text = "Student Name: Failed to load";
                 lblStudentId.Text = "Student/login Id: Failed to load";
                 lblStrandAndSection.Text = "Strand and Section: Failed to load";
-                lblYearLevel.Text = "Year Level: Failed to load";
+                lblGradeLevel.Text = "Year Level: Failed to load";
             }
         }
 

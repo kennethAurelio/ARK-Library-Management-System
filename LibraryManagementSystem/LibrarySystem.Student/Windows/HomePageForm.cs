@@ -129,7 +129,8 @@ namespace LibrarySystem.Student
 
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(
-                "SELECT b.book_id, b.title, b.author, b.copies_available, b.book_status, " +
+                "SELECT b.book_id, b.title, b.author, b.copies_available, CASE WHEN b.copies_available > 0 THEN 'Available' " +
+                "ELSE 'Unavailable' END AS book_status, " +
                 "b.year_published, b.synopsis, g.genre AS genre, b.publisher " +
                 "FROM books b LEFT JOIN genre g ON g.genre_id = b.genre " +
                 "WHERE title LIKE @search OR author LIKE @search ORDER BY title", conn)) {

@@ -26,7 +26,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControl));
             lblStudentName = new Label();
             lblStudentId = new Label();
-            lblYearLevel = new Label();
+            lblGradeLevel = new Label();
             lblStrandAndSection = new Label();
             btnViewHistory = new Button();
             btnChangePassword = new Button();
@@ -55,16 +55,16 @@
             lblStudentId.TabIndex = 1;
             lblStudentId.Text = "Student/Login Id:";
             // 
-            // lblYearLevel
+            // lblGradeLevel
             // 
-            lblYearLevel.AutoSize = true;
-            lblYearLevel.BackColor = Color.Transparent;
-            lblYearLevel.Font = new Font("Times New Roman", 10.8F);
-            lblYearLevel.Location = new Point(12, 101);
-            lblYearLevel.Name = "lblYearLevel";
-            lblYearLevel.Size = new Size(76, 17);
-            lblYearLevel.TabIndex = 3;
-            lblYearLevel.Text = "Year Level:";
+            lblGradeLevel.AutoSize = true;
+            lblGradeLevel.BackColor = Color.Transparent;
+            lblGradeLevel.Font = new Font("Times New Roman", 10.8F);
+            lblGradeLevel.Location = new Point(12, 101);
+            lblGradeLevel.Name = "lblGradeLevel";
+            lblGradeLevel.Size = new Size(84, 17);
+            lblGradeLevel.TabIndex = 3;
+            lblGradeLevel.Text = "Grade Level:";
             // 
             // lblStrandAndSection
             // 
@@ -109,7 +109,7 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click_1;
             // 
-            // AccountForm
+            // UserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -118,11 +118,11 @@
             Controls.Add(btnChangePassword);
             Controls.Add(btnViewHistory);
             Controls.Add(lblStrandAndSection);
-            Controls.Add(lblYearLevel);
+            Controls.Add(lblGradeLevel);
             Controls.Add(lblStudentId);
             Controls.Add(lblStudentName);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "AccountForm";
+            Name = "UserControl";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Account";
             ResumeLayout(false);
@@ -133,7 +133,7 @@
 
         private Label lblStudentName;
         private Label lblStudentId;
-        private Label lblYearLevel;
+        private Label lblGradeLevel;
         private Label lblStrandAndSection;
         private Button btnViewHistory;
         private Button btnChangePassword;

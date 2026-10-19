@@ -1,8 +1,4 @@
-﻿using LibrarySystem.Core;
-using MySql.Data.MySqlClient;
-using System.Data;
-
-namespace LibrarySystem.Staff {
+﻿namespace LibrarySystem.Staff {
     public partial class StaffDashboard {
 
         private const string HistoryQuery = @"

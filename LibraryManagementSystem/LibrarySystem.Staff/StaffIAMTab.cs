@@ -20,7 +20,7 @@ namespace LibrarySystem.Staff {
 
         private const string AccountsQuery = @"
             SELECT a.user_id, a.login_id, a.first_name, a.middle_name, a.last_name, a.role,
-                   si.education_level, si.year_level, s.strand_code, si.section
+                   si.education_level, si.grade_level, s.strand_code, si.section
             FROM accounts a
             LEFT JOIN student_infos si ON si.user_id = a.user_id
             LEFT JOIN shs_strands s ON s.strand_id = si.strand_id
@@ -35,9 +35,9 @@ namespace LibrarySystem.Staff {
             cbAccountRole.Items.AddRange(new object[] { "student", "librarian", "admin" });
             cbAccountRole.SelectedIndexChanged += cbAccountRole_SelectedIndexChanged;
 
-            cbYearLevel.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbYearLevel.Items.AddRange(new object[] { "11", "12" });
-            cbYearLevel.SelectedIndexChanged += (s, e) => { }; // dummy handler to avoid firing when binding
+            cbGradeLevel.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbGradeLevel.Items.AddRange(new object[] { "11", "12" });
+            cbGradeLevel.SelectedIndexChanged += (s, e) => { }; // dummy handler to avoid firing when binding
 
             cbStrand.DropDownStyle = ComboBoxStyle.DropDownList;
             BindCombo(cbStrand, "SELECT strand_id, strand_code FROM shs_strands ORDER BY strand_code",
@@ -58,7 +58,7 @@ namespace LibrarySystem.Staff {
         private void ShowStudentFields(bool show) {
             foreach (Control c in new Control[] {
                 lblEducationLevel, txtEducationLevel,
-                lblYearLevel, cbYearLevel,
+                lblGradeLevel, cbGradeLevel,
                 lblStrand, cbStrand,
                 lblSection, cbSection })
                 c.Visible = show;
@@ -97,7 +97,7 @@ namespace LibrarySystem.Staff {
 
             // Student info (blank for admins/librarians or students without a student_infos row)
             txtEducationLevel.Text = cells["education_level"].Value?.ToString();
-            cbYearLevel.SelectedIndex = cbYearLevel.FindStringExact(cells["year_level"].Value?.ToString() ?? "");
+            cbGradeLevel.SelectedIndex = cbGradeLevel.FindStringExact(cells["grade_level"].Value?.ToString() ?? "");
             cbStrand.SelectedIndex = cbStrand.FindStringExact(cells["strand_code"].Value?.ToString() ?? "");   // fills the sections
             cbSection.SelectedIndex = cbSection.FindStringExact(cells["section"].Value?.ToString() ?? "");
 
@@ -118,7 +118,7 @@ namespace LibrarySystem.Staff {
             cbAccountRole.SelectedItem = "student";   // also shows the student fields
 
             txtEducationLevel.Text = DefaultEducationLevel;
-            cbYearLevel.SelectedIndex = -1;
+            cbGradeLevel.SelectedIndex = -1;
             cbStrand.SelectedIndex = -1;
 
             lblAccountMode.Text = $"Adding a new account (blank password = {DefaultPassword})";
@@ -177,7 +177,7 @@ namespace LibrarySystem.Staff {
             // Student accounts also need their student info.
             bool isStudent = role.Equals("student", StringComparison.OrdinalIgnoreCase);
             string educationLevel = txtEducationLevel.Text.Trim();
-            string? yearLevel = cbYearLevel.SelectedItem?.ToString();
+            string? yearLevel = cbGradeLevel.SelectedItem?.ToString();
             string section = cbSection.SelectedItem?.ToString() ?? "";
 
             if (isStudent && (educationLevel == "" || yearLevel == null || cbStrand.SelectedIndex < 0 || section == "")) {
@@ -228,10 +228,10 @@ namespace LibrarySystem.Staff {
 
                         if (isStudent) {
                             using (var cmd = new MySqlCommand(
-                                @"INSERT INTO student_infos (user_id, education_level, year_level, strand_id, section)
+                                @"INSERT INTO student_infos (user_id, education_level, grade_level, strand_id, section)
                                   VALUES (@userId, @educationLevel, @yearLevel, @strandId, @section)
                                   ON DUPLICATE KEY UPDATE education_level = VALUES(education_level),
-                                                          year_level = VALUES(year_level),
+                                                          grade_level = VALUES(grade_level),
                                                           strand_id = VALUES(strand_id),
                                                           section = VALUES(section)", conn, tx)) {
                                 cmd.Parameters.AddWithValue("@userId", userId);

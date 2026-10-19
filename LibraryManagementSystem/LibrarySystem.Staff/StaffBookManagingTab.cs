@@ -1,7 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Windows.Forms;
-using LibrarySystem.Core;
+﻿using LibrarySystem.Core;
 using MySql.Data.MySqlClient;
 
 namespace LibrarySystem.Staff {
