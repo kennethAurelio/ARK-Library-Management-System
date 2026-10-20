@@ -36,6 +36,8 @@
             lblBookStatus = new Label();
             lblGenre = new Label();
             txtGenre = new TextBox();
+            lblPublished = new Label();
+            lblPublisher = new Label();
             ((System.ComponentModel.ISupportInitialize)pbCover).BeginInit();
             SuspendLayout();
             // 
@@ -43,6 +45,7 @@
             // 
             pbCover.BackColor = SystemColors.ControlLightLight;
             pbCover.BackgroundImageLayout = ImageLayout.Stretch;
+            pbCover.BorderStyle = BorderStyle.FixedSingle;
             pbCover.Location = new Point(147, 194);
             pbCover.Name = "pbCover";
             pbCover.Size = new Size(189, 278);
@@ -65,7 +68,7 @@
             lblSynopsisHeader.AutoSize = true;
             lblSynopsisHeader.BackColor = Color.Transparent;
             lblSynopsisHeader.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSynopsisHeader.Location = new Point(512, 253);
+            lblSynopsisHeader.Location = new Point(579, 222);
             lblSynopsisHeader.Name = "lblSynopsisHeader";
             lblSynopsisHeader.Size = new Size(55, 15);
             lblSynopsisHeader.TabIndex = 0;
@@ -76,12 +79,12 @@
             txtSynopsis.BackColor = Color.White;
             txtSynopsis.BorderStyle = BorderStyle.None;
             txtSynopsis.Font = new Font("Times New Roman", 11F);
-            txtSynopsis.Location = new Point(512, 272);
+            txtSynopsis.Location = new Point(579, 241);
             txtSynopsis.Multiline = true;
             txtSynopsis.Name = "txtSynopsis";
             txtSynopsis.ReadOnly = true;
             txtSynopsis.ScrollBars = ScrollBars.Vertical;
-            txtSynopsis.Size = new Size(350, 200);
+            txtSynopsis.Size = new Size(315, 231);
             txtSynopsis.TabIndex = 5;
             // 
             // txtAuthor
@@ -93,6 +96,7 @@
             txtAuthor.Multiline = true;
             txtAuthor.Name = "txtAuthor";
             txtAuthor.ReadOnly = true;
+            txtAuthor.ScrollBars = ScrollBars.Vertical;
             txtAuthor.Size = new Size(150, 72);
             txtAuthor.TabIndex = 6;
             // 
@@ -122,7 +126,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(343, 326);
+            label1.Location = new Point(345, 417);
             label1.Name = "label1";
             label1.Size = new Size(91, 15);
             label1.TabIndex = 9;
@@ -132,7 +136,7 @@
             // 
             txtBookCopies.BackColor = Color.White;
             txtBookCopies.BorderStyle = BorderStyle.None;
-            txtBookCopies.Location = new Point(440, 327);
+            txtBookCopies.Location = new Point(442, 417);
             txtBookCopies.Multiline = true;
             txtBookCopies.Name = "txtBookCopies";
             txtBookCopies.ReadOnly = true;
@@ -144,7 +148,7 @@
             lblBookStatus.AutoSize = true;
             lblBookStatus.BackColor = Color.Transparent;
             lblBookStatus.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblBookStatus.Location = new Point(343, 352);
+            lblBookStatus.Location = new Point(442, 361);
             lblBookStatus.Name = "lblBookStatus";
             lblBookStatus.Size = new Size(40, 15);
             lblBookStatus.TabIndex = 12;
@@ -155,7 +159,7 @@
             lblGenre.AutoSize = true;
             lblGenre.BackColor = Color.Transparent;
             lblGenre.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGenre.Location = new Point(343, 377);
+            lblGenre.Location = new Point(345, 360);
             lblGenre.Name = "lblGenre";
             lblGenre.Size = new Size(39, 15);
             lblGenre.TabIndex = 13;
@@ -166,12 +170,34 @@
             txtGenre.BackColor = Color.White;
             txtGenre.BorderStyle = BorderStyle.None;
             txtGenre.Font = new Font("Times New Roman", 11F);
-            txtGenre.Location = new Point(342, 395);
+            txtGenre.Location = new Point(344, 378);
             txtGenre.Multiline = true;
             txtGenre.Name = "txtGenre";
             txtGenre.ReadOnly = true;
-            txtGenre.Size = new Size(150, 44);
+            txtGenre.Size = new Size(113, 27);
             txtGenre.TabIndex = 14;
+            // 
+            // lblPublished
+            // 
+            lblPublished.AutoSize = true;
+            lblPublished.BackColor = Color.Transparent;
+            lblPublished.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPublished.Location = new Point(442, 342);
+            lblPublished.Name = "lblPublished";
+            lblPublished.Size = new Size(57, 15);
+            lblPublished.TabIndex = 15;
+            lblPublished.Text = "Published:";
+            // 
+            // lblPublisher
+            // 
+            lblPublisher.AutoSize = true;
+            lblPublisher.BackColor = Color.Transparent;
+            lblPublisher.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPublisher.Location = new Point(344, 342);
+            lblPublisher.Name = "lblPublisher";
+            lblPublisher.Size = new Size(55, 15);
+            lblPublisher.TabIndex = 16;
+            lblPublisher.Text = "Publisher:";
             // 
             // LoanForm
             // 
@@ -180,6 +206,8 @@
             BackgroundImage = Properties.Resources.ARK___Background;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1084, 741);
+            Controls.Add(lblPublisher);
+            Controls.Add(lblPublished);
             Controls.Add(txtGenre);
             Controls.Add(lblGenre);
             Controls.Add(lblBookStatus);
@@ -215,5 +243,7 @@
         private Label lblBookStatus;
         private Label lblGenre;
         private TextBox txtGenre;
+        private Label lblPublished;
+        private Label lblPublisher;
     }
 }

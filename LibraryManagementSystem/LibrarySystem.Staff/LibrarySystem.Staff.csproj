@@ -36,21 +36,11 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <Compile Update="StaffIAMTab.cs">
-		  <SubType>Code</SubType>
-	  </Compile>
-	  <Compile Update="StaffBookManagingTab.cs">
-		  <SubType>Code</SubType>
-	  </Compile>
-	  <Compile Update="StaffTransactionHistoryTab.cs">
-		  <SubType>Code</SubType>
-	  </Compile>
-	  <Compile Update="StaffLoanRequestsTab.cs">
-		  <SubType>Code</SubType>
-	  </Compile>
-	  <Compile Update="StaffReturnDeskTab.cs">
-		  <SubType>Code</SubType>
-	  </Compile>
+	  <Compile Update="StaffIAMTab.cs" />
+	  <Compile Update="StaffBookManagingTab.cs" />
+	  <Compile Update="StaffTransactionHistoryTab.cs" />
+	  <Compile Update="StaffLoanRequestsTab.cs" />
+	  <Compile Update="StaffReturnDeskTab.cs" />
   </ItemGroup>
 
 </Project>

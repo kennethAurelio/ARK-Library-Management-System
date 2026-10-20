@@ -19,7 +19,7 @@ namespace LibrarySystem.Staff {
 
             if (IsAdmin) {
                 InitAccountsTab();
-                //InitReportsTab();
+                InitReportsTab();
             } else {
                 tabControlStaff.TabPages.Remove(tabInformationAndAccountManagement);
                 tabControlStaff.TabPages.Remove(tabReports);
@@ -35,8 +35,7 @@ namespace LibrarySystem.Staff {
             LoadLoanRequests();
             LoadReturnDesk();
             LoadCatalog();
-            SetUpFilter();
-            //LoadTransactionHistory();
+            LoadTransactionHistory();
         }
 
         // Shared helpers
@@ -74,12 +73,10 @@ namespace LibrarySystem.Staff {
 
         // Refresh the loan grids when the librarian clicks the refresh button.
         private void btnRefreshData_Click(object sender, EventArgs e) {
-            LoadLoanRequests();
             LoadReturnDesk();
-            LoadCatalog();
-            SetUpFilter();
-            //LoadTransactionHistory();
+            LoadLoanRequests();
+            LoadTransactionHistory();
         }
-    }
 
+    }
 }

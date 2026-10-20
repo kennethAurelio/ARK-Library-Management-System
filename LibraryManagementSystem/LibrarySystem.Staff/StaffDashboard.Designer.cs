@@ -81,6 +81,31 @@
             txtLoginId = new TextBox();
             dgvAccounts = new DataGridView();
             tabReports = new TabPage();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            tlpReportsHeader = new TableLayoutPanel();
+            lblReportsTitle = new Label();
+            tlpReportCards = new TableLayoutPanel();
+            grpPending = new GroupBox();
+            lblPendingCount = new Label();
+            grpBorrowed = new GroupBox();
+            lblBorrowedCount = new Label();
+            grpOverdue = new GroupBox();
+            lblOverdueCount = new Label();
+            grpReturned = new GroupBox();
+            lblReturnedCount = new Label();
+            grpLost = new GroupBox();
+            lblLostCount = new Label();
+            tlpReportPanels = new TableLayoutPanel();
+            grpLoansPerMonth = new GroupBox();
+            dgvMonthlyLoans = new DataGridView();
+            grpOverdueLoans = new GroupBox();
+            dgvOverdue = new DataGridView();
+            grpLostBooks = new GroupBox();
+            dgvLostBooks = new DataGridView();
+            grpTopBooks = new GroupBox();
+            dgvTopBooks = new DataGridView();
+            grpLoansByGenre = new GroupBox();
+            dgvGenreLoans = new DataGridView();
             tabManageBooks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudCopies).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCatalog).BeginInit();
@@ -93,6 +118,26 @@
             ((System.ComponentModel.ISupportInitialize)dgvTransactionHistory).BeginInit();
             tabInformationAndAccountManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAccounts).BeginInit();
+            tabReports.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            tlpReportsHeader.SuspendLayout();
+            tlpReportCards.SuspendLayout();
+            grpPending.SuspendLayout();
+            grpBorrowed.SuspendLayout();
+            grpOverdue.SuspendLayout();
+            grpReturned.SuspendLayout();
+            grpLost.SuspendLayout();
+            tlpReportPanels.SuspendLayout();
+            grpLoansPerMonth.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvMonthlyLoans).BeginInit();
+            grpOverdueLoans.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvOverdue).BeginInit();
+            grpLostBooks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvLostBooks).BeginInit();
+            grpTopBooks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvTopBooks).BeginInit();
+            grpLoansByGenre.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvGenreLoans).BeginInit();
             SuspendLayout();
             // 
             // tabManageBooks
@@ -668,6 +713,8 @@
             // 
             // tabReports
             // 
+            tabReports.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
+            tabReports.Controls.Add(tableLayoutPanel2);
             tabReports.Location = new Point(4, 24);
             tabReports.Name = "tabReports";
             tabReports.Padding = new Padding(3);
@@ -675,6 +722,331 @@
             tabReports.TabIndex = 5;
             tabReports.Text = "Reports";
             tabReports.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 1;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Controls.Add(tlpReportsHeader, 0, 0);
+            tableLayoutPanel2.Controls.Add(tlpReportCards, 0, 1);
+            tableLayoutPanel2.Controls.Add(tlpReportPanels, 0, 2);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(3, 3);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 3;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Size = new Size(1524, 589);
+            tableLayoutPanel2.TabIndex = 1;
+            // 
+            // tlpReportsHeader
+            // 
+            tlpReportsHeader.ColumnCount = 2;
+            tlpReportsHeader.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpReportsHeader.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
+            tlpReportsHeader.Controls.Add(lblReportsTitle, 0, 0);
+            tlpReportsHeader.Dock = DockStyle.Fill;
+            tlpReportsHeader.Location = new Point(3, 3);
+            tlpReportsHeader.Name = "tlpReportsHeader";
+            tlpReportsHeader.RowCount = 1;
+            tlpReportsHeader.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpReportsHeader.Size = new Size(1518, 34);
+            tlpReportsHeader.TabIndex = 0;
+            // 
+            // lblReportsTitle
+            // 
+            lblReportsTitle.AutoSize = true;
+            lblReportsTitle.Dock = DockStyle.Fill;
+            lblReportsTitle.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblReportsTitle.Location = new Point(3, 0);
+            lblReportsTitle.Name = "lblReportsTitle";
+            lblReportsTitle.Size = new Size(1412, 34);
+            lblReportsTitle.TabIndex = 2;
+            lblReportsTitle.Text = "Report";
+            lblReportsTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // tlpReportCards
+            // 
+            tlpReportCards.ColumnCount = 5;
+            tlpReportCards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpReportCards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpReportCards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpReportCards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpReportCards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpReportCards.Controls.Add(grpPending, 0, 0);
+            tlpReportCards.Controls.Add(grpBorrowed, 1, 0);
+            tlpReportCards.Controls.Add(grpOverdue, 2, 0);
+            tlpReportCards.Controls.Add(grpReturned, 3, 0);
+            tlpReportCards.Controls.Add(grpLost, 4, 0);
+            tlpReportCards.Dock = DockStyle.Fill;
+            tlpReportCards.Location = new Point(3, 43);
+            tlpReportCards.Name = "tlpReportCards";
+            tlpReportCards.RowCount = 1;
+            tlpReportCards.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpReportCards.Size = new Size(1518, 94);
+            tlpReportCards.TabIndex = 1;
+            // 
+            // grpPending
+            // 
+            grpPending.Controls.Add(lblPendingCount);
+            grpPending.Dock = DockStyle.Fill;
+            grpPending.Location = new Point(3, 3);
+            grpPending.Name = "grpPending";
+            grpPending.Size = new Size(297, 88);
+            grpPending.TabIndex = 0;
+            grpPending.TabStop = false;
+            grpPending.Text = "Pending";
+            // 
+            // lblPendingCount
+            // 
+            lblPendingCount.Dock = DockStyle.Fill;
+            lblPendingCount.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold);
+            lblPendingCount.Location = new Point(3, 19);
+            lblPendingCount.Name = "lblPendingCount";
+            lblPendingCount.Size = new Size(291, 66);
+            lblPendingCount.TabIndex = 0;
+            lblPendingCount.Text = "0";
+            lblPendingCount.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // grpBorrowed
+            // 
+            grpBorrowed.Controls.Add(lblBorrowedCount);
+            grpBorrowed.Dock = DockStyle.Fill;
+            grpBorrowed.Location = new Point(306, 3);
+            grpBorrowed.Name = "grpBorrowed";
+            grpBorrowed.Size = new Size(297, 88);
+            grpBorrowed.TabIndex = 1;
+            grpBorrowed.TabStop = false;
+            grpBorrowed.Text = "Borrowed";
+            // 
+            // lblBorrowedCount
+            // 
+            lblBorrowedCount.Dock = DockStyle.Fill;
+            lblBorrowedCount.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold);
+            lblBorrowedCount.Location = new Point(3, 19);
+            lblBorrowedCount.Name = "lblBorrowedCount";
+            lblBorrowedCount.Size = new Size(291, 66);
+            lblBorrowedCount.TabIndex = 0;
+            lblBorrowedCount.Text = "0";
+            lblBorrowedCount.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // grpOverdue
+            // 
+            grpOverdue.Controls.Add(lblOverdueCount);
+            grpOverdue.Dock = DockStyle.Fill;
+            grpOverdue.Location = new Point(609, 3);
+            grpOverdue.Name = "grpOverdue";
+            grpOverdue.Size = new Size(297, 88);
+            grpOverdue.TabIndex = 2;
+            grpOverdue.TabStop = false;
+            grpOverdue.Text = "Overdue";
+            // 
+            // lblOverdueCount
+            // 
+            lblOverdueCount.Dock = DockStyle.Fill;
+            lblOverdueCount.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold);
+            lblOverdueCount.ForeColor = Color.Firebrick;
+            lblOverdueCount.Location = new Point(3, 19);
+            lblOverdueCount.Name = "lblOverdueCount";
+            lblOverdueCount.Size = new Size(291, 66);
+            lblOverdueCount.TabIndex = 2;
+            lblOverdueCount.Text = "0";
+            lblOverdueCount.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // grpReturned
+            // 
+            grpReturned.Controls.Add(lblReturnedCount);
+            grpReturned.Dock = DockStyle.Fill;
+            grpReturned.Location = new Point(912, 3);
+            grpReturned.Name = "grpReturned";
+            grpReturned.Size = new Size(297, 88);
+            grpReturned.TabIndex = 3;
+            grpReturned.TabStop = false;
+            grpReturned.Text = "Returned";
+            // 
+            // lblReturnedCount
+            // 
+            lblReturnedCount.Dock = DockStyle.Fill;
+            lblReturnedCount.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold);
+            lblReturnedCount.Location = new Point(3, 19);
+            lblReturnedCount.Name = "lblReturnedCount";
+            lblReturnedCount.Size = new Size(291, 66);
+            lblReturnedCount.TabIndex = 0;
+            lblReturnedCount.Text = "0";
+            lblReturnedCount.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // grpLost
+            // 
+            grpLost.Controls.Add(lblLostCount);
+            grpLost.Dock = DockStyle.Fill;
+            grpLost.Location = new Point(1215, 3);
+            grpLost.Name = "grpLost";
+            grpLost.Size = new Size(300, 88);
+            grpLost.TabIndex = 4;
+            grpLost.TabStop = false;
+            grpLost.Text = "Lost";
+            // 
+            // lblLostCount
+            // 
+            lblLostCount.Dock = DockStyle.Fill;
+            lblLostCount.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold);
+            lblLostCount.Location = new Point(3, 19);
+            lblLostCount.Name = "lblLostCount";
+            lblLostCount.Size = new Size(294, 66);
+            lblLostCount.TabIndex = 0;
+            lblLostCount.Text = "0";
+            lblLostCount.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // tlpReportPanels
+            // 
+            tlpReportPanels.ColumnCount = 3;
+            tlpReportPanels.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tlpReportPanels.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tlpReportPanels.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tlpReportPanels.Controls.Add(grpLoansPerMonth, 1, 1);
+            tlpReportPanels.Controls.Add(grpOverdueLoans, 0, 0);
+            tlpReportPanels.Controls.Add(grpLostBooks, 1, 0);
+            tlpReportPanels.Controls.Add(grpTopBooks, 2, 0);
+            tlpReportPanels.Controls.Add(grpLoansByGenre, 0, 1);
+            tlpReportPanels.Dock = DockStyle.Fill;
+            tlpReportPanels.Location = new Point(3, 143);
+            tlpReportPanels.Name = "tlpReportPanels";
+            tlpReportPanels.RowCount = 2;
+            tlpReportPanels.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpReportPanels.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpReportPanels.Size = new Size(1518, 443);
+            tlpReportPanels.TabIndex = 2;
+            // 
+            // grpLoansPerMonth
+            // 
+            grpLoansPerMonth.Controls.Add(dgvMonthlyLoans);
+            grpLoansPerMonth.Dock = DockStyle.Fill;
+            grpLoansPerMonth.Location = new Point(509, 224);
+            grpLoansPerMonth.Name = "grpLoansPerMonth";
+            grpLoansPerMonth.Size = new Size(500, 216);
+            grpLoansPerMonth.TabIndex = 0;
+            grpLoansPerMonth.TabStop = false;
+            grpLoansPerMonth.Text = "Loans per Month";
+            // 
+            // dgvMonthlyLoans
+            // 
+            dgvMonthlyLoans.AllowUserToAddRows = false;
+            dgvMonthlyLoans.AllowUserToDeleteRows = false;
+            dgvMonthlyLoans.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvMonthlyLoans.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMonthlyLoans.Dock = DockStyle.Fill;
+            dgvMonthlyLoans.Location = new Point(3, 19);
+            dgvMonthlyLoans.MultiSelect = false;
+            dgvMonthlyLoans.Name = "dgvMonthlyLoans";
+            dgvMonthlyLoans.ReadOnly = true;
+            dgvMonthlyLoans.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
+            dgvMonthlyLoans.Size = new Size(494, 194);
+            dgvMonthlyLoans.TabIndex = 0;
+            // 
+            // grpOverdueLoans
+            // 
+            grpOverdueLoans.Controls.Add(dgvOverdue);
+            grpOverdueLoans.Dock = DockStyle.Fill;
+            grpOverdueLoans.Location = new Point(3, 3);
+            grpOverdueLoans.Name = "grpOverdueLoans";
+            grpOverdueLoans.Size = new Size(500, 215);
+            grpOverdueLoans.TabIndex = 0;
+            grpOverdueLoans.TabStop = false;
+            grpOverdueLoans.Text = "Overdue Loans";
+            // 
+            // dgvOverdue
+            // 
+            dgvOverdue.AllowUserToAddRows = false;
+            dgvOverdue.AllowUserToDeleteRows = false;
+            dgvOverdue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvOverdue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvOverdue.Dock = DockStyle.Fill;
+            dgvOverdue.Location = new Point(3, 19);
+            dgvOverdue.MultiSelect = false;
+            dgvOverdue.Name = "dgvOverdue";
+            dgvOverdue.ReadOnly = true;
+            dgvOverdue.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
+            dgvOverdue.Size = new Size(494, 193);
+            dgvOverdue.TabIndex = 0;
+            // 
+            // grpLostBooks
+            // 
+            grpLostBooks.Controls.Add(dgvLostBooks);
+            grpLostBooks.Dock = DockStyle.Fill;
+            grpLostBooks.Location = new Point(509, 3);
+            grpLostBooks.Name = "grpLostBooks";
+            grpLostBooks.Size = new Size(500, 215);
+            grpLostBooks.TabIndex = 1;
+            grpLostBooks.TabStop = false;
+            grpLostBooks.Text = "Lost Books";
+            // 
+            // dgvLostBooks
+            // 
+            dgvLostBooks.AllowUserToAddRows = false;
+            dgvLostBooks.AllowUserToDeleteRows = false;
+            dgvLostBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvLostBooks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvLostBooks.Dock = DockStyle.Fill;
+            dgvLostBooks.Location = new Point(3, 19);
+            dgvLostBooks.MultiSelect = false;
+            dgvLostBooks.Name = "dgvLostBooks";
+            dgvLostBooks.ReadOnly = true;
+            dgvLostBooks.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
+            dgvLostBooks.Size = new Size(494, 193);
+            dgvLostBooks.TabIndex = 0;
+            // 
+            // grpTopBooks
+            // 
+            grpTopBooks.Controls.Add(dgvTopBooks);
+            grpTopBooks.Dock = DockStyle.Fill;
+            grpTopBooks.Location = new Point(1015, 3);
+            grpTopBooks.Name = "grpTopBooks";
+            grpTopBooks.Size = new Size(500, 215);
+            grpTopBooks.TabIndex = 2;
+            grpTopBooks.TabStop = false;
+            grpTopBooks.Text = "Top Books";
+            // 
+            // dgvTopBooks
+            // 
+            dgvTopBooks.AllowUserToAddRows = false;
+            dgvTopBooks.AllowUserToDeleteRows = false;
+            dgvTopBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvTopBooks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTopBooks.Dock = DockStyle.Fill;
+            dgvTopBooks.Location = new Point(3, 19);
+            dgvTopBooks.MultiSelect = false;
+            dgvTopBooks.Name = "dgvTopBooks";
+            dgvTopBooks.ReadOnly = true;
+            dgvTopBooks.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
+            dgvTopBooks.Size = new Size(494, 193);
+            dgvTopBooks.TabIndex = 0;
+            // 
+            // grpLoansByGenre
+            // 
+            grpLoansByGenre.Controls.Add(dgvGenreLoans);
+            grpLoansByGenre.Dock = DockStyle.Fill;
+            grpLoansByGenre.Location = new Point(3, 224);
+            grpLoansByGenre.Name = "grpLoansByGenre";
+            grpLoansByGenre.Size = new Size(500, 216);
+            grpLoansByGenre.TabIndex = 4;
+            grpLoansByGenre.TabStop = false;
+            grpLoansByGenre.Text = "Loans by Genre";
+            // 
+            // dgvGenreLoans
+            // 
+            dgvGenreLoans.AllowUserToAddRows = false;
+            dgvGenreLoans.AllowUserToDeleteRows = false;
+            dgvGenreLoans.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvGenreLoans.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvGenreLoans.Dock = DockStyle.Fill;
+            dgvGenreLoans.Location = new Point(3, 19);
+            dgvGenreLoans.MultiSelect = false;
+            dgvGenreLoans.Name = "dgvGenreLoans";
+            dgvGenreLoans.ReadOnly = true;
+            dgvGenreLoans.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
+            dgvGenreLoans.Size = new Size(494, 194);
+            dgvGenreLoans.TabIndex = 1;
             // 
             // StaffDashboard
             // 
@@ -704,6 +1076,27 @@
             tabInformationAndAccountManagement.ResumeLayout(false);
             tabInformationAndAccountManagement.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAccounts).EndInit();
+            tabReports.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
+            tlpReportsHeader.ResumeLayout(false);
+            tlpReportsHeader.PerformLayout();
+            tlpReportCards.ResumeLayout(false);
+            grpPending.ResumeLayout(false);
+            grpBorrowed.ResumeLayout(false);
+            grpOverdue.ResumeLayout(false);
+            grpReturned.ResumeLayout(false);
+            grpLost.ResumeLayout(false);
+            tlpReportPanels.ResumeLayout(false);
+            grpLoansPerMonth.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvMonthlyLoans).EndInit();
+            grpOverdueLoans.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvOverdue).EndInit();
+            grpLostBooks.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvLostBooks).EndInit();
+            grpTopBooks.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvTopBooks).EndInit();
+            grpLoansByGenre.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvGenreLoans).EndInit();
             ResumeLayout(false);
         }
 
@@ -765,5 +1158,30 @@
         private Label lblGradeLevel;
         private Label lblEducationLevel;
         private TextBox txtEducationLevel;
+        private TableLayoutPanel tableLayoutPanel2;
+        private TableLayoutPanel tlpReportsHeader;
+        private TableLayoutPanel tlpReportCards;
+        private TableLayoutPanel tlpReportPanels;
+        private Label lblReportsTitle;
+        private GroupBox grpPending;
+        private GroupBox grpBorrowed;
+        private GroupBox grpOverdue;
+        private GroupBox grpReturned;
+        private GroupBox grpLost;
+        private Label lblPendingCount;
+        private Label lblBorrowedCount;
+        private Label lblOverdueCount;
+        private Label lblReturnedCount;
+        private Label lblLostCount;
+        private GroupBox grpLoansPerMonth;
+        private GroupBox grpOverdueLoans;
+        private GroupBox grpLostBooks;
+        private GroupBox grpTopBooks;
+        private GroupBox grpLoansByGenre;
+        private DataGridView dgvOverdue;
+        private DataGridView dgvLostBooks;
+        private DataGridView dgvGenreLoans;
+        private DataGridView dgvTopBooks;
+        private DataGridView dgvMonthlyLoans;
     }
 }

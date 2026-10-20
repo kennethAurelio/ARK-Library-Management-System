@@ -9,7 +9,7 @@ namespace LibrarySystem.Staff {
         private const string DefaultPassword = "ARK@2026";
         private const string DefaultEducationLevel = "Senior High School";
 
-        private static bool IsAdmin => LoggedInUser.Role.Equals("admin", StringComparison.OrdinalIgnoreCase);
+        public static bool IsAdmin { get; } = LoggedInUser.Role.Equals("admin", StringComparison.OrdinalIgnoreCase);
         private static readonly Dictionary<string, char> StrandLastSection =
             new(StringComparer.OrdinalIgnoreCase) {
                 ["STEM"] = 'J',   // A to J

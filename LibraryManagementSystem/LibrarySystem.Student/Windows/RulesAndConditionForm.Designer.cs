@@ -1,5 +1,5 @@
 ﻿namespace LibrarySystem.Student {
-    partial class RulesForm {
+    partial class RulesAndConditionForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RulesForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RulesAndConditionForm));
             lblTitle = new Label();
             btnConfirm = new Button();
             chkAgree = new CheckBox();
@@ -71,7 +71,7 @@
             txtRules.Size = new Size(313, 369);
             txtRules.TabIndex = 3;
             // 
-            // RulesForm
+            // RulesAndConditionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -81,7 +81,7 @@
             Controls.Add(btnConfirm);
             Controls.Add(lblTitle);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "RulesForm";
+            Name = "RulesAndConditionForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Rules and Condition";
             ResumeLayout(false);

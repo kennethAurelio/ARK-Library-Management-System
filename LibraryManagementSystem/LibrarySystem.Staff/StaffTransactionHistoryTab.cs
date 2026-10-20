@@ -28,6 +28,9 @@ namespace LibrarySystem.Staff {
             cbFilterBy.SelectedIndexChanged -= cbFilterBy_SelectedIndexChanged;
             cbFilterBy.SelectedIndexChanged += cbFilterBy_SelectedIndexChanged;
             cbFilterBy.SelectedIndex = 0;   // starts on "All" and loads the grid
+
+            //GridHelper.Style(dgvTransactionHistory);
+            GridHelper.HighlightOverdue(dgvTransactionHistory);
         }
 
         private void cbFilterBy_SelectedIndexChanged(object? sender, EventArgs e) {

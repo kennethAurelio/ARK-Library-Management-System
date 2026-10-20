@@ -1,6 +1,6 @@
 ﻿namespace LibrarySystem.Student {
-    public partial class RulesForm : Form {
-        public RulesForm() {
+    public partial class RulesAndConditionForm : Form {
+        public RulesAndConditionForm() {
             InitializeComponent();
             btnConfirm.Enabled = false;
             chkAgree.CheckedChanged += (s, e) => btnConfirm.Enabled = chkAgree.Checked; // Enable the confirm button only when the checkbox is checked

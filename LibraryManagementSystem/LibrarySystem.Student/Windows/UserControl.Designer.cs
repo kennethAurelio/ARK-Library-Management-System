@@ -24,64 +24,18 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControl));
-            lblStudentName = new Label();
-            lblStudentId = new Label();
-            lblGradeLevel = new Label();
-            lblStrandAndSection = new Label();
             btnViewHistory = new Button();
             btnChangePassword = new Button();
             btnLogout = new Button();
+            rtbUserInformation = new RichTextBox();
             SuspendLayout();
-            // 
-            // lblStudentName
-            // 
-            lblStudentName.AutoSize = true;
-            lblStudentName.BackColor = Color.Transparent;
-            lblStudentName.Font = new Font("Times New Roman", 10.8F);
-            lblStudentName.Location = new Point(12, 32);
-            lblStudentName.Name = "lblStudentName";
-            lblStudentName.Size = new Size(95, 17);
-            lblStudentName.TabIndex = 0;
-            lblStudentName.Text = "Student Name:";
-            // 
-            // lblStudentId
-            // 
-            lblStudentId.AutoSize = true;
-            lblStudentId.BackColor = Color.Transparent;
-            lblStudentId.Font = new Font("Times New Roman", 10.8F);
-            lblStudentId.Location = new Point(12, 56);
-            lblStudentId.Name = "lblStudentId";
-            lblStudentId.Size = new Size(108, 17);
-            lblStudentId.TabIndex = 1;
-            lblStudentId.Text = "Student/Login Id:";
-            // 
-            // lblGradeLevel
-            // 
-            lblGradeLevel.AutoSize = true;
-            lblGradeLevel.BackColor = Color.Transparent;
-            lblGradeLevel.Font = new Font("Times New Roman", 10.8F);
-            lblGradeLevel.Location = new Point(12, 101);
-            lblGradeLevel.Name = "lblGradeLevel";
-            lblGradeLevel.Size = new Size(84, 17);
-            lblGradeLevel.TabIndex = 3;
-            lblGradeLevel.Text = "Grade Level:";
-            // 
-            // lblStrandAndSection
-            // 
-            lblStrandAndSection.AutoSize = true;
-            lblStrandAndSection.BackColor = Color.Transparent;
-            lblStrandAndSection.Font = new Font("Times New Roman", 10.8F);
-            lblStrandAndSection.Location = new Point(12, 79);
-            lblStrandAndSection.Name = "lblStrandAndSection";
-            lblStrandAndSection.Size = new Size(121, 17);
-            lblStrandAndSection.TabIndex = 4;
-            lblStrandAndSection.Text = "Strand and Section:";
             // 
             // btnViewHistory
             // 
-            btnViewHistory.Location = new Point(31, 383);
+            btnViewHistory.Location = new Point(40, 485);
+            btnViewHistory.Margin = new Padding(4);
             btnViewHistory.Name = "btnViewHistory";
-            btnViewHistory.Size = new Size(115, 23);
+            btnViewHistory.Size = new Size(148, 29);
             btnViewHistory.TabIndex = 6;
             btnViewHistory.Text = "View History";
             btnViewHistory.UseVisualStyleBackColor = true;
@@ -89,9 +43,10 @@
             // 
             // btnChangePassword
             // 
-            btnChangePassword.Location = new Point(13, 412);
+            btnChangePassword.Location = new Point(17, 522);
+            btnChangePassword.Margin = new Padding(4);
             btnChangePassword.Name = "btnChangePassword";
-            btnChangePassword.Size = new Size(149, 23);
+            btnChangePassword.Size = new Size(192, 29);
             btnChangePassword.TabIndex = 7;
             btnChangePassword.Text = "Change Password";
             btnChangePassword.UseVisualStyleBackColor = true;
@@ -102,41 +57,46 @@
             btnLogout.Anchor = AnchorStyles.None;
             btnLogout.BackgroundImage = Properties.Resources.images;
             btnLogout.BackgroundImageLayout = ImageLayout.Stretch;
-            btnLogout.Location = new Point(241, 407);
+            btnLogout.Location = new Point(286, 517);
+            btnLogout.Margin = new Padding(4);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(36, 33);
+            btnLogout.Size = new Size(46, 42);
             btnLogout.TabIndex = 11;
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click_1;
             // 
+            // rtbUserInformation
+            // 
+            rtbUserInformation.BorderStyle = BorderStyle.None;
+            rtbUserInformation.Location = new Point(17, 27);
+            rtbUserInformation.Margin = new Padding(4);
+            rtbUserInformation.Name = "rtbUserInformation";
+            rtbUserInformation.Size = new Size(324, 286);
+            rtbUserInformation.TabIndex = 12;
+            rtbUserInformation.Text = "";
+            // 
             // UserControl
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(289, 452);
+            ClientSize = new Size(354, 575);
+            Controls.Add(rtbUserInformation);
             Controls.Add(btnLogout);
             Controls.Add(btnChangePassword);
             Controls.Add(btnViewHistory);
-            Controls.Add(lblStrandAndSection);
-            Controls.Add(lblGradeLevel);
-            Controls.Add(lblStudentId);
-            Controls.Add(lblStudentName);
+            Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4);
             Name = "UserControl";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Account";
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label lblStudentName;
-        private Label lblStudentId;
-        private Label lblGradeLevel;
-        private Label lblStrandAndSection;
         private Button btnViewHistory;
         private Button btnChangePassword;
         private Button btnLogout;
+        private RichTextBox rtbUserInformation;
     }
 }

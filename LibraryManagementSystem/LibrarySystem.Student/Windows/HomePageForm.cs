@@ -49,6 +49,8 @@ namespace LibrarySystem.Student
         }
 
         // Loads the logged-in student's pending and borrowed books into rtbUpdates.
+        private static readonly TimeSpan DueSoonWindow = TimeSpan.FromHours(24);   // same as HighlightOverdue
+
         private void LoadUpdates() {
             rtbUpdates.Clear();
 
@@ -63,12 +65,12 @@ namespace LibrarySystem.Student
             try {
                 using (var conn = DatabaseHelper.GetConnection())
                 using (var cmd = new MySqlCommand(@"
-            SELECT b.title, l.status, l.due_date
-            FROM book_loans l
-            JOIN books b ON b.book_id = l.book_id
-            WHERE l.user_id = @userId
-              AND l.status IN ('pending', 'borrowed')
-            ORDER BY l.due_date IS NULL, l.due_date ASC, l.loan_date DESC", conn)) {
+                    SELECT b.title, l.status, l.due_date
+                    FROM book_loans l
+                    JOIN books b ON b.book_id = l.book_id
+                    WHERE l.user_id = @userId
+                      AND l.status IN ('pending', 'borrowed')
+                    ORDER BY l.due_date IS NULL, l.due_date ASC, l.loan_date DESC", conn)) {
                     cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
                     conn.Open();
 
@@ -83,15 +85,15 @@ namespace LibrarySystem.Student
                                 if (reader.IsDBNull(reader.GetOrdinal("due_date"))) {
                                     AddUpdate($"• {title} - Borrowed (no due date set)", Color.Gray);
                                 } else {
-                                    DateTime due = reader.GetDateTime("due_date");
-                                    int daysLeft = (due.Date - DateTime.Today).Days;
+                                    DateTime due = reader.GetDateTime("due_date");   // keeps the time
+                                    TimeSpan left = due - DateTime.Now;
 
-                                    if (daysLeft < 0)
-                                        AddUpdate($"• {title} - OVERDUE by {-daysLeft} day(s)", Color.Red);
-                                    else if (daysLeft <= 1)
-                                        AddUpdate($"• {title} - Due {due:MMM dd} ({daysLeft} day left)", Color.OrangeRed);
+                                    if (left < TimeSpan.Zero)
+                                        AddUpdate($"• {title} - OVERDUE by {FormatSpan(-left)}", Color.Red);
+                                    else if (left <= DueSoonWindow)
+                                        AddUpdate($"• {title} - Due {due:MMM dd, h:mm tt} ({FormatSpan(left)} left)", Color.DarkOrange);
                                     else
-                                        AddUpdate($"• {title} - Due {due:MMM dd}", Color.Black);
+                                        AddUpdate($"• {title} - Due {due:MMM dd, h:mm tt}", Color.Black);
                                 }
                             }
                             count++;
@@ -107,6 +109,15 @@ namespace LibrarySystem.Student
 
             if (count == 0)
                 AddUpdate("No updates yet.", Color.Gray);
+        }
+
+        // Formats a TimeSpan into a human-readable string, showing days, hours, or minutes as appropriate.
+        private static string FormatSpan(TimeSpan t) {
+            if (t.TotalDays >= 1)
+                return $"{(int)t.TotalDays} day(s) {t.Hours} hr(s)";
+            if (t.TotalHours >= 1)
+                return $"{(int)t.TotalHours} hr(s) {t.Minutes} min(s)";
+            return $"{Math.Max(1, (int)t.TotalMinutes)} min(s)";
         }
 
         private void btnOpenLogin_Click(object sender, EventArgs e) {

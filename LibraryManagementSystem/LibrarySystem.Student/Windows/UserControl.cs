@@ -4,6 +4,11 @@ namespace LibrarySystem.Student {
     public partial class UserControl : Form {
         public UserControl() {
             InitializeComponent();
+
+            // Display-only box: no caret, no typing.
+            rtbUserInformation.ReadOnly = true;
+            rtbUserInformation.TabStop = false;
+
             LoadUserInfo();
         }
 
@@ -11,7 +16,7 @@ namespace LibrarySystem.Student {
             try {
                 using (var conn = DatabaseHelper.GetConnection())
                 using (var cmd = new MySql.Data.MySqlClient.MySqlCommand(
-                    @"SELECT 
+                    @"SELECT
                     a.user_id,
                     a.login_id,
                     CONCAT_WS(' ', a.first_name, NULLIF(a.middle_name, ''), a.last_name) AS full_name,
@@ -35,30 +40,49 @@ namespace LibrarySystem.Student {
                             var strandCode = SafeText(reader["strand_code"], "");
                             var section = SafeText(reader["section"], "");
 
-                            lblStudentName.Text = "Student Name: " + fullName;
-                            lblStudentId.Text = "Student/login Id: " + loginId;
+                            string strandSection;
                             if (string.IsNullOrEmpty(strandCode) && string.IsNullOrEmpty(section)) {
-                                lblStrandAndSection.Text = "Strand and Section: Unable to load";
+                                strandSection = "Unable to load";
                             } else {
-                                var strandSection = string.IsNullOrEmpty(strandCode) ? section : (string.IsNullOrEmpty(section) ? strandCode : $"{strandCode} - {section}");
-                                lblStrandAndSection.Text = "Strand and Section: " + strandSection;
+                                strandSection = string.IsNullOrEmpty(strandCode) ? section
+                                              : (string.IsNullOrEmpty(section) ? strandCode : $"{strandCode} - {section}");
                             }
-                            lblGradeLevel.Text = "Year Level: " + yearLevel;
+
+                            ShowUserInfo(fullName, loginId, strandSection, yearLevel);
                         } else {
-                            lblStudentName.Text = "Student Name: Unable to load";
-                            lblStudentId.Text = "Student/login Id: Unable to load";
-                            lblStrandAndSection.Text = "Strand and Section: Unable to load";
-                            lblGradeLevel.Text = "Year Level: Unable to load";
+                            ShowUserInfo("Unable to load", "Unable to load", "Unable to load", "Unable to load");
                         }
                     }
                 }
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lblStudentName.Text = "Student Name: Failed to load";
-                lblStudentId.Text = "Student/login Id: Failed to load";
-                lblStrandAndSection.Text = "Strand and Section: Failed to load";
-                lblGradeLevel.Text = "Year Level: Failed to load";
+                ShowUserInfo("Failed to load", "Failed to load", "Failed to load", "Failed to load");
             }
+        }
+
+        // Fills the RichTextBox: bold label, normal value, one line each.
+        private void ShowUserInfo(string name, string loginId, string strandSection, string yearLevel) {
+            rtbUserInformation.Clear();
+
+            var bold = new Font(rtbUserInformation.Font, FontStyle.Bold);
+            var regular = new Font(rtbUserInformation.Font, FontStyle.Regular);
+
+            AddLine("Student Name: ", name, bold, regular);
+            AddLine("Student/login Id: ", loginId, bold, regular);
+            AddLine("Strand and Section: ", strandSection, bold, regular);
+            AddLine("Year Level: ", yearLevel, bold, regular, lastLine: true);
+        }
+
+        private void AddLine(string label, string value, Font bold, Font regular, bool lastLine = false) {
+            AppendStyled(label, bold);
+            AppendStyled(lastLine ? value : value + Environment.NewLine, regular);
+        }
+
+        private void AppendStyled(string text, Font font) {
+            rtbUserInformation.SelectionStart = rtbUserInformation.TextLength;
+            rtbUserInformation.SelectionLength = 0;
+            rtbUserInformation.SelectionFont = font;
+            rtbUserInformation.SelectedText = text;
         }
 
         private string SafeText(object value, string fallback = "Unable to load") {

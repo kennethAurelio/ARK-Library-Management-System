@@ -142,6 +142,7 @@
             // 
             // rtbUpdates
             // 
+            rtbUpdates.AcceptsTab = true;
             rtbUpdates.BackColor = Color.White;
             rtbUpdates.BorderStyle = BorderStyle.None;
             rtbUpdates.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -151,7 +152,6 @@
             rtbUpdates.ScrollBars = RichTextBoxScrollBars.Vertical;
             rtbUpdates.Size = new Size(273, 442);
             rtbUpdates.TabIndex = 17;
-            rtbUpdates.Text = "Sample Text";
             // 
             // btnBrowseAllBooks
             // 

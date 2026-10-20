@@ -28,10 +28,6 @@ namespace LibrarySystem.Student.Properties {
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
-        }
-        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,37 +41,13 @@ namespace LibrarySystem.Student.Properties {
                 return resourceMan;
             }
         }
-        
-        /// <summary>
-        ///   Overrides the current thread's CurrentUICulture property for all
-        ///   resource lookups using this strongly typed resource class.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
-            get {
-                return resourceCulture;
-            }
-            set {
-                resourceCulture = value;
-            }
-        }
-        
+            
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ARK___Background {
             get {
                 object obj = ResourceManager.GetObject("ARK - Background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ARK___New_Background {
-            get {
-                object obj = ResourceManager.GetObject("ARK - New Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -96,56 +68,6 @@ namespace LibrarySystem.Student.Properties {
         internal static System.Drawing.Bitmap ARK___Sign_In {
             get {
                 object obj = ResourceManager.GetObject("ARK - Sign In", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap book1 {
-            get {
-                object obj = ResourceManager.GetObject("book1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap book2 {
-            get {
-                object obj = ResourceManager.GetObject("book2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap book3 {
-            get {
-                object obj = ResourceManager.GetObject("book3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap F3E021 {
-            get {
-                object obj = ResourceManager.GetObject("F3E021", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ikigai_7 {
-            get {
-                object obj = ResourceManager.GetObject("ikigai-7", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -176,26 +98,6 @@ namespace LibrarySystem.Student.Properties {
         internal static System.Drawing.Bitmap no_cover {
             get {
                 object obj = ResourceManager.GetObject("no_cover", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap no_cover1 {
-            get {
-                object obj = ResourceManager.GetObject("no_cover1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap pngtree_vector_search_icon_png_image_848679 {
-            get {
-                object obj = ResourceManager.GetObject("pngtree-vector-search-icon-png-image_848679", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

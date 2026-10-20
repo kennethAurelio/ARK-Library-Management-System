@@ -17,7 +17,7 @@ namespace LibrarySystem.Student {
         private void LoadBook() {
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(@"
-                SELECT b.title, b.author, b.synopsis, b.copies_available, b.book_status,
+                SELECT b.title, b.author, b.synopsis, b.year_published, b.publisher, b.copies_available, b.book_status,
                        g.genre AS genre_name, b.book_cover
                 FROM books b
                 LEFT JOIN genre g ON g.genre_id = b.genre
@@ -34,6 +34,8 @@ namespace LibrarySystem.Student {
                     txtBookCopies.Text = reader["copies_available"]?.ToString() ?? "Copies Unavailable";
                     lblBookStatus.Text = "Status: " + reader["book_status"]?.ToString() ?? "Status Unknown";
                     txtGenre.Text = reader["genre_name"]?.ToString() ?? "Genre Unknown";
+                    lblPublished.Text = "Published: " + reader["year_published"]?.ToString() ?? "Year Unknown";
+                    lblPublisher.Text = "Publisher: " + reader["publisher"]?.ToString() ?? "Publisher Unknown";
 
                     if (reader["book_cover"] != DBNull.Value) {
                         byte[] data = (byte[])reader["book_cover"];
@@ -65,7 +67,7 @@ namespace LibrarySystem.Student {
             }
 
             // 1. Rules and agreement
-            using (var rules = new RulesForm()) {
+            using (var rules = new RulesAndConditionForm()) {
                 if (rules.ShowDialog(this) != DialogResult.OK) return;
             }
 

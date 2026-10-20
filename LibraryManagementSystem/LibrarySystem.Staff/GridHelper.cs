@@ -68,8 +68,6 @@ namespace LibrarySystem.Staff {
                     dgv.Columns[name].FillWeight = 150;
         }
 
-        // Optional: call once on a grid that has a due_date column (Returns).
-        // Optional: call once on a grid that has a due_date column (Returns).
         // Red     = past the due date AND time
         // Orange  = still on time, but due within DueSoonWindow
         public static void HighlightOverdue(DataGridView dgv) {
