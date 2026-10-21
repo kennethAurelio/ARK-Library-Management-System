@@ -69,5 +69,36 @@ namespace LibrarySystem.Staff {
             LoadLoanRequests();    // refresh "Copies Left" in the requests grid
         }
 
+        private void btnMarkLostOrDamage_click(object sender, EventArgs e) {
+            var loan = GetSelectedLoan(dgvReturns);
+            if (loan == null) return;
+
+            if (MessageBox.Show($"Mark as lost/damaged?\n\nStudent: {loan.Student}\nBook: {loan.Title}",
+                    "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+
+            using (var conn = DatabaseHelper.GetConnection()) {
+                conn.Open();
+                try {
+                    // Only if it is still Borrowed. The copy does NOT go back on the shelf.
+                    using (var cmd = new MySqlCommand(
+                        "UPDATE book_loans SET status = 'Lost/Damage', lost_or_damaged_on = NOW() " +
+                        "WHERE loan_id = @loanId AND status = 'Borrowed'", conn)) {
+                        cmd.Parameters.AddWithValue("@loanId", loan.LoanId);
+
+                        if (cmd.ExecuteNonQuery() == 0) {
+                            MessageBox.Show("This loan was already processed.", "Already Processed",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                } catch (MySqlException ex) {
+                    MessageBox.Show("Could not mark the book as lost/damaged.\n" + ex.Message, "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            LoadReturnDesk();
+        }
+
     }
 }

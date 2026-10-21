@@ -31,7 +31,7 @@ namespace LibrarySystem.Student {
                     lblTitle.Text = reader["title"]?.ToString() ?? "Unknown Title";
                     txtAuthor.Text = reader["author"]?.ToString() ?? "Unknown Author";
                     txtSynopsis.Text = reader["synopsis"]?.ToString() ?? "Synopsis Missing";
-                    txtBookCopies.Text = reader["copies_available"]?.ToString() ?? "Copies Unavailable";
+                    lblAvailableCopies.Text = "Available Copies: " + reader["copies_available"]?.ToString() ?? "Copies Unavailable";
                     lblBookStatus.Text = "Status: " + reader["book_status"]?.ToString() ?? "Status Unknown";
                     txtGenre.Text = reader["genre_name"]?.ToString() ?? "Genre Unknown";
                     lblPublished.Text = "Published: " + reader["year_published"]?.ToString() ?? "Year Unknown";
@@ -60,14 +60,14 @@ namespace LibrarySystem.Student {
 
                 if (prompt != DialogResult.OK) return;
 
-                using (var signIn = new SignInForm()) {
+                using (var signIn = new LogInForm()) {
                     if (signIn.ShowDialog(this) != DialogResult.OK) return;
                 }
                 _userId = LoggedInUser.UserId;
             }
 
             // 1. Rules and agreement
-            using (var rules = new RulesAndConditionForm()) {
+            using (var rules = new RulesAndConditionsForm()) {
                 if (rules.ShowDialog(this) != DialogResult.OK) return;
             }
 

@@ -68,9 +68,9 @@ namespace LibrarySystem.Student {
             var regular = new Font(rtbUserInformation.Font, FontStyle.Regular);
 
             AddLine("Student Name: ", name, bold, regular);
-            AddLine("Student/login Id: ", loginId, bold, regular);
+            AddLine("Student ID: ", loginId, bold, regular);
             AddLine("Strand and Section: ", strandSection, bold, regular);
-            AddLine("Year Level: ", yearLevel, bold, regular, lastLine: true);
+            AddLine("Grade Level: ", yearLevel, bold, regular, lastLine: true);
         }
 
         private void AddLine(string label, string value, Font bold, Font regular, bool lastLine = false) {

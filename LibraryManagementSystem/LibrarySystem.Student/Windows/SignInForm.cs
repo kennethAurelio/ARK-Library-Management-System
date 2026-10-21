@@ -2,7 +2,7 @@
 
 namespace LibrarySystem.Student {
 
-    public partial class SignInForm : Form {
+    public partial class LogInForm : Form {
         private const string LoginIdPlaceholder = "Student/Login ID";
         private const string PasswordPlaceholder = "Password";
         private readonly Color PlaceholderColor = Color.Gray;
@@ -11,7 +11,7 @@ namespace LibrarySystem.Student {
         // Which placeholder belongs to which TextBox.
         private readonly Dictionary<TextBox, string> _placeholders = new();
 
-        public SignInForm() {
+        public LogInForm() {
             InitializeComponent();
 
             // Masking is handled by UseSystemPasswordChar now, so the old '*' must be off
@@ -33,7 +33,7 @@ namespace LibrarySystem.Student {
             chkShowPassword.Leave += FocusChanged;
 
             // Keeps focus off the first TextBox so its placeholder doesn't vanish when the form opens.
-            this.ActiveControl = btnSignIn;
+            this.ActiveControl = btnLogIn;
         }
 
         private readonly AuthService authentication = new AuthService();

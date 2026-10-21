@@ -32,7 +32,7 @@
             // 
             // btnViewHistory
             // 
-            btnViewHistory.Location = new Point(40, 485);
+            btnViewHistory.Location = new Point(17, 337);
             btnViewHistory.Margin = new Padding(4);
             btnViewHistory.Name = "btnViewHistory";
             btnViewHistory.Size = new Size(148, 29);
@@ -43,10 +43,10 @@
             // 
             // btnChangePassword
             // 
-            btnChangePassword.Location = new Point(17, 522);
+            btnChangePassword.Location = new Point(17, 374);
             btnChangePassword.Margin = new Padding(4);
             btnChangePassword.Name = "btnChangePassword";
-            btnChangePassword.Size = new Size(192, 29);
+            btnChangePassword.Size = new Size(148, 29);
             btnChangePassword.TabIndex = 7;
             btnChangePassword.Text = "Change Password";
             btnChangePassword.UseVisualStyleBackColor = true;
@@ -57,10 +57,10 @@
             btnLogout.Anchor = AnchorStyles.None;
             btnLogout.BackgroundImage = Properties.Resources.images;
             btnLogout.BackgroundImageLayout = ImageLayout.Stretch;
-            btnLogout.Location = new Point(286, 517);
+            btnLogout.Location = new Point(304, 371);
             btnLogout.Margin = new Padding(4);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(46, 42);
+            btnLogout.Size = new Size(37, 35);
             btnLogout.TabIndex = 11;
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click_1;
@@ -68,10 +68,10 @@
             // rtbUserInformation
             // 
             rtbUserInformation.BorderStyle = BorderStyle.None;
-            rtbUserInformation.Location = new Point(17, 27);
+            rtbUserInformation.Location = new Point(17, 85);
             rtbUserInformation.Margin = new Padding(4);
             rtbUserInformation.Name = "rtbUserInformation";
-            rtbUserInformation.Size = new Size(324, 286);
+            rtbUserInformation.Size = new Size(315, 124);
             rtbUserInformation.TabIndex = 12;
             rtbUserInformation.Text = "";
             // 
@@ -79,7 +79,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(354, 575);
+            ClientSize = new Size(354, 415);
             Controls.Add(rtbUserInformation);
             Controls.Add(btnLogout);
             Controls.Add(btnChangePassword);

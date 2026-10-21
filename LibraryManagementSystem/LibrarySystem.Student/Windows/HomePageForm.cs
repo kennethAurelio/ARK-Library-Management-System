@@ -59,18 +59,17 @@ namespace LibrarySystem.Student
                 return;
             }
 
-            // Pending loans have no due_date yet, so the ones with due dates (soonest first) come first.
-            int count = 0; // count of updates added
+            int count = 0;
 
             try {
                 using (var conn = DatabaseHelper.GetConnection())
                 using (var cmd = new MySqlCommand(@"
-                    SELECT b.title, l.status, l.due_date
-                    FROM book_loans l
-                    JOIN books b ON b.book_id = l.book_id
-                    WHERE l.user_id = @userId
-                      AND l.status IN ('pending', 'borrowed')
-                    ORDER BY l.due_date IS NULL, l.due_date ASC, l.loan_date DESC", conn)) {
+            SELECT b.title, l.status, l.due_date, l.date_requested
+            FROM book_loans l
+            JOIN books b ON b.book_id = l.book_id
+            WHERE l.user_id = @userId
+              AND l.status IN ('Pending', 'Borrowed')
+            ORDER BY l.due_date IS NULL, l.due_date ASC, l.date_requested DESC", conn)) {
                     cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
                     conn.Open();
 
@@ -80,12 +79,17 @@ namespace LibrarySystem.Student
                             string status = reader.GetString("status");
 
                             if (status.Equals("pending", StringComparison.OrdinalIgnoreCase)) {
-                                AddUpdate($"• {title} - Pending pickup", Color.DarkGoldenrod);
+                                if (reader.IsDBNull(reader.GetOrdinal("date_requested"))) {
+                                    AddUpdate($"• {title} - Pending pickup", Color.DarkGoldenrod);
+                                } else {
+                                    DateTime requested = reader.GetDateTime("date_requested");
+                                    AddUpdate($"• {title} - Pending pickup (requested {requested:MMM dd})", Color.DarkGoldenrod);
+                                }
                             } else { // borrowed
                                 if (reader.IsDBNull(reader.GetOrdinal("due_date"))) {
                                     AddUpdate($"• {title} - Borrowed (no due date set)", Color.Gray);
                                 } else {
-                                    DateTime due = reader.GetDateTime("due_date");   // keeps the time
+                                    DateTime due = reader.GetDateTime("due_date");
                                     TimeSpan left = due - DateTime.Now;
 
                                     if (left < TimeSpan.Zero)
@@ -100,7 +104,7 @@ namespace LibrarySystem.Student
                         }
                     }
                 }
-            } catch (MySqlException ex) { // database connection or query error
+            } catch (MySqlException ex) {
                 rtbUpdates.Clear();
                 AddUpdate("Unable to load updates.", Color.Gray);
                 System.Diagnostics.Debug.WriteLine(ex.Message);
@@ -121,7 +125,7 @@ namespace LibrarySystem.Student
         }
 
         private void btnOpenLogin_Click(object sender, EventArgs e) {
-            using (var signInForm = new SignInForm()) {
+            using (var signInForm = new LogInForm()) {
                 if (signInForm.ShowDialog(this) == DialogResult.OK) {
                     updateUIForLoginState();   // Refresh the updates panel after a successful login
                 }

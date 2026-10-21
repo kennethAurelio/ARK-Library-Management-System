@@ -44,6 +44,7 @@
             txtTitle = new TextBox();
             dgvCatalog = new DataGridView();
             tabReturnDesk = new TabPage();
+            btnMarkLostOrDamage = new Button();
             btnMarkReturned = new Button();
             dgvReturns = new DataGridView();
             tabLoanRequest = new TabPage();
@@ -84,6 +85,7 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             tlpReportsHeader = new TableLayoutPanel();
             lblReportsTitle = new Label();
+            button1 = new Button();
             tlpReportCards = new TableLayoutPanel();
             grpPending = new GroupBox();
             lblPendingCount = new Label();
@@ -93,7 +95,7 @@
             lblOverdueCount = new Label();
             grpReturned = new GroupBox();
             lblReturnedCount = new Label();
-            grpLost = new GroupBox();
+            grpLostOrDamage = new GroupBox();
             lblLostCount = new Label();
             tlpReportPanels = new TableLayoutPanel();
             grpLoansPerMonth = new GroupBox();
@@ -126,7 +128,7 @@
             grpBorrowed.SuspendLayout();
             grpOverdue.SuspendLayout();
             grpReturned.SuspendLayout();
-            grpLost.SuspendLayout();
+            grpLostOrDamage.SuspendLayout();
             tlpReportPanels.SuspendLayout();
             grpLoansPerMonth.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMonthlyLoans).BeginInit();
@@ -326,6 +328,7 @@
             tabReturnDesk.AccessibleName = "";
             tabReturnDesk.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
             tabReturnDesk.BackgroundImageLayout = ImageLayout.Stretch;
+            tabReturnDesk.Controls.Add(btnMarkLostOrDamage);
             tabReturnDesk.Controls.Add(btnMarkReturned);
             tabReturnDesk.Controls.Add(dgvReturns);
             tabReturnDesk.Location = new Point(4, 24);
@@ -335,6 +338,16 @@
             tabReturnDesk.TabIndex = 1;
             tabReturnDesk.Text = "Return Desk";
             tabReturnDesk.UseVisualStyleBackColor = true;
+            // 
+            // btnMarkLostOrDamage
+            // 
+            btnMarkLostOrDamage.Location = new Point(1232, 572);
+            btnMarkLostOrDamage.Name = "btnMarkLostOrDamage";
+            btnMarkLostOrDamage.Size = new Size(116, 23);
+            btnMarkLostOrDamage.TabIndex = 3;
+            btnMarkLostOrDamage.Text = "Mark Lost/Damage";
+            btnMarkLostOrDamage.UseVisualStyleBackColor = true;
+            btnMarkLostOrDamage.Click += btnMarkLostOrDamage_click;
             // 
             // btnMarkReturned
             // 
@@ -378,7 +391,7 @@
             btnRefreshData.BackgroundImageLayout = ImageLayout.Stretch;
             btnRefreshData.Location = new Point(1489, 6);
             btnRefreshData.Name = "btnRefreshData";
-            btnRefreshData.Size = new Size(35, 39);
+            btnRefreshData.Size = new Size(35, 28);
             btnRefreshData.TabIndex = 3;
             btnRefreshData.UseVisualStyleBackColor = true;
             btnRefreshData.Click += btnRefreshData_Click;
@@ -746,6 +759,7 @@
             tlpReportsHeader.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tlpReportsHeader.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
             tlpReportsHeader.Controls.Add(lblReportsTitle, 0, 0);
+            tlpReportsHeader.Controls.Add(button1, 1, 0);
             tlpReportsHeader.Dock = DockStyle.Fill;
             tlpReportsHeader.Location = new Point(3, 3);
             tlpReportsHeader.Name = "tlpReportsHeader";
@@ -766,6 +780,17 @@
             lblReportsTitle.Text = "Report";
             lblReportsTitle.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // button1
+            // 
+            button1.BackgroundImage = Properties.Resources.refresh;
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
+            button1.Location = new Point(1421, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(35, 28);
+            button1.TabIndex = 4;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += btnRefreshData_Click;
+            // 
             // tlpReportCards
             // 
             tlpReportCards.ColumnCount = 5;
@@ -778,7 +803,7 @@
             tlpReportCards.Controls.Add(grpBorrowed, 1, 0);
             tlpReportCards.Controls.Add(grpOverdue, 2, 0);
             tlpReportCards.Controls.Add(grpReturned, 3, 0);
-            tlpReportCards.Controls.Add(grpLost, 4, 0);
+            tlpReportCards.Controls.Add(grpLostOrDamage, 4, 0);
             tlpReportCards.Dock = DockStyle.Fill;
             tlpReportCards.Location = new Point(3, 43);
             tlpReportCards.Name = "tlpReportCards";
@@ -876,16 +901,16 @@
             lblReturnedCount.Text = "0";
             lblReturnedCount.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // grpLost
+            // grpLostOrDamage
             // 
-            grpLost.Controls.Add(lblLostCount);
-            grpLost.Dock = DockStyle.Fill;
-            grpLost.Location = new Point(1215, 3);
-            grpLost.Name = "grpLost";
-            grpLost.Size = new Size(300, 88);
-            grpLost.TabIndex = 4;
-            grpLost.TabStop = false;
-            grpLost.Text = "Lost";
+            grpLostOrDamage.Controls.Add(lblLostCount);
+            grpLostOrDamage.Dock = DockStyle.Fill;
+            grpLostOrDamage.Location = new Point(1215, 3);
+            grpLostOrDamage.Name = "grpLostOrDamage";
+            grpLostOrDamage.Size = new Size(300, 88);
+            grpLostOrDamage.TabIndex = 4;
+            grpLostOrDamage.TabStop = false;
+            grpLostOrDamage.Text = "Lost/Damage";
             // 
             // lblLostCount
             // 
@@ -979,7 +1004,7 @@
             grpLostBooks.Size = new Size(500, 215);
             grpLostBooks.TabIndex = 1;
             grpLostBooks.TabStop = false;
-            grpLostBooks.Text = "Lost Books";
+            grpLostBooks.Text = "Lost or Damage Books";
             // 
             // dgvLostBooks
             // 
@@ -1085,7 +1110,7 @@
             grpBorrowed.ResumeLayout(false);
             grpOverdue.ResumeLayout(false);
             grpReturned.ResumeLayout(false);
-            grpLost.ResumeLayout(false);
+            grpLostOrDamage.ResumeLayout(false);
             tlpReportPanels.ResumeLayout(false);
             grpLoansPerMonth.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvMonthlyLoans).EndInit();
@@ -1167,7 +1192,7 @@
         private GroupBox grpBorrowed;
         private GroupBox grpOverdue;
         private GroupBox grpReturned;
-        private GroupBox grpLost;
+        private GroupBox grpLostOrDamage;
         private Label lblPendingCount;
         private Label lblBorrowedCount;
         private Label lblOverdueCount;
@@ -1183,5 +1208,7 @@
         private DataGridView dgvGenreLoans;
         private DataGridView dgvTopBooks;
         private DataGridView dgvMonthlyLoans;
+        private Button button1;
+        private Button btnMarkLostOrDamage;
     }
 }

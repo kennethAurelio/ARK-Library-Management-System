@@ -6,11 +6,11 @@ namespace LibrarySystem.Staff {
     public partial class StaffDashboard {
 
         private const string LoanCountsQuery = @"
-            SELECT COALESCE(SUM(status = 'Pending'), 0) AS pending,
+            SELECT COALESCE(SUM(status = 'Pending'), 0)  AS pending,
                    COALESCE(SUM(status = 'Borrowed'), 0) AS borrowed,
-                   COALESCE(SUM(status = 'Borrowed' AND due_date < CURDATE()), 0) AS overdue,
+                   COALESCE(SUM(status = 'Borrowed' AND due_date < NOW()), 0) AS overdue,
                    COALESCE(SUM(status = 'Returned'), 0) AS returned,
-                   COALESCE(SUM(status = 'Lost'), 0) AS lost
+                   COALESCE(SUM(status = 'Lost/Damage'), 0) AS lost
             FROM book_loans";
 
         private const string OverdueQuery = @"
@@ -28,16 +28,17 @@ namespace LibrarySystem.Staff {
             ORDER BY l.due_date ASC";
 
         // lost_on uses return_date if "Mark Lost" stores it, otherwise falls back to the due date.
+        // LostBooksQuery
         private const string LostBooksQuery = @"
             SELECT a.login_id AS student_id,
                    CONCAT(a.first_name, ' ', COALESCE(a.middle_name, ''), ' ', a.last_name) AS student_name,
                    b.title,
-                   COALESCE(l.return_date, l.due_date) AS `Lost on`
+                   l.lost_or_damaged_on AS `Lost/Damaged on`
             FROM book_loans l
             JOIN accounts a ON a.user_id = l.user_id
             JOIN books b ON b.book_id = l.book_id
-            WHERE l.status = 'Lost'
-            ORDER BY COALESCE(l.return_date, l.due_date) DESC";
+            WHERE l.status = 'Lost/Damage'
+            ORDER BY l.lost_or_damaged_on DESC";
 
         private const string TopBooksQuery = @"
             SELECT b.title,
@@ -45,28 +46,29 @@ namespace LibrarySystem.Staff {
                    COUNT(*) AS `Times Borrowed`
             FROM book_loans l
             JOIN books b ON b.book_id = l.book_id
-            WHERE l.status IN ('Borrowed', 'Returned', 'Lost')
+            WHERE l.status IN ('Borrowed', 'Returned', 'Lost/Damage')
             GROUP BY b.book_id, b.title, b.author
             ORDER BY COUNT(*) DESC, b.title
             LIMIT 5";
+
         private const string LoansByGenreQuery = @"
             SELECT COALESCE(NULLIF(g.genre, ''), 'Unknown') AS genre,
                    COUNT(*) AS Loans
             FROM book_loans l
             JOIN books b ON b.book_id = l.book_id
             LEFT JOIN genre g ON b.genre = g.genre_id
-            WHERE l.status IN ('Borrowed', 'Returned', 'Lost')
+            WHERE l.status IN ('Borrowed', 'Returned', 'Lost/Damage')
             GROUP BY COALESCE(NULLIF(g.genre, ''), 'Unknown')
-            ORDER BY loans DESC";
+            ORDER BY Loans DESC";
 
         private const string LoansPerMonthQuery = @"
             SELECT DATE_FORMAT(l.loan_date, '%Y-%m') AS Month,
                    COUNT(*) AS Loans
             FROM book_loans l
             WHERE l.loan_date IS NOT NULL
-              AND l.status IN ('Borrowed', 'Returned', 'Lost')
+              AND l.status IN ('Borrowed', 'Returned', 'Lost/Damage')
             GROUP BY DATE_FORMAT(l.loan_date, '%Y-%m')
-            ORDER BY month DESC";
+            ORDER BY Month DESC";
 
         // Called once from the constructor, only when the logged-in user is an admin.
         private void InitReportsTab() {
@@ -100,8 +102,5 @@ namespace LibrarySystem.Staff {
             GridHelper.Bind(dgvMonthlyLoans, LoadTable(LoansPerMonthQuery));
         }
 
-        private void btnRefreshReports_Click(object sender, EventArgs e) {
-            LoadReports();
-        }
     }
 }

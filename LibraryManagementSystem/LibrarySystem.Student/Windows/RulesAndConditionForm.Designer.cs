@@ -1,5 +1,5 @@
 ﻿namespace LibrarySystem.Student {
-    partial class RulesAndConditionForm {
+    partial class RulesAndConditionsForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RulesAndConditionForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RulesAndConditionsForm));
             lblTitle = new Label();
             btnConfirm = new Button();
             chkAgree = new CheckBox();
@@ -41,7 +41,7 @@
             // 
             // btnConfirm
             // 
-            btnConfirm.Location = new Point(154, 509);
+            btnConfirm.Location = new Point(154, 532);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.Size = new Size(75, 23);
             btnConfirm.TabIndex = 1;
@@ -52,7 +52,7 @@
             // chkAgree
             // 
             chkAgree.AutoSize = true;
-            chkAgree.Location = new Point(34, 443);
+            chkAgree.Location = new Point(34, 466);
             chkAgree.Name = "chkAgree";
             chkAgree.Size = new Size(203, 19);
             chkAgree.TabIndex = 2;
@@ -68,10 +68,10 @@
             txtRules.Name = "txtRules";
             txtRules.ReadOnly = true;
             txtRules.ScrollBars = ScrollBars.Vertical;
-            txtRules.Size = new Size(313, 369);
+            txtRules.Size = new Size(313, 392);
             txtRules.TabIndex = 3;
             // 
-            // RulesAndConditionForm
+            // RulesAndConditionsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -81,9 +81,9 @@
             Controls.Add(btnConfirm);
             Controls.Add(lblTitle);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "RulesAndConditionForm";
+            Name = "RulesAndConditionsForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Rules and Condition";
+            Text = "Rules and Conditions";
             ResumeLayout(false);
             PerformLayout();
         }

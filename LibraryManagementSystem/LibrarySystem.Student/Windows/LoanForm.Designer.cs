@@ -31,8 +31,7 @@
             txtAuthor = new TextBox();
             btnLoanBook = new Button();
             lblAuthor = new Label();
-            label1 = new Label();
-            txtBookCopies = new TextBox();
+            lblAvailableCopies = new Label();
             lblBookStatus = new Label();
             lblGenre = new Label();
             txtGenre = new TextBox();
@@ -102,7 +101,7 @@
             // 
             // btnLoanBook
             // 
-            btnLoanBook.Location = new Point(147, 532);
+            btnLoanBook.Location = new Point(147, 585);
             btnLoanBook.Name = "btnLoanBook";
             btnLoanBook.Size = new Size(75, 23);
             btnLoanBook.TabIndex = 7;
@@ -121,36 +120,25 @@
             lblAuthor.TabIndex = 8;
             lblAuthor.Text = "Author";
             // 
-            // label1
+            // lblAvailableCopies
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(345, 417);
-            label1.Name = "label1";
-            label1.Size = new Size(91, 15);
-            label1.TabIndex = 9;
-            label1.Text = "Available Copies:";
-            // 
-            // txtBookCopies
-            // 
-            txtBookCopies.BackColor = Color.White;
-            txtBookCopies.BorderStyle = BorderStyle.None;
-            txtBookCopies.Location = new Point(442, 417);
-            txtBookCopies.Multiline = true;
-            txtBookCopies.Name = "txtBookCopies";
-            txtBookCopies.ReadOnly = true;
-            txtBookCopies.Size = new Size(52, 12);
-            txtBookCopies.TabIndex = 10;
+            lblAvailableCopies.AutoSize = true;
+            lblAvailableCopies.BackColor = Color.Transparent;
+            lblAvailableCopies.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAvailableCopies.Location = new Point(147, 485);
+            lblAvailableCopies.Name = "lblAvailableCopies";
+            lblAvailableCopies.Size = new Size(114, 19);
+            lblAvailableCopies.TabIndex = 9;
+            lblAvailableCopies.Text = "Available Copies:";
             // 
             // lblBookStatus
             // 
             lblBookStatus.AutoSize = true;
             lblBookStatus.BackColor = Color.Transparent;
-            lblBookStatus.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblBookStatus.Location = new Point(442, 361);
+            lblBookStatus.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblBookStatus.Location = new Point(147, 510);
             lblBookStatus.Name = "lblBookStatus";
-            lblBookStatus.Size = new Size(40, 15);
+            lblBookStatus.Size = new Size(49, 19);
             lblBookStatus.TabIndex = 12;
             lblBookStatus.Text = "Status:";
             // 
@@ -159,7 +147,7 @@
             lblGenre.AutoSize = true;
             lblGenre.BackColor = Color.Transparent;
             lblGenre.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGenre.Location = new Point(345, 360);
+            lblGenre.Location = new Point(344, 401);
             lblGenre.Name = "lblGenre";
             lblGenre.Size = new Size(39, 15);
             lblGenre.TabIndex = 13;
@@ -170,7 +158,7 @@
             txtGenre.BackColor = Color.White;
             txtGenre.BorderStyle = BorderStyle.None;
             txtGenre.Font = new Font("Times New Roman", 11F);
-            txtGenre.Location = new Point(344, 378);
+            txtGenre.Location = new Point(344, 419);
             txtGenre.Multiline = true;
             txtGenre.Name = "txtGenre";
             txtGenre.ReadOnly = true;
@@ -182,7 +170,7 @@
             lblPublished.AutoSize = true;
             lblPublished.BackColor = Color.Transparent;
             lblPublished.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPublished.Location = new Point(442, 342);
+            lblPublished.Location = new Point(344, 371);
             lblPublished.Name = "lblPublished";
             lblPublished.Size = new Size(57, 15);
             lblPublished.TabIndex = 15;
@@ -211,8 +199,7 @@
             Controls.Add(txtGenre);
             Controls.Add(lblGenre);
             Controls.Add(lblBookStatus);
-            Controls.Add(txtBookCopies);
-            Controls.Add(label1);
+            Controls.Add(lblAvailableCopies);
             Controls.Add(lblAuthor);
             Controls.Add(btnLoanBook);
             Controls.Add(txtAuthor);
@@ -238,8 +225,7 @@
         private TextBox txtAuthor;
         private Button btnLoanBook;
         private Label lblAuthor;
-        private Label label1;
-        private TextBox txtBookCopies;
+        private Label lblAvailableCopies;
         private Label lblBookStatus;
         private Label lblGenre;
         private TextBox txtGenre;

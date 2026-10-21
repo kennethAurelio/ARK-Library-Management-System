@@ -1,6 +1,6 @@
 ﻿namespace LibrarySystem.Student
 {
-    partial class SignInForm
+    partial class LogInForm
     {
         /// <summary>
         /// Required designer variable.
@@ -27,12 +27,12 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignInForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInForm));
             label1 = new Label();
             txtLogInField = new TextBox();
             txtPasswordField = new TextBox();
             chkShowPassword = new CheckBox();
-            btnSignIn = new Button();
+            btnLogIn = new Button();
             SuspendLayout();
             // 
             // label1
@@ -74,34 +74,34 @@
             chkShowPassword.UseVisualStyleBackColor = false;
             chkShowPassword.CheckedChanged += chkShowPassword_CheckedChanged;
             // 
-            // btnSignIn
+            // btnLogIn
             // 
-            btnSignIn.Location = new Point(712, 459);
-            btnSignIn.Margin = new Padding(3, 2, 3, 2);
-            btnSignIn.Name = "btnSignIn";
-            btnSignIn.Size = new Size(82, 22);
-            btnSignIn.TabIndex = 8;
-            btnSignIn.Text = "Sign in";
-            btnSignIn.UseVisualStyleBackColor = true;
-            btnSignIn.Click += btnSignIn_Click;
+            btnLogIn.Location = new Point(712, 459);
+            btnLogIn.Margin = new Padding(3, 2, 3, 2);
+            btnLogIn.Name = "btnLogIn";
+            btnLogIn.Size = new Size(82, 22);
+            btnLogIn.TabIndex = 8;
+            btnLogIn.Text = "Log In";
+            btnLogIn.UseVisualStyleBackColor = true;
+            btnLogIn.Click += btnSignIn_Click;
             // 
-            // SignInForm
+            // LogInForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.ARK___Sign_In;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(991, 588);
-            Controls.Add(btnSignIn);
+            Controls.Add(btnLogIn);
             Controls.Add(chkShowPassword);
             Controls.Add(txtPasswordField);
             Controls.Add(txtLogInField);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
-            Name = "SignInForm";
+            Name = "LogInForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Sign in";
+            Text = "Log In";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -112,6 +112,6 @@
         private TextBox txtLogInField;
         private TextBox txtPasswordField;
         private CheckBox chkShowPassword;
-        private Button btnSignIn;
+        private Button btnLogIn;
     }
 }

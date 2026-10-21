@@ -15,14 +15,13 @@ namespace LibrarySystem.Student {
             cbFilterBy.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFilterBy.Items.Clear();
             cbFilterBy.Items.AddRange(new object[] {
-                "All", "Currently Borrowing", "Pending", "Returned", "Lost", "Cancelled"
+            "All", "Currently Borrowing", "Pending", "Returned", "Lost/Damage", "Cancelled"
             });
 
-            // wire the event in code (the -= first prevents double subscription)
             cbFilterBy.SelectedIndexChanged -= cbFilterBy_SelectedIndexChanged;
             cbFilterBy.SelectedIndexChanged += cbFilterBy_SelectedIndexChanged;
 
-            cbFilterBy.SelectedIndex = 0;   // starts on "All" and loads the grid
+            cbFilterBy.SelectedIndex = 0;
         }
 
         private void cbFilterBy_SelectedIndexChanged(object? sender, EventArgs e) {
@@ -56,13 +55,14 @@ namespace LibrarySystem.Student {
 
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(@"
-                SELECT b.title, b.author, l.loan_date, l.due_date, l.return_date, l.status
+                SELECT b.title, b.author, l.date_requested, l.loan_date, l.due_date,
+                       l.return_date, l.lost_or_damaged_on, l.status
                 FROM book_loans l
                 JOIN books b ON b.book_id = l.book_id
                 WHERE l.user_id = @userId
                   AND (@status IS NULL OR l.status = @status)
-                ORDER BY FIELD(l.status, 'Borrowed', 'Pending', 'Returned', 'Lost', 'Cancelled'),
-                         l.loan_date DESC", conn)) {
+                ORDER BY FIELD(l.status, 'Borrowed', 'Pending', 'Returned', 'Lost/Damage', 'Cancelled'),
+                         l.date_requested DESC", conn)) {
                 cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
                 cmd.Parameters.AddWithValue("@status", status);
                 conn.Open();
@@ -74,20 +74,27 @@ namespace LibrarySystem.Student {
 
             dgvHistory.DataSource = historyTable;
 
-            // Headers and formats
+            // Headers
             dgvHistory.Columns["title"].HeaderText = "Title";
             dgvHistory.Columns["author"].HeaderText = "Author";
+            dgvHistory.Columns["date_requested"].HeaderText = "Requested On";
             dgvHistory.Columns["loan_date"].HeaderText = "Loan Date";
             dgvHistory.Columns["due_date"].HeaderText = "Due Date";
             dgvHistory.Columns["return_date"].HeaderText = "Return Date";
+            dgvHistory.Columns["lost_or_damaged_on"].HeaderText = "Lost/Damaged On";
             dgvHistory.Columns["status"].HeaderText = "Status";
 
-            dgvHistory.Columns["loan_date"].DefaultCellStyle.Format = "MMM dd, yyyy";
-            dgvHistory.Columns["due_date"].DefaultCellStyle.Format = "MMM dd, yyyy";
-            dgvHistory.Columns["due_date"].DefaultCellStyle.NullValue = "—";   // pending/cancelled have no due date
-            dgvHistory.Columns["return_date"].DefaultCellStyle.Format = "MMM dd, yyyy";
+            // Formats (dates that don't apply yet show a dash)
+            foreach (var name in new[] { "date_requested", "loan_date", "due_date", "return_date", "lost_or_damaged_on" }) {
+                dgvHistory.Columns[name].DefaultCellStyle.Format = "MMM dd, yyyy";
+                dgvHistory.Columns[name].DefaultCellStyle.NullValue = "—";
+            }
 
-            // Status is only useful when rows are mixed ("All")
+            // Show only the columns that make sense for the chosen filter
+            dgvHistory.Columns["loan_date"].Visible = choice != "Pending" && choice != "Cancelled";
+            dgvHistory.Columns["due_date"].Visible = choice != "Pending" && choice != "Cancelled";
+            dgvHistory.Columns["return_date"].Visible = choice == "All" || choice == "Returned";
+            dgvHistory.Columns["lost_or_damaged_on"].Visible = choice == "All" || choice == "Lost/Damage";
             dgvHistory.Columns["status"].Visible = (choice == "All");
         }
 
@@ -100,7 +107,7 @@ namespace LibrarySystem.Student {
                 case "pending": e.CellStyle.ForeColor = Color.DarkGoldenrod; break;
                 case "borrowed": e.CellStyle.ForeColor = Color.RoyalBlue; break;
                 case "returned": e.CellStyle.ForeColor = Color.Gray; break;
-                case "lost": e.CellStyle.ForeColor = Color.Red; break;
+                case "lost/damage": e.CellStyle.ForeColor = Color.Red; break;
                 case "cancelled": e.CellStyle.ForeColor = Color.DarkGray; break;
             }
         }

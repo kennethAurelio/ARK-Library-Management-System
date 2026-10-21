@@ -1,4 +1,6 @@
 ﻿using System.Data;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace LibrarySystem.Staff {
     public partial class StaffDashboard {
@@ -8,21 +10,23 @@ namespace LibrarySystem.Staff {
                    a.login_id AS student_id,
                    CONCAT(a.first_name, ' ', COALESCE(a.middle_name, ''), ' ', a.last_name) AS student_name,
                    b.title,
+                   l.date_requested,
                    l.loan_date,
                    l.due_date,
                    l.return_date,
+                   l.lost_or_damaged_on,
                    l.status
             FROM book_loans l
             JOIN accounts a ON a.user_id = l.user_id
             JOIN books b ON b.book_id = l.book_id
-            WHERE l.status IN ('Pending', 'Borrowed', 'Returned', 'Lost', 'Cancelled')
-            ORDER BY l.return_date DESC";
+            WHERE l.status IN ('Pending', 'Borrowed', 'Returned', 'Lost/Damage', 'Cancelled')
+            ORDER BY l.return_date DESC;";
 
         private void SetUpFilter() {
             cbFilterBy.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFilterBy.Items.Clear();
             cbFilterBy.Items.AddRange(new object[] {
-                "All", "Pending", "Currently Borrowing", "Returned", "Lost", "Cancelled"
+                "All", "Pending", "Currently Borrowing", "Returned", "Lost/Damage", "Cancelled"
             });
             // wire the event in code (the -= first prevents double subscription)
             cbFilterBy.SelectedIndexChanged -= cbFilterBy_SelectedIndexChanged;
@@ -45,7 +49,7 @@ namespace LibrarySystem.Staff {
                 "Pending" => "status = 'Pending'",
                 "Currently Borrowing" => "status = 'Borrowed'",
                 "Returned" => "status = 'Returned'",
-                "Lost" => "status = 'Lost'",
+                "Lost / Damage" => "status = 'Lost/Damage'",
                 "Cancelled" => "status = 'Cancelled'",
                 _ => string.Empty,    // "All" or nothing selected
             };

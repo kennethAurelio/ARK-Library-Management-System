@@ -35,7 +35,7 @@ namespace LibrarySystem.Staff {
             LoadLoanRequests();
             LoadReturnDesk();
             LoadCatalog();
-            LoadTransactionHistory();
+            SetUpFilter();
         }
 
         // Shared helpers
@@ -75,7 +75,8 @@ namespace LibrarySystem.Staff {
         private void btnRefreshData_Click(object sender, EventArgs e) {
             LoadReturnDesk();
             LoadLoanRequests();
-            LoadTransactionHistory();
+            SetUpFilter();
+            LoadReports();
         }
 
     }

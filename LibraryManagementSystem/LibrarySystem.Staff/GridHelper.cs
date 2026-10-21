@@ -16,9 +16,11 @@ namespace LibrarySystem.Staff {
             ["copies_available"] = "Copies Left",
             ["book_status"] = "Book Status",
             ["requested_on"] = "Requested On",
+            ["date_requested"] = "Requested On",
             ["loan_date"] = "Borrowed On",
             ["due_date"] = "Due Date",
             ["return_date"] = "Returned On",
+            ["lost_or_damaged_on"] = "Lost/Damaged On",
             ["status"] = "Status",
             ["login_id"] = "Login ID",
             ["first_name"] = "First Name",
@@ -26,7 +28,7 @@ namespace LibrarySystem.Staff {
             ["last_name"] = "Last Name",
             ["role"] = "Role",
             ["education_level"] = "Education Level",
-            ["grade_level"] = "Year Level",
+            ["grade_level"] = "Grade Level",
             ["strand_code"] = "Strand",
             ["section"] = "Section"
         };
@@ -108,7 +110,7 @@ namespace LibrarySystem.Staff {
                 case "pending": e.CellStyle.ForeColor = Color.DarkGoldenrod; break;
                 case "borrowed": e.CellStyle.ForeColor = Color.RoyalBlue; break;
                 case "returned": e.CellStyle.ForeColor = Color.Gray; break;
-                case "lost": e.CellStyle.ForeColor = Color.Red; break;
+                case "lost/damage": e.CellStyle.ForeColor = Color.Red; break;
                 case "cancelled": e.CellStyle.ForeColor = Color.DarkGray; break;
             }
         }

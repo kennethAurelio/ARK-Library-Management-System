@@ -77,7 +77,7 @@
             // cbFilterBy
             // 
             cbFilterBy.FormattingEnabled = true;
-            cbFilterBy.Location = new Point(294, 776);
+            cbFilterBy.Location = new Point(1336, 205);
             cbFilterBy.Name = "cbFilterBy";
             cbFilterBy.Size = new Size(121, 23);
             cbFilterBy.TabIndex = 2;
@@ -88,7 +88,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Times New Roman", 11F);
-            label2.Location = new Point(220, 782);
+            label2.Location = new Point(1262, 211);
             label2.Name = "label2";
             label2.Size = new Size(59, 17);
             label2.TabIndex = 3;
