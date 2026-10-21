@@ -25,6 +25,8 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffDashboard));
             tabManageBooks = new TabPage();
+            label4 = new Label();
+            picBookCover = new PictureBox();
             cbGenre = new ComboBox();
             lblSynopsis = new Label();
             lblCopies = new Label();
@@ -57,6 +59,7 @@
             cbFilterBy = new ComboBox();
             dgvTransactionHistory = new DataGridView();
             tabInformationAndAccountManagement = new TabPage();
+            btnArchiveAccount = new Button();
             lblSection = new Label();
             lblStrand = new Label();
             lblGradeLevel = new Label();
@@ -108,7 +111,11 @@
             dgvTopBooks = new DataGridView();
             grpLoansByGenre = new GroupBox();
             dgvGenreLoans = new DataGridView();
+            tabArchivedUsers = new TabPage();
+            dgvArchivedUsers = new DataGridView();
+            btnRestoreUser = new Button();
             tabManageBooks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picBookCover).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudCopies).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCatalog).BeginInit();
             tabReturnDesk.SuspendLayout();
@@ -140,12 +147,16 @@
             ((System.ComponentModel.ISupportInitialize)dgvTopBooks).BeginInit();
             grpLoansByGenre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvGenreLoans).BeginInit();
+            tabArchivedUsers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvArchivedUsers).BeginInit();
             SuspendLayout();
             // 
             // tabManageBooks
             // 
             tabManageBooks.AccessibleName = "";
             tabManageBooks.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
+            tabManageBooks.Controls.Add(label4);
+            tabManageBooks.Controls.Add(picBookCover);
             tabManageBooks.Controls.Add(cbGenre);
             tabManageBooks.Controls.Add(lblSynopsis);
             tabManageBooks.Controls.Add(lblCopies);
@@ -170,6 +181,27 @@
             tabManageBooks.TabIndex = 2;
             tabManageBooks.Text = "Manage Books";
             tabManageBooks.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(1376, 265);
+            label4.Name = "label4";
+            label4.Size = new Size(71, 15);
+            label4.TabIndex = 25;
+            label4.Text = "Book Cover:";
+            // 
+            // picBookCover
+            // 
+            picBookCover.BackColor = Color.White;
+            picBookCover.BorderStyle = BorderStyle.FixedSingle;
+            picBookCover.Location = new Point(1376, 283);
+            picBookCover.Name = "picBookCover";
+            picBookCover.Size = new Size(123, 182);
+            picBookCover.SizeMode = PictureBoxSizeMode.StretchImage;
+            picBookCover.TabIndex = 24;
+            picBookCover.TabStop = false;
+            picBookCover.Click += picBookCover_Click;
             // 
             // cbGenre
             // 
@@ -246,7 +278,7 @@
             // 
             txtSynopsis.Location = new Point(1061, 283);
             txtSynopsis.Name = "txtSynopsis";
-            txtSynopsis.Size = new Size(361, 242);
+            txtSynopsis.Size = new Size(295, 242);
             txtSynopsis.TabIndex = 15;
             txtSynopsis.Text = "";
             // 
@@ -341,21 +373,21 @@
             // 
             // btnMarkLostOrDamage
             // 
-            btnMarkLostOrDamage.Location = new Point(1232, 572);
+            btnMarkLostOrDamage.Location = new Point(1222, 572);
             btnMarkLostOrDamage.Name = "btnMarkLostOrDamage";
-            btnMarkLostOrDamage.Size = new Size(116, 23);
+            btnMarkLostOrDamage.Size = new Size(100, 24);
             btnMarkLostOrDamage.TabIndex = 3;
-            btnMarkLostOrDamage.Text = "Mark Lost/Damage";
+            btnMarkLostOrDamage.Text = "Lost/Damage";
             btnMarkLostOrDamage.UseVisualStyleBackColor = true;
             btnMarkLostOrDamage.Click += btnMarkLostOrDamage_click;
             // 
             // btnMarkReturned
             // 
-            btnMarkReturned.Location = new Point(1101, 572);
+            btnMarkReturned.Location = new Point(1089, 572);
             btnMarkReturned.Name = "btnMarkReturned";
-            btnMarkReturned.Size = new Size(107, 23);
+            btnMarkReturned.Size = new Size(100, 24);
             btnMarkReturned.TabIndex = 2;
-            btnMarkReturned.Text = "Mark Returned";
+            btnMarkReturned.Text = "Return";
             btnMarkReturned.UseVisualStyleBackColor = true;
             btnMarkReturned.Click += btnMarkReturned_Click;
             // 
@@ -404,7 +436,6 @@
             btnCancelRequest.TabIndex = 2;
             btnCancelRequest.Text = "Cancel Request";
             btnCancelRequest.UseVisualStyleBackColor = true;
-            btnCancelRequest.Click += btnCancelRequest_Click;
             // 
             // btnAcceptRequest
             // 
@@ -433,6 +464,7 @@
             tabControlStaff.Controls.Add(tabTransactionHistory);
             tabControlStaff.Controls.Add(tabInformationAndAccountManagement);
             tabControlStaff.Controls.Add(tabReports);
+            tabControlStaff.Controls.Add(tabArchivedUsers);
             tabControlStaff.Location = new Point(2, 184);
             tabControlStaff.Name = "tabControlStaff";
             tabControlStaff.SelectedIndex = 0;
@@ -473,6 +505,7 @@
             // tabInformationAndAccountManagement
             // 
             tabInformationAndAccountManagement.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
+            tabInformationAndAccountManagement.Controls.Add(btnArchiveAccount);
             tabInformationAndAccountManagement.Controls.Add(lblSection);
             tabInformationAndAccountManagement.Controls.Add(lblStrand);
             tabInformationAndAccountManagement.Controls.Add(lblGradeLevel);
@@ -504,6 +537,16 @@
             tabInformationAndAccountManagement.TabIndex = 4;
             tabInformationAndAccountManagement.Text = "Info and Account Management";
             tabInformationAndAccountManagement.UseVisualStyleBackColor = true;
+            // 
+            // btnArchiveAccount
+            // 
+            btnArchiveAccount.Location = new Point(1140, 526);
+            btnArchiveAccount.Name = "btnArchiveAccount";
+            btnArchiveAccount.Size = new Size(97, 23);
+            btnArchiveAccount.TabIndex = 54;
+            btnArchiveAccount.Text = "Archive User";
+            btnArchiveAccount.UseVisualStyleBackColor = true;
+            btnArchiveAccount.Click += btnArchiveAccount_Click;
             // 
             // lblSection
             // 
@@ -591,7 +634,7 @@
             // 
             // btnNewAccount
             // 
-            btnNewAccount.Location = new Point(1196, 572);
+            btnNewAccount.Location = new Point(1409, 526);
             btnNewAccount.Name = "btnNewAccount";
             btnNewAccount.Size = new Size(97, 23);
             btnNewAccount.TabIndex = 44;
@@ -679,7 +722,7 @@
             // 
             // btnSaveAccount
             // 
-            btnSaveAccount.Location = new Point(1060, 572);
+            btnSaveAccount.Location = new Point(1274, 526);
             btnSaveAccount.Name = "btnSaveAccount";
             btnSaveAccount.Size = new Size(97, 23);
             btnSaveAccount.TabIndex = 30;
@@ -959,6 +1002,7 @@
             dgvMonthlyLoans.AllowUserToAddRows = false;
             dgvMonthlyLoans.AllowUserToDeleteRows = false;
             dgvMonthlyLoans.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvMonthlyLoans.BackgroundColor = Color.LightYellow;
             dgvMonthlyLoans.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMonthlyLoans.Dock = DockStyle.Fill;
             dgvMonthlyLoans.Location = new Point(3, 19);
@@ -985,6 +1029,7 @@
             dgvOverdue.AllowUserToAddRows = false;
             dgvOverdue.AllowUserToDeleteRows = false;
             dgvOverdue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvOverdue.BackgroundColor = Color.LightYellow;
             dgvOverdue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvOverdue.Dock = DockStyle.Fill;
             dgvOverdue.Location = new Point(3, 19);
@@ -1011,6 +1056,7 @@
             dgvLostBooks.AllowUserToAddRows = false;
             dgvLostBooks.AllowUserToDeleteRows = false;
             dgvLostBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvLostBooks.BackgroundColor = Color.LightYellow;
             dgvLostBooks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvLostBooks.Dock = DockStyle.Fill;
             dgvLostBooks.Location = new Point(3, 19);
@@ -1037,6 +1083,7 @@
             dgvTopBooks.AllowUserToAddRows = false;
             dgvTopBooks.AllowUserToDeleteRows = false;
             dgvTopBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvTopBooks.BackgroundColor = Color.LightYellow;
             dgvTopBooks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvTopBooks.Dock = DockStyle.Fill;
             dgvTopBooks.Location = new Point(3, 19);
@@ -1063,6 +1110,7 @@
             dgvGenreLoans.AllowUserToAddRows = false;
             dgvGenreLoans.AllowUserToDeleteRows = false;
             dgvGenreLoans.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvGenreLoans.BackgroundColor = Color.LightYellow;
             dgvGenreLoans.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvGenreLoans.Dock = DockStyle.Fill;
             dgvGenreLoans.Location = new Point(3, 19);
@@ -1072,6 +1120,38 @@
             dgvGenreLoans.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
             dgvGenreLoans.Size = new Size(494, 194);
             dgvGenreLoans.TabIndex = 1;
+            // 
+            // tabArchivedUsers
+            // 
+            tabArchivedUsers.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
+            tabArchivedUsers.Controls.Add(btnRestoreUser);
+            tabArchivedUsers.Controls.Add(dgvArchivedUsers);
+            tabArchivedUsers.Location = new Point(4, 24);
+            tabArchivedUsers.Name = "tabArchivedUsers";
+            tabArchivedUsers.Padding = new Padding(3);
+            tabArchivedUsers.Size = new Size(1530, 595);
+            tabArchivedUsers.TabIndex = 6;
+            tabArchivedUsers.Text = "Archived Users";
+            tabArchivedUsers.UseVisualStyleBackColor = true;
+            // 
+            // dgvArchivedUsers
+            // 
+            dgvArchivedUsers.BackgroundColor = Color.LightYellow;
+            dgvArchivedUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvArchivedUsers.Location = new Point(79, 108);
+            dgvArchivedUsers.Name = "dgvArchivedUsers";
+            dgvArchivedUsers.Size = new Size(799, 381);
+            dgvArchivedUsers.TabIndex = 0;
+            // 
+            // btnRestoreUser
+            // 
+            btnRestoreUser.Location = new Point(919, 466);
+            btnRestoreUser.Name = "btnRestoreUser";
+            btnRestoreUser.Size = new Size(75, 23);
+            btnRestoreUser.TabIndex = 1;
+            btnRestoreUser.Text = "Restore";
+            btnRestoreUser.UseVisualStyleBackColor = true;
+            btnRestoreUser.Click += btnRestoreUser_Click;
             // 
             // StaffDashboard
             // 
@@ -1089,6 +1169,7 @@
             Load += btnRefreshData_Click;
             tabManageBooks.ResumeLayout(false);
             tabManageBooks.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picBookCover).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudCopies).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvCatalog).EndInit();
             tabReturnDesk.ResumeLayout(false);
@@ -1122,6 +1203,8 @@
             ((System.ComponentModel.ISupportInitialize)dgvTopBooks).EndInit();
             grpLoansByGenre.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvGenreLoans).EndInit();
+            tabArchivedUsers.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvArchivedUsers).EndInit();
             ResumeLayout(false);
         }
 
@@ -1210,5 +1293,11 @@
         private DataGridView dgvMonthlyLoans;
         private Button button1;
         private Button btnMarkLostOrDamage;
+        private Button btnArchiveAccount;
+        private PictureBox picBookCover;
+        private Label label4;
+        private TabPage tabArchivedUsers;
+        private DataGridView dgvArchivedUsers;
+        private Button btnRestoreUser;
     }
 }

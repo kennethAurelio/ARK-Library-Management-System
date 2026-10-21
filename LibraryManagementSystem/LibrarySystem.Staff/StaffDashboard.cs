@@ -1,6 +1,7 @@
 ﻿using LibrarySystem.Core;
 using MySql.Data.MySqlClient;
 using System.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace LibrarySystem.Staff {
     // MAIN FILE: constructor + helpers shared by every tab.
@@ -20,9 +21,11 @@ namespace LibrarySystem.Staff {
             if (IsAdmin) {
                 InitAccountsTab();
                 InitReportsTab();
+                InitArchivedTab();
             } else {
                 tabControlStaff.TabPages.Remove(tabInformationAndAccountManagement);
                 tabControlStaff.TabPages.Remove(tabReports);
+                tabControlStaff.TabPages.Remove(tabArchivedUsers);
             }
 
             GridHelper.Style(dgvLoanRequest);

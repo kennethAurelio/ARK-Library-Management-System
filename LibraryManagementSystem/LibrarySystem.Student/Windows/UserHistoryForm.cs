@@ -15,7 +15,7 @@ namespace LibrarySystem.Student {
             cbFilterBy.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFilterBy.Items.Clear();
             cbFilterBy.Items.AddRange(new object[] {
-            "All", "Currently Borrowing", "Pending", "Returned", "Lost/Damage", "Cancelled"
+                "All", "Currently Borrowing", "Pending", "Returned", "Lost/Damage", "Cancelled"
             });
 
             cbFilterBy.SelectedIndexChanged -= cbFilterBy_SelectedIndexChanged;
@@ -39,6 +39,9 @@ namespace LibrarySystem.Student {
             dgvHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dgvHistory.CellFormatting += dgvHistory_CellFormatting;
+            dgvHistory.SelectionChanged += dgvHistory_SelectionChanged;
+
+            btnCancel.Enabled = false;
         }
 
         private void LoadHistory() {
@@ -48,14 +51,14 @@ namespace LibrarySystem.Student {
             object status = choice switch {
                 "All" => DBNull.Value,
                 "Currently Borrowing" => "Borrowed",
-                _ => choice    // Pending, Returned, Lost, Cancelled
+                _ => choice    // Pending, Returned, Lost/Damage, Cancelled
             };
 
             var historyTable = new DataTable();
 
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(@"
-                SELECT b.title, b.author, l.date_requested, l.loan_date, l.due_date,
+                SELECT l.loan_id, b.title, b.author, l.date_requested, l.loan_date, l.due_date,
                        l.return_date, l.lost_or_damaged_on, l.status
                 FROM book_loans l
                 JOIN books b ON b.book_id = l.book_id
@@ -73,6 +76,9 @@ namespace LibrarySystem.Student {
             }
 
             dgvHistory.DataSource = historyTable;
+
+            // loan_id is only needed internally (for cancelling)
+            dgvHistory.Columns["loan_id"].Visible = false;
 
             // Headers
             dgvHistory.Columns["title"].HeaderText = "Title";
@@ -96,6 +102,8 @@ namespace LibrarySystem.Student {
             dgvHistory.Columns["return_date"].Visible = choice == "All" || choice == "Returned";
             dgvHistory.Columns["lost_or_damaged_on"].Visible = choice == "All" || choice == "Lost/Damage";
             dgvHistory.Columns["status"].Visible = (choice == "All");
+
+            UpdateCancelButton();
         }
 
         // Colors the Status text per value.
@@ -110,6 +118,75 @@ namespace LibrarySystem.Student {
                 case "lost/damage": e.CellStyle.ForeColor = Color.Red; break;
                 case "cancelled": e.CellStyle.ForeColor = Color.DarkGray; break;
             }
+        }
+
+        // Cancel logic
+
+        // Reads the selected row from the data source, so it works even when the Status column is hidden.
+        private (int LoanId, string Title, string Status)? GetSelectedHistoryRow() {
+            if (dgvHistory.CurrentRow?.DataBoundItem is not DataRowView row) return null;
+
+            return (Convert.ToInt32(row["loan_id"]),
+                    row["title"]?.ToString() ?? "this book",
+                    row["status"]?.ToString() ?? "");
+        }
+
+        private void dgvHistory_SelectionChanged(object? sender, EventArgs e) {
+            UpdateCancelButton();
+        }
+
+        // The Cancel button is only usable when a Pending row is selected.
+        private void UpdateCancelButton() {
+            var selected = GetSelectedHistoryRow();
+            btnCancel.Enabled = selected != null &&
+                                selected.Value.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e) {
+            var selected = GetSelectedHistoryRow();
+
+            if (selected == null) {
+                MessageBox.Show("Select a request first.", "No selection",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (!selected.Value.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase)) {
+                MessageBox.Show("Only pending requests can be cancelled.", "Can't cancel",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (MessageBox.Show($"Cancel your request for \"{selected.Value.Title}\"?", "Confirm",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+
+            try {
+                int affected;
+
+                using (var conn = DatabaseHelper.GetConnection())
+                using (var cmd = new MySqlCommand(
+                    "UPDATE book_loans SET status = 'Cancelled' " +
+                    "WHERE loan_id = @loanId AND user_id = @userId AND status = 'Pending'", conn)) {
+                    cmd.Parameters.AddWithValue("@loanId", selected.Value.LoanId);
+                    cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
+                    conn.Open();
+                    affected = cmd.ExecuteNonQuery();
+                }
+
+                if (affected == 0) {
+                    MessageBox.Show("This request was already processed by the librarian, so it can't be cancelled anymore.",
+                                    "Already processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } else {
+                    MessageBox.Show("Your request was cancelled.", "Cancelled",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            } catch (MySqlException ex) {
+                MessageBox.Show("Could not cancel the request.\n" + ex.Message, "Database Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            LoadHistory();   // refresh so the row moves to its new status
         }
 
     }

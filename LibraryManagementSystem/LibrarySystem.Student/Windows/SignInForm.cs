@@ -40,14 +40,14 @@ namespace LibrarySystem.Student {
 
         private void btnSignIn_Click(object sender, EventArgs e) {
             // ReadText returns "" when a box only shows its placeholder.
-            string memberId = ReadText(txtLogInField);
+            string loginId = ReadText(txtLogInField);
             string password = ReadText(txtPasswordField);
 
             // Validate that both fields are filled.
-            if (string.IsNullOrWhiteSpace(memberId) || string.IsNullOrWhiteSpace(password)) {
+            if (string.IsNullOrWhiteSpace(loginId) || string.IsNullOrWhiteSpace(password)) {
                 MessageBox.Show("Please enter both your Student ID and Password.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                if (string.IsNullOrWhiteSpace(memberId)) {
+                if (string.IsNullOrWhiteSpace(loginId)) {
                     txtLogInField.Focus();
                 } else {
                     txtPasswordField.Focus();
@@ -56,7 +56,7 @@ namespace LibrarySystem.Student {
                 return;
             }
 
-            CurrentUser user = authentication.ValidateLogin(memberId, password);
+            CurrentUser user = authentication.ValidateLogin(loginId, password);
 
             if (user != null) {
                 // Student app only: staff accounts must use the staff app

@@ -30,7 +30,8 @@ namespace LibrarySystem.Staff {
             ["education_level"] = "Education Level",
             ["grade_level"] = "Grade Level",
             ["strand_code"] = "Strand",
-            ["section"] = "Section"
+            ["section"] = "Section",
+            ["account_status"] = "Account Status"
         };
 
         // Columns the librarian never needs to see (but the code still reads).

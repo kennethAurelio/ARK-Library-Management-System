@@ -64,7 +64,7 @@ namespace LibrarySystem.Student
             try {
                 using (var conn = DatabaseHelper.GetConnection())
                 using (var cmd = new MySqlCommand(@"
-            SELECT b.title, l.status, l.due_date, l.date_requested
+            SELECT b.title, b.copies_available, l.status, l.due_date, l.date_requested
             FROM book_loans l
             JOIN books b ON b.book_id = l.book_id
             WHERE l.user_id = @userId
@@ -77,14 +77,19 @@ namespace LibrarySystem.Student
                         while (reader.Read()) {
                             string title = reader.GetString("title");
                             string status = reader.GetString("status");
+                            int copies = reader.IsDBNull(reader.GetOrdinal("copies_available"))
+                                ? 0
+                                : reader.GetInt32("copies_available");
 
                             if (status.Equals("pending", StringComparison.OrdinalIgnoreCase)) {
-                                if (reader.IsDBNull(reader.GetOrdinal("date_requested"))) {
-                                    AddUpdate($"• {title} - Pending pickup", Color.DarkGoldenrod);
-                                } else {
-                                    DateTime requested = reader.GetDateTime("date_requested");
-                                    AddUpdate($"• {title} - Pending pickup (requested {requested:MMM dd})", Color.DarkGoldenrod);
-                                }
+                                string requestedText = reader.IsDBNull(reader.GetOrdinal("date_requested"))
+                                    ? ""
+                                    : $" (requested {reader.GetDateTime("date_requested"):MMM dd})";
+
+                                if (copies <= 0)
+                                    AddUpdate($"• {title} - Currently unavailable{requestedText}", Color.Firebrick);
+                                else
+                                    AddUpdate($"• {title} - Pending pickup{requestedText}", Color.DarkGoldenrod);
                             } else { // borrowed
                                 if (reader.IsDBNull(reader.GetOrdinal("due_date"))) {
                                     AddUpdate($"• {title} - Borrowed (no due date set)", Color.Gray);

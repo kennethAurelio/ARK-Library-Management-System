@@ -30,6 +30,7 @@
             dgvHistory = new DataGridView();
             cbFilterBy = new ComboBox();
             label2 = new Label();
+            btnCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvHistory).BeginInit();
             SuspendLayout();
             // 
@@ -37,10 +38,10 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(134, 132);
+            label1.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(134, 135);
             label1.Name = "label1";
-            label1.Size = new Size(48, 15);
+            label1.Size = new Size(51, 16);
             label1.TabIndex = 3;
             label1.Text = "History:";
             // 
@@ -67,7 +68,7 @@
             dgvHistory.Margin = new Padding(3, 2, 3, 2);
             dgvHistory.Name = "dgvHistory";
             dgvHistory.RowHeadersWidth = 51;
-            dgvHistory.Size = new Size(594, 263);
+            dgvHistory.Size = new Size(749, 263);
             dgvHistory.TabIndex = 2;
             // 
             // cbFilterBy
@@ -89,6 +90,16 @@
             label2.TabIndex = 5;
             label2.Text = "Filter by:";
             // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(808, 455);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(75, 23);
+            btnCancel.TabIndex = 6;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
+            // 
             // UserHistoryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -96,6 +107,7 @@
             BackgroundImage = Properties.Resources.ARK___Background;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(991, 588);
+            Controls.Add(btnCancel);
             Controls.Add(label2);
             Controls.Add(cbFilterBy);
             Controls.Add(label1);
@@ -115,5 +127,6 @@
         private DataGridView dgvHistory;
         private ComboBox cbFilterBy;
         private Label label2;
+        private Button btnCancel;
     }
 }

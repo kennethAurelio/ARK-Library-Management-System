@@ -1,6 +1,6 @@
 ﻿using LibrarySystem.Core;
 using MySql.Data.MySqlClient;
-
+ 
 namespace LibrarySystem.Staff {
     // Information and Account Management (IAM) tab for admins.
     public partial class StaffDashboard {
@@ -18,13 +18,32 @@ namespace LibrarySystem.Staff {
                 ["HUMSS"] = 'E'    // A to E
             };
 
-        private const string AccountsQuery = @"
+        // Archived accounts are left out: they are shown in their own place.
+        private const string AccountsQuery = $@"
             SELECT a.user_id, a.login_id, a.first_name, a.middle_name, a.last_name, a.role,
                    si.education_level, si.grade_level, s.strand_code, si.section
             FROM accounts a
             LEFT JOIN student_infos si ON si.user_id = a.user_id
             LEFT JOIN shs_strands s ON s.strand_id = si.strand_id
+            WHERE COALESCE(a.account_status, 'active') <> '{ArchivedStatus}'
             ORDER BY FIELD(a.role, 'admin', 'librarian', 'student'), a.last_name, a.first_name";
+
+        // Archiving logic: a student can only be archived if they have no borrowed books and no unresolved penalties (lost books).
+        private const string ArchivedStatus = "archived";
+
+        // Locks the account row until the transaction ends (a new loan can't be inserted meanwhile,
+        // because book_loans has a foreign key to accounts).
+        private const string LockAccountQuery =
+            "SELECT role, account_status FROM accounts WHERE user_id = @userId FOR UPDATE";
+
+        // active loan  = book still Borrowed (includes overdue); a Pending request does NOT block
+        // penalty      = a loan marked Lost (no penalty table exists, so Lost = unresolved penalty)
+        // active loan = book still Borrowed (includes overdue); a Pending request does NOT block
+        private const string ArchiveBlockersQuery = @"
+            SELECT COUNT(*) AS active_loans
+            FROM book_loans
+            WHERE user_id = @userId
+              AND status = 'Borrowed'";
 
         // Called once from the constructor, only when the logged-in user is an admin.
         private void InitAccountsTab() {
@@ -103,6 +122,7 @@ namespace LibrarySystem.Staff {
 
             lblAccountMode.Text = $"Editing: {txtLoginId.Text}  (leave password blank to keep it)";
             btnSaveAccount.Text = "Save Changes";
+            btnArchiveAccount.Enabled = true;   // archived accounts never show in this grid
         }
 
         // Clears everything and switches to add mode.
@@ -123,6 +143,7 @@ namespace LibrarySystem.Staff {
 
             lblAccountMode.Text = $"Adding a new account (blank password = {DefaultPassword})";
             btnSaveAccount.Text = "Add Account";
+            btnArchiveAccount.Enabled = false;   // nothing selected, nothing to archive
             txtLoginId.Focus();
         }
 
@@ -262,6 +283,97 @@ namespace LibrarySystem.Staff {
 
             LoadAccounts();   // refresh the grid and reset the form to add mode
         }
-    }
 
+        private void btnArchiveAccount_Click(object sender, EventArgs e) {
+            if (!IsAdmin) return;   // SAFETY NET: only admins manage accounts
+
+            if (_editingUserId == null) {
+                MessageBox.Show("Select an account first.", "No Selection",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int userId = _editingUserId.Value;
+            string loginId = txtLoginId.Text.Trim();
+
+            if (userId == LoggedInUser.UserId) {
+                MessageBox.Show("You can't archive your own account.", "Not Allowed",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (MessageBox.Show($"Archive account {loginId}?\n\nThe account will be marked as archived (graduated).",
+                    "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+
+            try {
+                using (var conn = DatabaseHelper.GetConnection()) {
+                    conn.Open();
+
+                    // Check and update in one transaction. Leaving without Commit rolls it back.
+                    using (var tx = conn.BeginTransaction()) {
+                        string role;
+                        string currentStatus;
+
+                        // 1. Lock the account row and read its role/status
+                        using (var cmd = new MySqlCommand(LockAccountQuery, conn, tx)) {
+                            cmd.Parameters.AddWithValue("@userId", userId);
+                            using (var reader = cmd.ExecuteReader()) {
+                                if (!reader.Read()) {
+                                    MessageBox.Show("That account no longer exists.", "Not Found",
+                                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
+                                }
+                                role = reader["role"].ToString() ?? "";
+                                currentStatus = reader["account_status"]?.ToString() ?? "";
+                            }
+                        }
+
+                        if (currentStatus.Equals(ArchivedStatus, StringComparison.OrdinalIgnoreCase)) {
+                            MessageBox.Show("This account is already archived.", "Already Archived",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                        // 2. Students: block if they still have a borrowed book
+                        if (role.Equals("student", StringComparison.OrdinalIgnoreCase)) {
+                            int activeLoans;
+
+                            using (var cmd = new MySqlCommand(ArchiveBlockersQuery, conn, tx)) {
+                                cmd.Parameters.AddWithValue("@userId", userId);
+                                activeLoans = Convert.ToInt32(cmd.ExecuteScalar());
+                            }
+
+                            if (activeLoans > 0) {
+                                MessageBox.Show(
+                                    $"Can't archive {loginId} yet.\n\nThis student still has {activeLoans} borrowed book(s) not yet returned.\n\nResolve this first, then try again.",
+                                    "Archive Blocked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                        }
+
+                        // 3. All clear: archive it
+                        using (var cmd = new MySqlCommand(
+                            "UPDATE accounts SET account_status = @status WHERE user_id = @userId", conn, tx)) {
+                            cmd.Parameters.AddWithValue("@status", ArchivedStatus);
+                            cmd.Parameters.AddWithValue("@userId", userId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        tx.Commit();
+                    }
+                }
+            } catch (MySqlException ex) {
+                MessageBox.Show("Could not archive the account.\n" + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show($"{loginId} has been archived.", "Archived",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            LoadAccounts(); // refresh the grid and reset the form
+            LoadArchivedUsers(); // refresh the archived users tab if it exists
+        }
+
+    }
 }

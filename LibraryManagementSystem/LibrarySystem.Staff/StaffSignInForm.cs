@@ -88,13 +88,13 @@ namespace LibrarySystem.Staff {
         }
 
         private void btnSignIn_Click(object sender, EventArgs e) {
-            string memberId = ReadText(txtLogInField);
+            string loginId = ReadText(txtLogInField);
             string password = ReadText(txtPasswordField);
 
-            if (string.IsNullOrWhiteSpace(memberId) || string.IsNullOrWhiteSpace(password)) {
+            if (string.IsNullOrWhiteSpace(loginId) || string.IsNullOrWhiteSpace(password)) {
                 MessageBox.Show("Please enter both your Student ID and Password.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                if (string.IsNullOrWhiteSpace(memberId)) {
+                if (string.IsNullOrWhiteSpace(loginId)) {
                     txtLogInField.Focus();
                 } else {
                     txtPasswordField.Focus();
@@ -103,7 +103,7 @@ namespace LibrarySystem.Staff {
                 return;
             }
 
-            CurrentUser user = authentication.ValidateLogin(memberId, password);
+            CurrentUser user = authentication.ValidateLogin(loginId, password);
 
             if (user != null) {
                 bool isStaff = user.Role.Equals("librarian", StringComparison.OrdinalIgnoreCase)

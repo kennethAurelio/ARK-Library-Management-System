@@ -14,15 +14,20 @@ namespace LibrarySystem.Staff {
                    b.title,
                    b.author,
                    b.copies_available,
-                   l.loan_date AS requested_on
+                   l.date_requested AS requested_on
             FROM book_loans l
             JOIN accounts a ON a.user_id = l.user_id
             JOIN books b ON b.book_id = l.book_id
             WHERE l.status = 'Pending'
-            ORDER BY l.loan_date ASC";
+            ORDER BY l.date_requested ASC";
 
         private void LoadLoanRequests() {
             GridHelper.Bind(dgvLoanRequest, LoadTable(PendingRequestsQuery));
+
+            if (dgvLoanRequest.Columns.Contains("requested_on")) {
+                dgvLoanRequest.Columns["requested_on"].HeaderText = "Requested On";
+                dgvLoanRequest.Columns["requested_on"].DefaultCellStyle.Format = "MMM dd, yyyy h:mm tt";
+            }
         }
 
         private void btnAcceptRequest_Click(object sender, EventArgs e) {
