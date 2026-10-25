@@ -8,6 +8,16 @@ namespace LibrarySystem.Student
         private const string SearchPlaceholder = "Search by title or author...";
         private readonly Color PlaceholderColor = Color.Gray;
         private readonly Color NormalTextColor = Color.Black;
+        private bool _remindedThisSession = false;
+        private const string DueSoonQuery = @"
+            SELECT b.title,
+                    DATEDIFF(l.due_date, CURDATE()) AS days_left
+            FROM book_loans l
+            JOIN books b ON b.book_id = l.book_id
+            WHERE l.user_id = @userId
+              AND l.status = 'Borrowed'
+              AND DATEDIFF(DATE(l.due_date), CURDATE()) <= 1
+            ORDER BY l.due_date ASC";
 
         public HomePageForm() {
             InitializeComponent();
@@ -25,6 +35,34 @@ namespace LibrarySystem.Student
 
             LoadNewestBooks();
             rtbUpdates.TabStop = false;
+
+            this.Shown += (s, e) => BeginInvoke(new Action(TryShowDueReminders)); // Show due reminders when the form is first shown
+            this.Activated += (s, e) => BeginInvoke(new Action(TryShowDueReminders)); // Show due reminders when the form is activated
+        }
+
+        private void TryShowDueReminders() {
+            if (!LoggedInUser.isLoggedIn || _remindedThisSession) return;
+            _remindedThisSession = true;
+            
+            var sb = new System.Text.StringBuilder();
+
+            using (var conn = DatabaseHelper.GetConnection())
+            using (var cmd = new MySqlCommand(DueSoonQuery, conn)) {
+                cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
+                conn.Open();
+                using (var reader = cmd.ExecuteReader()) {
+                    while (reader.Read()) {
+                        int daysLeft = reader.GetInt32(reader.GetOrdinal("days_left"));
+                        string when = daysLeft < 0 ? $"OVERDUE by {-daysLeft} day(s)"
+                            : daysLeft == 0 ? "Due today"
+                            : "due tomorrow";
+                        sb.AppendLine($"• {reader.GetString(reader.GetOrdinal("title"))} - {when}");
+                    }
+                }
+            }
+            if (sb.Length > 0) {
+                MessageBox.Show(sb.ToString(), "Loan Reminders", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         // This method is called when the form is loaded. It checks the login state and updates the UI accordingly.

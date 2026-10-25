@@ -5,6 +5,7 @@ namespace LibrarySystem.Student {
     public partial class LoanForm : Form {
         private int _bookId;
         private int _userId;
+        private const int MaxActiveLoans = 3;
         public LoanForm(int bookId, int userId) {
             InitializeComponent();
             _bookId = bookId;
@@ -86,6 +87,21 @@ namespace LibrarySystem.Student {
                         if (Convert.ToInt32(check.ExecuteScalar()) > 0) {
                             MessageBox.Show("You already have an active request or loan for this book.",
                                 "Already Requested", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                    }
+
+                    // 2b. Check if the user has reached the maximum number of active loans.
+                    using (var limit = new MySqlCommand(
+                        "SELECT COUNT(*) FROM book_loans " +
+                        " WHERE user_id = @user AND status IN ('Pending', 'Borrowed')", conn)) {
+                        limit.Parameters.AddWithValue("@user", _userId);
+
+                        if (Convert.ToInt32(limit.ExecuteScalar()) > MaxActiveLoans) {
+                            MessageBox.Show($"You can only have {MaxActiveLoans} active loans at a time. " + 
+                                            "Please return a book first.",
+                                            "Limit Exceeded", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                             return;
                         }
                     }

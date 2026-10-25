@@ -19,7 +19,7 @@
     <Compile Update="Windows\SearchResultForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Windows\SignInForm.cs">
+    <Compile Update="Windows\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Windows\UserHistoryForm.cs">

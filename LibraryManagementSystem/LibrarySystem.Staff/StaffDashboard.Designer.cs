@@ -112,8 +112,8 @@
             grpLoansByGenre = new GroupBox();
             dgvGenreLoans = new DataGridView();
             tabArchivedUsers = new TabPage();
-            dgvArchivedUsers = new DataGridView();
             btnRestoreUser = new Button();
+            dgvArchivedUsers = new DataGridView();
             tabManageBooks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBookCover).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudCopies).BeginInit();
@@ -436,6 +436,7 @@
             btnCancelRequest.TabIndex = 2;
             btnCancelRequest.Text = "Cancel Request";
             btnCancelRequest.UseVisualStyleBackColor = true;
+            btnCancelRequest.Click += btnCancelRequest_Click;
             // 
             // btnAcceptRequest
             // 
@@ -1134,15 +1135,6 @@
             tabArchivedUsers.Text = "Archived Users";
             tabArchivedUsers.UseVisualStyleBackColor = true;
             // 
-            // dgvArchivedUsers
-            // 
-            dgvArchivedUsers.BackgroundColor = Color.LightYellow;
-            dgvArchivedUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvArchivedUsers.Location = new Point(79, 108);
-            dgvArchivedUsers.Name = "dgvArchivedUsers";
-            dgvArchivedUsers.Size = new Size(799, 381);
-            dgvArchivedUsers.TabIndex = 0;
-            // 
             // btnRestoreUser
             // 
             btnRestoreUser.Location = new Point(919, 466);
@@ -1152,6 +1144,15 @@
             btnRestoreUser.Text = "Restore";
             btnRestoreUser.UseVisualStyleBackColor = true;
             btnRestoreUser.Click += btnRestoreUser_Click;
+            // 
+            // dgvArchivedUsers
+            // 
+            dgvArchivedUsers.BackgroundColor = Color.LightYellow;
+            dgvArchivedUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvArchivedUsers.Location = new Point(79, 108);
+            dgvArchivedUsers.Name = "dgvArchivedUsers";
+            dgvArchivedUsers.Size = new Size(799, 381);
+            dgvArchivedUsers.TabIndex = 0;
             // 
             // StaffDashboard
             // 

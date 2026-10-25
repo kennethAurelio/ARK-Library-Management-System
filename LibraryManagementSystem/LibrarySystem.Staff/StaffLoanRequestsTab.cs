@@ -1,10 +1,12 @@
 ﻿using LibrarySystem.Core;
 using MySql.Data.MySqlClient;
+using System.Runtime.CompilerServices;
 
 namespace LibrarySystem.Staff {
     public partial class StaffDashboard {
 
         private const int LoanDays = 3;
+        private const int MaxActiveLoans = 3;
 
         private const string PendingRequestsQuery = @"
             SELECT l.loan_id,
@@ -42,7 +44,21 @@ namespace LibrarySystem.Staff {
                 conn.Open();
                 using (var tx = conn.BeginTransaction()) {
                     try {
-                        // 1. Take one copy, but only if one is left
+                        // 1. Check if the student has reached the maximum number of active loans
+                        using (var limit = new MySqlCommand(
+                            @"SELECT COUNT(*) FROM book_loans
+                              WHERE status = 'Borrowed' AND user_id = (SELECT user_id FROM book_loans WHERE loan_id = @loanId)", conn, tx)) {
+                            limit.Parameters.AddWithValue("@loanId", loan.LoanId);
+                            var activeLoans = Convert.ToInt32(limit.ExecuteScalar());
+                            if (activeLoans >= MaxActiveLoans) {
+                                tx.Rollback();
+                                MessageBox.Show("This student has reached the maximum number of active loans.",
+                                                "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                        }
+
+                        // 2. Take one copy, but only if one is left
                         using (var cmd = new MySqlCommand(
                             "UPDATE books SET copies_available = copies_available - 1 " +
                             "WHERE book_id = @bookId AND copies_available > 0", conn, tx)) {
@@ -56,7 +72,7 @@ namespace LibrarySystem.Staff {
                             }
                         }
 
-                        // 2. Mark the loan as Borrowed, but only if it is still Pending
+                        // 3. Mark the loan as Borrowed, but only if it is still Pending
                         using (var cmd = new MySqlCommand(
                             "UPDATE book_loans SET status = 'Borrowed', loan_date = NOW(), " +
                             "due_date = DATE_ADD(NOW(), INTERVAL @days DAY) " +

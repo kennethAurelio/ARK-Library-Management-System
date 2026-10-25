@@ -132,11 +132,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Times New Roman", 18F, FontStyle.Bold);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(1325, 164);
+            label1.Location = new Point(1299, 164);
             label1.Name = "label1";
-            label1.Size = new Size(100, 22);
+            label1.Size = new Size(124, 26);
             label1.TabIndex = 16;
             label1.Text = "Dashboard";
             // 
@@ -152,6 +152,7 @@
             rtbUpdates.ScrollBars = RichTextBoxScrollBars.Vertical;
             rtbUpdates.Size = new Size(273, 442);
             rtbUpdates.TabIndex = 17;
+            rtbUpdates.Text = "";
             // 
             // btnBrowseAllBooks
             // 
@@ -214,13 +215,7 @@
         #endregion
         private TextBox txtSearchBox;
         private Button btnSearch;
-        private Label lblText2;
         private Button btnOpenLogin;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox1;
-        private Panel Panel1;
-        private PictureBox pictureBox4;
         private PictureBox pbBookDisplay1;
         private PictureBox pbBookDisplay2;
         private PictureBox pbBookDisplay3;

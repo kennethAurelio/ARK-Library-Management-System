@@ -23,6 +23,7 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffSignInForm));
             txtLogInField = new TextBox();
             txtPasswordField = new TextBox();
             btnSignIn = new Button();
@@ -82,6 +83,7 @@
             Controls.Add(chkShowPassword);
             Controls.Add(txtPasswordField);
             Controls.Add(txtLogInField);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "StaffSignInForm";
             StartPosition = FormStartPosition.CenterScreen;

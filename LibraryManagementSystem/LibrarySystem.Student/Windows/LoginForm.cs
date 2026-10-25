@@ -38,7 +38,7 @@ namespace LibrarySystem.Student {
 
         private readonly AuthService authentication = new AuthService();
 
-        private void btnSignIn_Click(object sender, EventArgs e) {
+        private void btnSign_Click(object sender, EventArgs e) {
             // ReadText returns "" when a box only shows its placeholder.
             string loginId = ReadText(txtLogInField);
             string password = ReadText(txtPasswordField);

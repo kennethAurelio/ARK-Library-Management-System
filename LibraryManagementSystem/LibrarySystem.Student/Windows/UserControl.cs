@@ -2,6 +2,7 @@
 
 namespace LibrarySystem.Student {
     public partial class UserControl : Form {
+        private const int MaxLoans = 3;
         public UserControl() {
             InitializeComponent();
 
@@ -60,6 +61,18 @@ namespace LibrarySystem.Student {
             }
         }
 
+        private string LoadLoansLeft() {
+            using (var conn = DatabaseHelper.GetConnection())
+            using (var cmd = new MySql.Data.MySqlClient.MySqlCommand(
+                @"SELECT COUNT(*) AS current_loans
+                FROM book_loans
+                WHERE user_id = @userId AND status IN ('Borrowed')", conn)) {
+                cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
+                conn.Open();
+                return (MaxLoans - Convert.ToInt32(cmd.ExecuteScalar())).ToString();
+            }
+        }
+
         // Fills the RichTextBox: bold label, normal value, one line each.
         private void ShowUserInfo(string name, string loginId, string strandSection, string yearLevel) {
             rtbUserInformation.Clear();
@@ -71,6 +84,7 @@ namespace LibrarySystem.Student {
             AddLine("Student ID: ", loginId, bold, regular);
             AddLine("Strand and Section: ", strandSection, bold, regular);
             AddLine("Grade Level: ", yearLevel, bold, regular, lastLine: true);
+            AddLine("\nLoans Left: ", LoadLoansLeft().ToString(), bold, regular, lastLine: true);
         }
 
         private void AddLine(string label, string value, Font bold, Font regular, bool lastLine = false) {

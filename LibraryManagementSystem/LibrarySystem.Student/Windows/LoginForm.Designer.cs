@@ -83,7 +83,7 @@
             btnLogIn.TabIndex = 8;
             btnLogIn.Text = "Log In";
             btnLogIn.UseVisualStyleBackColor = true;
-            btnLogIn.Click += btnSignIn_Click;
+            btnLogIn.Click += btnSign_Click;
             // 
             // LogInForm
             // 
