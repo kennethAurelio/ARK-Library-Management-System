@@ -4,6 +4,10 @@ using System.Data;
 
 namespace LibrarySystem.Student {
     public partial class UserHistoryForm : Form {
+        // Use the SAME value/source as your StaffDashboard's LateFeePerDay.
+        // If it already lives in LibrarySystem.Core, delete this line and use that one.
+        private const decimal LateFeePerDay = 5m;
+
         public UserHistoryForm() {
             InitializeComponent();
             SetupGrid();
@@ -58,16 +62,28 @@ namespace LibrarySystem.Student {
 
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(@"
-                SELECT l.loan_id, b.title, b.author, l.date_requested, l.loan_date, l.due_date,
-                       l.return_date, l.lost_or_damaged_on, l.status
-                FROM book_loans l
-                JOIN books b ON b.book_id = l.book_id
-                WHERE l.user_id = @userId
-                  AND (@status IS NULL OR l.status = @status)
-                ORDER BY FIELD(l.status, 'Borrowed', 'Pending', 'Returned', 'Lost/Damage', 'Cancelled'),
-                         l.date_requested DESC", conn)) {
+                SELECT h.*, h.days_late * @lateFee AS late_fee
+                FROM (
+                    SELECT l.loan_id, b.title, b.author, l.date_requested, l.loan_date, l.due_date,
+                           l.return_date, l.lost_or_damaged_on, l.status,
+                           CASE
+                               WHEN l.due_date IS NULL THEN 0
+                               WHEN l.status = 'Borrowed'
+                                    THEN GREATEST(0, DATEDIFF(DATE(NOW()), DATE(l.due_date)))
+                               WHEN l.status = 'Returned' AND l.return_date IS NOT NULL
+                                    THEN GREATEST(0, DATEDIFF(DATE(l.return_date), DATE(l.due_date)))
+                               ELSE 0
+                           END AS days_late
+                    FROM book_loans l
+                    JOIN books b ON b.book_id = l.book_id
+                    WHERE l.user_id = @userId
+                      AND (@status IS NULL OR l.status = @status)
+                ) h
+                ORDER BY FIELD(h.status, 'Borrowed', 'Pending', 'Returned', 'Lost/Damage', 'Cancelled'),
+                         h.date_requested DESC", conn)) {
                 cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
                 cmd.Parameters.AddWithValue("@status", status);
+                cmd.Parameters.AddWithValue("@lateFee", LateFeePerDay);
                 conn.Open();
 
                 using (var reader = cmd.ExecuteReader()) {
@@ -89,12 +105,17 @@ namespace LibrarySystem.Student {
             dgvHistory.Columns["return_date"].HeaderText = "Return Date";
             dgvHistory.Columns["lost_or_damaged_on"].HeaderText = "Lost/Damaged On";
             dgvHistory.Columns["status"].HeaderText = "Status";
+            dgvHistory.Columns["days_late"].HeaderText = "Days Late";
+            dgvHistory.Columns["late_fee"].HeaderText = "Late Fee";
 
             // Formats (dates that don't apply yet show a dash)
             foreach (var name in new[] { "date_requested", "loan_date", "due_date", "return_date", "lost_or_damaged_on" }) {
                 dgvHistory.Columns[name].DefaultCellStyle.Format = "MMM dd, yyyy";
                 dgvHistory.Columns[name].DefaultCellStyle.NullValue = "—";
             }
+
+            dgvHistory.Columns["days_late"].DefaultCellStyle.Format = "N0";
+            dgvHistory.Columns["late_fee"].DefaultCellStyle.Format = "N0";
 
             // Show only the columns that make sense for the chosen filter
             dgvHistory.Columns["loan_date"].Visible = choice != "Pending" && choice != "Cancelled";
@@ -103,13 +124,28 @@ namespace LibrarySystem.Student {
             dgvHistory.Columns["lost_or_damaged_on"].Visible = choice == "All" || choice == "Lost/Damage";
             dgvHistory.Columns["status"].Visible = (choice == "All");
 
+            // Late info only matters for loans that were actually borrowed/returned
+            bool showLate = choice == "All" || choice == "Currently Borrowing" || choice == "Returned";
+            dgvHistory.Columns["days_late"].Visible = showLate;
+            dgvHistory.Columns["late_fee"].Visible = showLate;
+
             UpdateCancelButton();
         }
 
-        // Colors the Status text per value.
+        // Colors the Status text per value, and highlights overdue days/fees in red.
         private void dgvHistory_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e) {
-            if (e.RowIndex < 0 || e.Value == null) return;
-            if (dgvHistory.Columns[e.ColumnIndex].Name != "status") return;
+            if (e.RowIndex < 0 || e.Value == null || e.Value == DBNull.Value) return;
+
+            string colName = dgvHistory.Columns[e.ColumnIndex].Name;
+
+            if (colName == "days_late" || colName == "late_fee") {
+                if (Convert.ToDecimal(e.Value) > 0) {
+                    e.CellStyle.ForeColor = Color.Red;
+                }
+                return;
+            }
+
+            if (colName != "status") return;
 
             switch (e.Value.ToString()?.ToLower()) {
                 case "pending": e.CellStyle.ForeColor = Color.DarkGoldenrod; break;
@@ -120,8 +156,7 @@ namespace LibrarySystem.Student {
             }
         }
 
-        // Cancel logic
-
+        // Cancellation is only allowed for Pending requests, so we need to know the selected row's status and loan_id.
         // Reads the selected row from the data source, so it works even when the Status column is hidden.
         private (int LoanId, string Title, string Status)? GetSelectedHistoryRow() {
             if (dgvHistory.CurrentRow?.DataBoundItem is not DataRowView row) return null;

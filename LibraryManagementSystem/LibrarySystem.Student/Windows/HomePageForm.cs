@@ -8,6 +8,7 @@ namespace LibrarySystem.Student {
         private readonly Color PlaceholderColor = Color.Gray;
         private readonly Color NormalTextColor = Color.Black;
         private bool _remindedThisSession = false;
+
         // Borrowed loans that are overdue or due within the DueSoonWindow (same rule as the Updates box)
         private const string DueSoonQuery = @"
             SELECT b.title, l.due_date
@@ -18,6 +19,13 @@ namespace LibrarySystem.Student {
               AND l.due_date IS NOT NULL
               AND l.due_date <= @cutoff
             ORDER BY l.due_date ASC";
+
+        private static readonly TimeSpan DueSoonWindow = TimeSpan.FromHours(24);   // same as HighlightOverdue
+
+        // Each cancelled request is shown for 1 hour from when the student first sees it (kept in memory, no DB column)
+        private static readonly TimeSpan CancelledShowWindow = TimeSpan.FromHours(1);
+        private static int _cancelUserId = -1;                                        // whose timers these are
+        private static readonly Dictionary<int, DateTime> _cancelFirstSeen = new();   // loan_id -> when the student first saw it
 
         public HomePageForm() {
             InitializeComponent();
@@ -91,9 +99,8 @@ namespace LibrarySystem.Student {
             rtbUpdates.AppendText(text + Environment.NewLine + Environment.NewLine);
         }
 
-        // Loads the logged-in student's pending and borrowed books into rtbUpdates.
-        private static readonly TimeSpan DueSoonWindow = TimeSpan.FromHours(24);   // same as HighlightOverdue
-
+        // Loads the logged-in student's pending, borrowed, and cancelled books into rtbUpdates.
+        // Pending/Borrowed always show. Each Cancelled request shows for 1 hour after it is first seen.
         private void LoadUpdates() {
             rtbUpdates.Clear();
 
@@ -102,23 +109,32 @@ namespace LibrarySystem.Student {
                 return;
             }
 
+            // Different user than before: forget the previous user's cancel timers
+            if (_cancelUserId != LoggedInUser.UserId) {
+                _cancelUserId = LoggedInUser.UserId;
+                _cancelFirstSeen.Clear();
+            }
+
             int count = 0;
+            var newCancelled = new List<string>();   // cancelled requests seen for the first time (for the popup)
 
             try {
                 using (var conn = DatabaseHelper.GetConnection())
                 using (var cmd = new MySqlCommand(@"
-                    SELECT b.title, b.copies_available, b.is_active, l.status, l.due_date, l.date_requested
+                    SELECT l.loan_id, b.title, b.copies_available, b.is_active, l.status, l.due_date, l.date_requested
                     FROM book_loans l
                     JOIN books b ON b.book_id = l.book_id
                     WHERE l.user_id = @userId
-                      AND l.status IN ('Pending', 'Borrowed')
-                    ORDER BY l.due_date IS NULL, l.due_date ASC, l.date_requested DESC",
+                      AND (l.status IN ('Pending', 'Borrowed')
+                           OR (l.status = 'Cancelled' AND l.date_requested >= NOW() - INTERVAL 7 DAY))
+                    ORDER BY l.status = 'Cancelled', l.due_date IS NULL, l.due_date ASC, l.date_requested DESC",
                     conn)) {
                     cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
                     conn.Open();
 
                     using (var reader = cmd.ExecuteReader()) {
                         while (reader.Read()) {
+                            int loanId = reader.GetInt32("loan_id");
                             string title = reader.GetString("title");
                             string status = reader.GetString("status");
                             int copies = reader.IsDBNull(reader.GetOrdinal("copies_available"))
@@ -128,17 +144,31 @@ namespace LibrarySystem.Student {
                             // TINYINT(1) can come back as a bool, so use Convert instead of GetInt32
                             bool isActive = Convert.ToInt32(reader["is_active"]) == 1;
 
-                            if (status.Equals("pending", StringComparison.OrdinalIgnoreCase)) {
-                                string requestedText = reader.IsDBNull(reader.GetOrdinal("date_requested"))
-                                    ? ""
-                                    : $" (requested {reader.GetDateTime("date_requested"):MMM dd})";
+                            string requestedText = reader.IsDBNull(reader.GetOrdinal("date_requested"))
+                                ? ""
+                                : $" (requested {reader.GetDateTime("date_requested"):MMM dd})";
 
+                            if (status.Equals("pending", StringComparison.OrdinalIgnoreCase)) {
                                 if (!isActive)
                                     AddUpdate($"• {title} - No longer available (removed from the library){requestedText}", Color.Firebrick);
                                 else if (copies <= 0)
                                     AddUpdate($"• {title} - Currently unavailable{requestedText}", Color.Firebrick);
                                 else
                                     AddUpdate($"• {title} - Pending pickup{requestedText}", Color.DarkGoldenrod);
+
+                            } else if (status.Equals("cancelled", StringComparison.OrdinalIgnoreCase)) {
+                                // Each cancelled request gets its own 1-hour timer, started when first seen
+                                if (!_cancelFirstSeen.TryGetValue(loanId, out DateTime firstSeen)) {
+                                    firstSeen = DateTime.Now;
+                                    _cancelFirstSeen[loanId] = firstSeen;
+                                    newCancelled.Add($"• {title}");
+                                }
+
+                                if (DateTime.Now - firstSeen > CancelledShowWindow)
+                                    continue;   // its hour is over: don't show it and don't count it
+
+                                AddUpdate($"• {title} - Cancelled{requestedText}", Color.Firebrick);
+
                             } else { // borrowed
                                 if (reader.IsDBNull(reader.GetOrdinal("due_date"))) {
                                     AddUpdate($"• {title} - Borrowed (no due date set)", Color.Gray);
@@ -167,6 +197,15 @@ namespace LibrarySystem.Student {
 
             if (count == 0)
                 AddUpdate("No updates yet.", Color.Gray);
+
+            // Popup only for requests the student is seeing as cancelled for the first time.
+            // BeginInvoke so it doesn't fire inside the Activated handler.
+            if (newCancelled.Count > 0) {
+                string message = "These requests were cancelled:" + Environment.NewLine + Environment.NewLine
+                                 + string.Join(Environment.NewLine, newCancelled);
+                BeginInvoke(new Action(() =>
+                    MessageBox.Show(message, "Cancelled Requests", MessageBoxButtons.OK, MessageBoxIcon.Information)));
+            }
         }
 
         // Formats a TimeSpan into a human-readable string, showing days, hours, or minutes as appropriate.
@@ -181,7 +220,7 @@ namespace LibrarySystem.Student {
         private void btnOpenLogin_Click(object sender, EventArgs e) {
             using (var signInForm = new LogInForm()) {
                 if (signInForm.ShowDialog(this) == DialogResult.OK) {
-                    updateUIForLoginState();   // Refresh the updates panel after a successful login
+                    updateUIForLoginState();    // Refresh the updates panel after a successful login
                 }
             }
         }
@@ -256,7 +295,6 @@ namespace LibrarySystem.Student {
                 RestoreSearchPlaceholder();
             }
         }
-
 
         // This method loads the newest books from the database and displays their covers in the PictureBox controls.
         private void LoadNewestBooks() {

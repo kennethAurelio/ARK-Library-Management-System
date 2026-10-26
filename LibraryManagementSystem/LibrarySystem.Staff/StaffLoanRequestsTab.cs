@@ -21,7 +21,7 @@ namespace LibrarySystem.Staff {
             JOIN accounts a ON a.user_id = l.user_id
             JOIN books b ON b.book_id = l.book_id
             WHERE l.status = 'Pending'
-            ORDER BY l.date_requested ASC";
+            ORDER BY l.date_requested DESC";
 
         private void LoadLoanRequests() {
             GridHelper.Bind(dgvLoanRequest, LoadTable(PendingRequestsQuery));

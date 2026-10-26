@@ -3,8 +3,28 @@ using MySql.Data.MySqlClient;
 
 namespace LibrarySystem.Staff {
     public partial class StaffDashboard {
+        private static readonly string BorrowedLoansQuery = $@"
+            SELECT h.*, h.days_late * {LateFeePerDay} AS late_fee
+            FROM(
+                SELECT l.loan_id,
+                       l.book_id,
+                       a.login_id AS student_id,
+                       CONCAT(a.first_name, ' ', COALESCE(a.middle_name, ''), ' ', a.last_name) AS student_name,
+                       b.title,
+                       l.loan_date,
+                       l.due_date,
+                       CASE WHEN l.due_date IS NOT NULL
+                            THEN GREATEST(0, DATEDIFF(DATE(COALESCE(l.return_date, NOW())), DATE(l.due_date)))
+                            ELSE 0 END AS days_late
+                FROM book_loans l
+                JOIN accounts a ON a.user_id = l.user_id
+                JOIN books b ON b.book_id = l.book_id
+                WHERE l.status = 'Borrowed'
+            ) h 
+            ORDER BY h.due_date IS NULL, l.due_date ASC";
 
-        private const string BorrowedLoansQuery = @"
+        // Old query for reference, before adding the days_late and late_fee calculations
+        /*
             SELECT l.loan_id,
                    l.book_id,
                    a.login_id AS student_id,
@@ -16,10 +36,19 @@ namespace LibrarySystem.Staff {
             JOIN accounts a ON a.user_id = l.user_id
             JOIN books b ON b.book_id = l.book_id
             WHERE l.status = 'Borrowed'
-            ORDER BY l.due_date IS NULL, l.due_date ASC";
+            ORDER BY l.due_date IS NULL, l.due_date ASC"
+         */
 
         private void LoadReturnDesk() {
             GridHelper.Bind(dgvReturns, LoadTable(BorrowedLoansQuery));
+
+            if (dgvReturns.Columns.Contains("days_late"))
+                dgvReturns.Columns["days_late"].HeaderText = "Days Late";
+
+            if (dgvReturns.Columns.Contains("late_fee")) {
+                dgvReturns.Columns["late_fee"].HeaderText = "Late Fee";
+                dgvReturns.Columns["late_fee"].DefaultCellStyle.Format = "N0";
+            }
         }
 
         private void btnMarkReturned_Click(object sender, EventArgs e) {

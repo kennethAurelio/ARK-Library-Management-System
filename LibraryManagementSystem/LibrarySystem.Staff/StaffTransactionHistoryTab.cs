@@ -1,26 +1,32 @@
 ﻿using System.Data;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace LibrarySystem.Staff {
     public partial class StaffDashboard {
-        private const string HistoryQuery = @"
-            SELECT l.loan_id,
-                   l.book_id,
-                   a.login_id AS student_id,
-                   CONCAT(a.first_name, ' ', COALESCE(a.middle_name, ''), ' ', a.last_name) AS student_name,
-                   b.title,
-                   l.date_requested,
-                   l.loan_date,
-                   l.due_date,
-                   l.return_date,
-                   l.lost_or_damaged_on,
-                   l.status
-            FROM book_loans l
-            JOIN accounts a ON a.user_id = l.user_id
-            JOIN books b ON b.book_id = l.book_id
-            WHERE l.status IN ('Pending', 'Borrowed', 'Returned', 'Lost/Damage', 'Cancelled')
-            ORDER BY l.return_date DESC;";
+        private const int LateFeePerDay = 5;   // pesos per day late
+
+        private static readonly string HistoryQuery = $@"
+            SELECT h.*, h.days_late * {LateFeePerDay} AS late_fee
+            FROM (
+                SELECT l.loan_id,
+                       l.book_id,
+                       a.login_id AS student_id,
+                       CONCAT(a.first_name, ' ', COALESCE(a.middle_name, ''), ' ', a.last_name) AS student_name,
+                       b.title,
+                       l.date_requested,
+                       l.loan_date,
+                       l.due_date,
+                       l.return_date,
+                       l.lost_or_damaged_on,
+                       l.status,
+                       CASE WHEN l.status IN ('Borrowed', 'Returned') AND l.due_date IS NOT NULL
+                            THEN GREATEST(0, DATEDIFF(DATE(COALESCE(l.return_date, NOW())), DATE(l.due_date)))
+                            ELSE 0 END AS days_late
+                FROM book_loans l
+                JOIN accounts a ON a.user_id = l.user_id
+                JOIN books b ON b.book_id = l.book_id
+                WHERE l.status IN ('Pending', 'Borrowed', 'Returned', 'Lost/Damage', 'Cancelled')
+            ) h
+            ORDER BY h.return_date DESC";
 
         private void SetUpFilter() {
             cbFilterBy.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -57,6 +63,14 @@ namespace LibrarySystem.Staff {
             };
 
             GridHelper.Bind(dgvTransactionHistory, dt);
+
+            if (dgvTransactionHistory.Columns.Contains("days_late"))
+                dgvTransactionHistory.Columns["days_late"].HeaderText = "Days Late";
+
+            if (dgvTransactionHistory.Columns.Contains("late_fee")) {
+                dgvTransactionHistory.Columns["late_fee"].HeaderText = "Late Fee";
+                dgvTransactionHistory.Columns["late_fee"].DefaultCellStyle.Format = "N0";   // 15, 1,250, ...
+            }
 
             ApplyTransactionTextColor();
         }
