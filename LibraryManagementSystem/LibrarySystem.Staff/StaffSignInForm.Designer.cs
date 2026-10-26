@@ -32,7 +32,7 @@
             // 
             // txtLogInField
             // 
-            txtLogInField.Location = new Point(578, 242);
+            txtLogInField.Location = new Point(579, 286);
             txtLogInField.Margin = new Padding(3, 2, 3, 2);
             txtLogInField.Name = "txtLogInField";
             txtLogInField.Size = new Size(354, 23);
@@ -40,7 +40,7 @@
             // 
             // txtPasswordField
             // 
-            txtPasswordField.Location = new Point(578, 323);
+            txtPasswordField.Location = new Point(579, 367);
             txtPasswordField.Margin = new Padding(3, 2, 3, 2);
             txtPasswordField.Name = "txtPasswordField";
             txtPasswordField.PasswordChar = '*';
@@ -49,12 +49,12 @@
             // 
             // btnSignIn
             // 
-            btnSignIn.Location = new Point(704, 411);
+            btnSignIn.Location = new Point(704, 454);
             btnSignIn.Margin = new Padding(3, 2, 3, 2);
             btnSignIn.Name = "btnSignIn";
             btnSignIn.Size = new Size(82, 22);
             btnSignIn.TabIndex = 10;
-            btnSignIn.Text = "Sign in";
+            btnSignIn.Text = "Log in";
             btnSignIn.UseVisualStyleBackColor = true;
             btnSignIn.Click += btnSignIn_Click;
             // 
@@ -63,7 +63,7 @@
             chkShowPassword.AutoSize = true;
             chkShowPassword.BackColor = Color.Transparent;
             chkShowPassword.Font = new Font("Times New Roman", 9F);
-            chkShowPassword.Location = new Point(578, 362);
+            chkShowPassword.Location = new Point(578, 405);
             chkShowPassword.Margin = new Padding(3, 2, 3, 2);
             chkShowPassword.Name = "chkShowPassword";
             chkShowPassword.Size = new Size(103, 19);
@@ -76,7 +76,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.LibrarySystem_Staff___Background_Login__1556__980_;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(991, 588);
             Controls.Add(btnSignIn);

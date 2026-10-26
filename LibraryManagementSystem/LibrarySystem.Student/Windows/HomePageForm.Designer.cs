@@ -74,10 +74,10 @@
             btnOpenLogin.Anchor = AnchorStyles.None;
             btnOpenLogin.BackgroundImage = Properties.Resources.profile_icon_login_head_icon_vector;
             btnOpenLogin.BackgroundImageLayout = ImageLayout.Stretch;
-            btnOpenLogin.Location = new Point(1458, 35);
+            btnOpenLogin.Location = new Point(1482, 11);
             btnOpenLogin.Margin = new Padding(3, 2, 3, 2);
             btnOpenLogin.Name = "btnOpenLogin";
-            btnOpenLogin.Size = new Size(50, 50);
+            btnOpenLogin.Size = new Size(46, 33);
             btnOpenLogin.TabIndex = 7;
             btnOpenLogin.UseVisualStyleBackColor = true;
             btnOpenLogin.Click += btnOpenLogin_Click;
@@ -169,10 +169,10 @@
             btnOpenUserControl.Anchor = AnchorStyles.None;
             btnOpenUserControl.BackgroundImage = Properties.Resources.profile_icon_login_head_icon_vector;
             btnOpenUserControl.BackgroundImageLayout = ImageLayout.Stretch;
-            btnOpenUserControl.Location = new Point(1458, 35);
+            btnOpenUserControl.Location = new Point(1482, 11);
             btnOpenUserControl.Margin = new Padding(3, 2, 3, 2);
             btnOpenUserControl.Name = "btnOpenUserControl";
-            btnOpenUserControl.Size = new Size(50, 50);
+            btnOpenUserControl.Size = new Size(46, 33);
             btnOpenUserControl.TabIndex = 19;
             btnOpenUserControl.UseVisualStyleBackColor = true;
             btnOpenUserControl.Visible = false;

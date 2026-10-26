@@ -34,27 +34,31 @@ namespace LibrarySystem.Staff {
             cbFilterBy.SelectedIndex = 0;   // starts on "All" and loads the grid
 
             //GridHelper.Style(dgvTransactionHistory);
-            GridHelper.HighlightOverdue(dgvTransactionHistory);
+            //GridHelper.HighlightOverdue(dgvTransactionHistory);
         }
 
         private void cbFilterBy_SelectedIndexChanged(object? sender, EventArgs e) {
             LoadTransactionHistory();
         }
 
+
         private void LoadTransactionHistory() {
             DataTable dt = LoadTable(HistoryQuery);
 
             string? choice = cbFilterBy.SelectedItem?.ToString();
+
             dt.DefaultView.RowFilter = choice switch {
                 "Pending" => "status = 'Pending'",
                 "Currently Borrowing" => "status = 'Borrowed'",
                 "Returned" => "status = 'Returned'",
-                "Lost / Damage" => "status = 'Lost/Damage'",
+                "Lost/Damage" => "status = 'Lost/Damage'",
                 "Cancelled" => "status = 'Cancelled'",
-                _ => string.Empty,    // "All" or nothing selected
+                _ => string.Empty
             };
 
             GridHelper.Bind(dgvTransactionHistory, dt);
+
+            ApplyTransactionTextColor();
         }
 
     }

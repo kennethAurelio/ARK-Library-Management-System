@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffDashboard));
             tabManageBooks = new TabPage();
+            btnRemoveBook = new Button();
             label4 = new Label();
             picBookCover = new PictureBox();
             cbGenre = new ComboBox();
@@ -114,6 +115,9 @@
             tabArchivedUsers = new TabPage();
             btnRestoreUser = new Button();
             dgvArchivedUsers = new DataGridView();
+            tabArchivedBooks = new TabPage();
+            btnRestoreBook = new Button();
+            dgvArchivedBooks = new DataGridView();
             tabManageBooks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBookCover).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudCopies).BeginInit();
@@ -149,12 +153,15 @@
             ((System.ComponentModel.ISupportInitialize)dgvGenreLoans).BeginInit();
             tabArchivedUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvArchivedUsers).BeginInit();
+            tabArchivedBooks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvArchivedBooks).BeginInit();
             SuspendLayout();
             // 
             // tabManageBooks
             // 
             tabManageBooks.AccessibleName = "";
             tabManageBooks.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
+            tabManageBooks.Controls.Add(btnRemoveBook);
             tabManageBooks.Controls.Add(label4);
             tabManageBooks.Controls.Add(picBookCover);
             tabManageBooks.Controls.Add(cbGenre);
@@ -181,6 +188,16 @@
             tabManageBooks.TabIndex = 2;
             tabManageBooks.Text = "Manage Books";
             tabManageBooks.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveBook
+            // 
+            btnRemoveBook.Location = new Point(1413, 540);
+            btnRemoveBook.Name = "btnRemoveBook";
+            btnRemoveBook.Size = new Size(97, 23);
+            btnRemoveBook.TabIndex = 26;
+            btnRemoveBook.Text = "Remove Book";
+            btnRemoveBook.UseVisualStyleBackColor = true;
+            btnRemoveBook.Click += btnRemoveBook_Click;
             // 
             // label4
             // 
@@ -466,6 +483,7 @@
             tabControlStaff.Controls.Add(tabInformationAndAccountManagement);
             tabControlStaff.Controls.Add(tabReports);
             tabControlStaff.Controls.Add(tabArchivedUsers);
+            tabControlStaff.Controls.Add(tabArchivedBooks);
             tabControlStaff.Location = new Point(2, 184);
             tabControlStaff.Name = "tabControlStaff";
             tabControlStaff.SelectedIndex = 0;
@@ -960,6 +978,7 @@
             // 
             lblLostCount.Dock = DockStyle.Fill;
             lblLostCount.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold);
+            lblLostCount.ForeColor = Color.Firebrick;
             lblLostCount.Location = new Point(3, 19);
             lblLostCount.Name = "lblLostCount";
             lblLostCount.Size = new Size(294, 66);
@@ -1154,6 +1173,38 @@
             dgvArchivedUsers.Size = new Size(799, 381);
             dgvArchivedUsers.TabIndex = 0;
             // 
+            // tabArchivedBooks
+            // 
+            tabArchivedBooks.BackgroundImage = Properties.Resources.LibrarySystem_Staff___LibrarianTabControl__1556__980_;
+            tabArchivedBooks.Controls.Add(btnRestoreBook);
+            tabArchivedBooks.Controls.Add(dgvArchivedBooks);
+            tabArchivedBooks.Location = new Point(4, 24);
+            tabArchivedBooks.Name = "tabArchivedBooks";
+            tabArchivedBooks.Padding = new Padding(3);
+            tabArchivedBooks.Size = new Size(1530, 595);
+            tabArchivedBooks.TabIndex = 7;
+            tabArchivedBooks.Text = "Archived Books";
+            tabArchivedBooks.UseVisualStyleBackColor = true;
+            // 
+            // btnRestoreBook
+            // 
+            btnRestoreBook.Location = new Point(919, 466);
+            btnRestoreBook.Name = "btnRestoreBook";
+            btnRestoreBook.Size = new Size(75, 23);
+            btnRestoreBook.TabIndex = 2;
+            btnRestoreBook.Text = "Restore";
+            btnRestoreBook.UseVisualStyleBackColor = true;
+            btnRestoreBook.Click += btnRestoreBook_Click;
+            // 
+            // dgvArchivedBooks
+            // 
+            dgvArchivedBooks.BackgroundColor = Color.LightYellow;
+            dgvArchivedBooks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvArchivedBooks.Location = new Point(79, 108);
+            dgvArchivedBooks.Name = "dgvArchivedBooks";
+            dgvArchivedBooks.Size = new Size(799, 381);
+            dgvArchivedBooks.TabIndex = 1;
+            // 
             // StaffDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1206,6 +1257,8 @@
             ((System.ComponentModel.ISupportInitialize)dgvGenreLoans).EndInit();
             tabArchivedUsers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvArchivedUsers).EndInit();
+            tabArchivedBooks.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvArchivedBooks).EndInit();
             ResumeLayout(false);
         }
 
@@ -1300,5 +1353,9 @@
         private TabPage tabArchivedUsers;
         private DataGridView dgvArchivedUsers;
         private Button btnRestoreUser;
+        private TabPage tabArchivedBooks;
+        private DataGridView dgvArchivedBooks;
+        private Button btnRemoveBook;
+        private Button btnRestoreBook;
     }
 }

@@ -2,21 +2,21 @@ using LibrarySystem.Core;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace LibrarySystem.Student
-{
+namespace LibrarySystem.Student {
     public partial class HomePageForm : Form {
         private const string SearchPlaceholder = "Search by title or author...";
         private readonly Color PlaceholderColor = Color.Gray;
         private readonly Color NormalTextColor = Color.Black;
         private bool _remindedThisSession = false;
+        // Borrowed loans that are overdue or due within the DueSoonWindow (same rule as the Updates box)
         private const string DueSoonQuery = @"
-            SELECT b.title,
-                    DATEDIFF(l.due_date, CURDATE()) AS days_left
+            SELECT b.title, l.due_date
             FROM book_loans l
             JOIN books b ON b.book_id = l.book_id
             WHERE l.user_id = @userId
               AND l.status = 'Borrowed'
-              AND DATEDIFF(DATE(l.due_date), CURDATE()) <= 1
+              AND l.due_date IS NOT NULL
+              AND l.due_date <= @cutoff
             ORDER BY l.due_date ASC";
 
         public HomePageForm() {
@@ -43,26 +43,31 @@ namespace LibrarySystem.Student
         private void TryShowDueReminders() {
             if (!LoggedInUser.isLoggedIn || _remindedThisSession) return;
             _remindedThisSession = true;
-            
+
             var sb = new System.Text.StringBuilder();
 
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(DueSoonQuery, conn)) {
                 cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
+                cmd.Parameters.AddWithValue("@cutoff", DateTime.Now + DueSoonWindow);   // same clock as the dashboard
                 conn.Open();
+
                 using (var reader = cmd.ExecuteReader()) {
                     while (reader.Read()) {
-                        int daysLeft = reader.GetInt32(reader.GetOrdinal("days_left"));
-                        string when = daysLeft < 0 ? $"OVERDUE by {-daysLeft} day(s)"
-                            : daysLeft == 0 ? "Due today"
-                            : "due tomorrow";
-                        sb.AppendLine($"• {reader.GetString(reader.GetOrdinal("title"))} - {when}");
+                        string title = reader.GetString("title");
+                        DateTime due = reader.GetDateTime("due_date");
+                        TimeSpan left = due - DateTime.Now;
+
+                        if (left < TimeSpan.Zero)
+                            sb.AppendLine($"• {title} - OVERDUE by {FormatSpan(-left)}");
+                        else
+                            sb.AppendLine($"• {title} - Due {due:MMM dd, h:mm tt} ({FormatSpan(left)} left)");
                     }
                 }
             }
-            if (sb.Length > 0) {
-                MessageBox.Show(sb.ToString(), "Loan Reminders", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+
+            if (sb.Length > 0)
+                MessageBox.Show(sb.ToString(), "Loan Reminders", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         // This method is called when the form is loaded. It checks the login state and updates the UI accordingly.
@@ -102,12 +107,13 @@ namespace LibrarySystem.Student
             try {
                 using (var conn = DatabaseHelper.GetConnection())
                 using (var cmd = new MySqlCommand(@"
-            SELECT b.title, b.copies_available, l.status, l.due_date, l.date_requested
-            FROM book_loans l
-            JOIN books b ON b.book_id = l.book_id
-            WHERE l.user_id = @userId
-              AND l.status IN ('Pending', 'Borrowed')
-            ORDER BY l.due_date IS NULL, l.due_date ASC, l.date_requested DESC", conn)) {
+                    SELECT b.title, b.copies_available, b.is_active, l.status, l.due_date, l.date_requested
+                    FROM book_loans l
+                    JOIN books b ON b.book_id = l.book_id
+                    WHERE l.user_id = @userId
+                      AND l.status IN ('Pending', 'Borrowed')
+                    ORDER BY l.due_date IS NULL, l.due_date ASC, l.date_requested DESC",
+                    conn)) {
                     cmd.Parameters.AddWithValue("@userId", LoggedInUser.UserId);
                     conn.Open();
 
@@ -119,12 +125,17 @@ namespace LibrarySystem.Student
                                 ? 0
                                 : reader.GetInt32("copies_available");
 
+                            // TINYINT(1) can come back as a bool, so use Convert instead of GetInt32
+                            bool isActive = Convert.ToInt32(reader["is_active"]) == 1;
+
                             if (status.Equals("pending", StringComparison.OrdinalIgnoreCase)) {
                                 string requestedText = reader.IsDBNull(reader.GetOrdinal("date_requested"))
                                     ? ""
                                     : $" (requested {reader.GetDateTime("date_requested"):MMM dd})";
 
-                                if (copies <= 0)
+                                if (!isActive)
+                                    AddUpdate($"• {title} - No longer available (removed from the library){requestedText}", Color.Firebrick);
+                                else if (copies <= 0)
                                     AddUpdate($"• {title} - Currently unavailable{requestedText}", Color.Firebrick);
                                 else
                                     AddUpdate($"• {title} - Pending pickup{requestedText}", Color.DarkGoldenrod);
@@ -191,7 +202,7 @@ namespace LibrarySystem.Student
                 "ELSE 'Unavailable' END AS book_status, " +
                 "b.year_published, b.synopsis, g.genre AS genre, b.publisher " +
                 "FROM books b LEFT JOIN genre g ON g.genre_id = b.genre " +
-                "WHERE title LIKE @search OR author LIKE @search ORDER BY title", conn)) {
+                "WHERE b.is_active = 1 AND (b.title LIKE @search OR b.author LIKE @search)", conn)) {
                 cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%");
                 conn.Open();
 
@@ -255,6 +266,7 @@ namespace LibrarySystem.Student
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(
                 "SELECT book_id, title, author, book_cover FROM books " +
+                "WHERE is_active = 1 " +
                 "ORDER BY date_added DESC LIMIT 4", conn)) {
                 conn.Open();
 
@@ -298,11 +310,22 @@ namespace LibrarySystem.Student
             var dt = new DataTable();
 
             // book_id is still selected because the results grid needs it to open the LoanForm (hide it in the grid).
+            // LEFT JOIN so a book with no genre still appears (shown as "Unknown").
             using (var conn = DatabaseHelper.GetConnection())
             using (var cmd = new MySqlCommand(
-                "SELECT b.book_id, b.title, b.author, b.copies_available, b.book_status, " +
-                "b.year_published, b.synopsis, g.genre AS genre, b.publisher " +
-                "FROM books b LEFT JOIN genre g ON g.genre_id = b.genre " +
+                "SELECT " +
+                    "b.book_id AS book_id, " +
+                    "b.title AS title, " +
+                    "b.author AS author, " +
+                    "COALESCE(g.genre, 'Unknown') AS genre, " +
+                    "b.publisher AS publisher, " +
+                    "b.year_published AS year_published, " +
+                    "b.copies_available AS copies_available, " +
+                    "CASE WHEN b.copies_available > 0 THEN 'Available' ELSE 'Unavailable' END AS book_status, " +
+                    "b.synopsis AS synopsis " +
+                "FROM books b " +
+                "LEFT JOIN genre g ON b.genre = g.genre_id " +
+                "WHERE b.is_active = 1 " +
                 "ORDER BY b.title", conn)) {
                 conn.Open();
 

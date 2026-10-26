@@ -1,0 +1,21 @@
+feat: complete student, librarian, and admin features
+
+Finish all remaining features for the ARK Library Management System.
+
+Student:
+- Show request date, loan date, due date, return date, and lost/damaged date in history
+- Allow students to cancel their own pending requests
+- Show "Currently unavailable" in updates when a pending book has no copies left
+
+Librarian:
+- Use date_requested for pending loan requests
+- Add Lost/Damage handling on the return desk
+- Fix book save error by passing the missing book cover parameter
+
+Admin:
+- Add Archived Users tab with restore option
+- Archive students only when they have no borrowed books
+
+Database:
+- Add date_requested and lost_or_damaged_on to book_loans
+- Replace the 'Lost' status with 'Lost/Damage'

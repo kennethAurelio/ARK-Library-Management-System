@@ -25,6 +25,7 @@ namespace LibrarySystem.Staff {
                 b.book_cover AS book_cover
             FROM books b
             LEFT JOIN genre g ON b.genre = g.genre_id
+            WHERE b.is_active = 1
             ORDER BY b.title;";
 
         private void LoadCatalog() {
@@ -235,6 +236,72 @@ namespace LibrarySystem.Staff {
 
             LoadCatalog();        // refresh the grid and reset the form to add mode
             LoadLoanRequests();   // keep "Copies Left" in the requests grid current
+        }
+
+        private void btnRemoveBook_Click(object sender, EventArgs e) {
+            if (_editingBookId == null) {
+                MessageBox.Show("Select a book to remove first.", "No Selection",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try {
+                using (var conn = DatabaseHelper.GetConnection()) {
+                    conn.Open();
+
+                    // 1. Block only if someone is currently holding the book
+                    using (var borrowed = new MySqlCommand(
+                        "SELECT COUNT(*) FROM book_loans WHERE book_id = @id AND status = 'Borrowed'", conn)) {
+                        borrowed.Parameters.AddWithValue("@id", _editingBookId.Value);
+
+                        if (Convert.ToInt32(borrowed.ExecuteScalar()) > 0) {
+                            MessageBox.Show("This book is currently borrowed. It can be removed after it is returned.",
+                                            "Cannot Remove", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+
+                    // 2. Count pending requests so the librarian knows what will be cancelled
+                    int pending;
+                    using (var count = new MySqlCommand(
+                        "SELECT COUNT(*) FROM book_loans WHERE book_id = @id AND status = 'Pending'", conn)) {
+                        count.Parameters.AddWithValue("@id", _editingBookId.Value);
+                        pending = Convert.ToInt32(count.ExecuteScalar());
+                    }
+
+                    string message = pending > 0
+                        ? $"Remove this book from the library?\n\n{pending} pending request(s) will be cancelled. Loan history is kept."
+                        : "Remove this book from the library? Loan history is kept.";
+
+                    if (MessageBox.Show(message, "Confirm Remove",
+                                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                        return;
+
+                    // 3. Cancel the pending requests and archive the book together
+                    using (var tx = conn.BeginTransaction()) {
+                        using (var cancel = new MySqlCommand(
+                            "UPDATE book_loans SET status = 'Cancelled' WHERE book_id = @id AND status = 'Pending'", conn, tx)) {
+                            cancel.Parameters.AddWithValue("@id", _editingBookId.Value);
+                            cancel.ExecuteNonQuery();
+                        }
+
+                        using (var archive = new MySqlCommand(
+                            "UPDATE books SET is_active = 0 WHERE book_id = @id", conn, tx)) {
+                            archive.Parameters.AddWithValue("@id", _editingBookId.Value);
+                            archive.ExecuteNonQuery();
+                        }
+
+                        tx.Commit();
+                    }
+                }
+            } catch (MySqlException ex) {
+                MessageBox.Show("Could not remove the book.\n" + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            LoadCatalog();           // refresh the catalog grid and reset the form
+            LoadArchivedBooks();     // the book now shows in the Archived Books tab
         }
 
     }

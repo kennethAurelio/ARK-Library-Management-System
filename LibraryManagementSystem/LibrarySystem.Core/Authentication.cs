@@ -8,7 +8,7 @@ namespace LibrarySystem.Core {
                     SELECT user_id, first_name, middle_name, last_name,
                     role, password, account_status
                     FROM accounts
-                    WHERE login_id = @login_id";
+                    WHERE BINARY login_id = BINARY @login_id";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn)) {
                     cmd.Parameters.AddWithValue("@login_id", memberID);
